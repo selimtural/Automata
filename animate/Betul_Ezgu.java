@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package animation;
+package animate;
 
 /**
  *
@@ -56,7 +56,7 @@ public class Betul_Ezgu implements Animator {
     class Panel extends javax.swing.JPanel { //drawing
 
         public void paint(Graphics g) {
-
+            g.clearRect(0,0,2 * MX,2 * MY);
             g.setColor(new Color(255, 0, 0));
             g.drawRect(10, 10, 100, 50);
             g.fillRect(129, 10, 100, 50);
