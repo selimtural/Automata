@@ -41,7 +41,7 @@ public class ummu implements Animator {
         return pan;
     }
     public String description() {
-        return "Kare olusturan geometrık sekıl";
+        return "Kare olusturan geometrik sekil";
     }
     public String author() {
         return "ummugulsum can ";
