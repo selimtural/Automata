@@ -33,8 +33,8 @@ public class EbrarSAHIN implements Animator, MouseMotionListener, MouseListener 
     @Override
     public int doTick() {
         pan.repaint();
-        System.out.println();
-        return 0;
+
+        return 100;
     }
 
     @Override
@@ -104,20 +104,10 @@ public class EbrarSAHIN implements Animator, MouseMotionListener, MouseListener 
             if (isClicked == true) {
                 for (int i = 0; i < 200; i++) {
                     drawCenteredCircle(pan.getGraphics(), X, Y, i);
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(EbrarSAHIN.class.getName()).log(Level.SEVERE, null, ex);
-                    }
                     pan.getGraphics().clearRect(0, 0, 2 * MX, 2 * MY);
                 }
                 for (int i = 198; i >= 0; i--) {
                     drawCenteredCircle(pan.getGraphics(), X, Y, i);
-                    try {
-                        Thread.sleep(10);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(EbrarSAHIN.class.getName()).log(Level.SEVERE, null, ex);
-                    }
                     pan.getGraphics().clearRect(0, 0, 2 * MX, 2 * MY);
                 }
                 isClicked= false;
