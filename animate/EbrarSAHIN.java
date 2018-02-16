@@ -19,7 +19,7 @@ public class EbrarSAHIN implements Animator, MouseMotionListener, MouseListener 
 
     boolean isClicked = false;
     Container pan = new Panel();
-    Graphics g = pan.getGraphics();
+    //Graphics g = pan.getGraphics();
     int X = 0;
     int Y = 0;
 
@@ -54,12 +54,12 @@ public class EbrarSAHIN implements Animator, MouseMotionListener, MouseListener 
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("Mouse Dragged");
+        //System.out.println("Mouse Dragged");
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        System.out.println("mouse moved");
+        //System.out.println("mouse moved");
         X = e.getX();
         Y = e.getY();
     }
@@ -74,7 +74,7 @@ public class EbrarSAHIN implements Animator, MouseMotionListener, MouseListener 
     public void mouseClicked(MouseEvent e) {
         X = e.getX();
         Y = e.getY();
-        System.out.println("Mouse Clicked.");
+        //System.out.println("Mouse Clicked.");
         isClicked = true;
     }
 
@@ -101,16 +101,16 @@ public class EbrarSAHIN implements Animator, MouseMotionListener, MouseListener 
             g.clearRect(0, 0, 2 * MX, 2 * MY);
             g.setColor(Color.red);
             g.fillOval(X, Y, 20, 20);
-            if (isClicked == true) {
+            if (isClicked) {
                 for (int i = 0; i < 200; i++) {
-                    drawCenteredCircle(pan.getGraphics(), X, Y, i);
-                    pan.getGraphics().clearRect(0, 0, 2 * MX, 2 * MY);
+                    drawCenteredCircle(g, X, Y, i);
+                    g.clearRect(0, 0, 2 * MX, 2 * MY);
                 }
                 for (int i = 198; i >= 0; i--) {
-                    drawCenteredCircle(pan.getGraphics(), X, Y, i);
-                    pan.getGraphics().clearRect(0, 0, 2 * MX, 2 * MY);
+                    drawCenteredCircle(g, X, Y, i);
+                    g.clearRect(0, 0, 2 * MX, 2 * MY);
                 }
-                isClicked= false;
+                isClicked = false;
             }
         }
     }
