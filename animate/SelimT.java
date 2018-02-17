@@ -27,7 +27,7 @@ public class SelimT implements Animator {
     }
     
     public String description() {
-        return "Ekranda random görünen random harfler";
+        return "Ekranda random harfler";
     }
     
     public String author() {
@@ -42,11 +42,11 @@ public class SelimT implements Animator {
             Font font = new Font("Arial", Font.BOLD, 60);
             
             g.setFont(font);
-            String sel = "";
+            //String sel = "";
             Random st = new Random ();
-            int k = st.nextInt(65,123);
-            char harf = Convert.ToChar(k);
-            sel += harf;
+            int k = 65+st.nextInt(64);
+            //Convert.ToChar(k);
+            String sel = ""+(char)k;
             int a = st.nextInt(MX);
             int b = st.nextInt(MY);
             g.setColor(Color.blue);
