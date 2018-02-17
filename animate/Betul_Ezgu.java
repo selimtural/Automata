@@ -57,7 +57,7 @@ public class Betul_Ezgu implements Animator {
 
         public void paint(Graphics g) {
             g.clearRect(0,0,2 * MX,2 * MY);
-            Random rand=new Rand();
+            Random rand=new Random();
             int n1=rand.nextInt(255)+1;
             int n2=rand.nextInt(225)+1;
             int n3=rand.nextInt(200)+1;
