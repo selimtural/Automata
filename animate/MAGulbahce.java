@@ -9,7 +9,7 @@ import java.awt.Color;
 public class MAGulbahce implements Animator {
     final static double DELTA = Math.PI/10;
     final Container pan = new Panel();
-
+    final Font font = new Font("Times New Roman", Font.ROMAN_BASELINE, 35);
     double angle = 0; 
      static int counter=0;
     final static int A = MX-50, B = MY-50;
@@ -37,7 +37,7 @@ public class MAGulbahce implements Animator {
         @Override
         public void paint(Graphics g) {
             g.clearRect(0, 0, 2 * MX, 2 * MY);
-            Font font = new Font("Gisha", Font.ROMAN_BASELINE, 35);
+            
             
             g.setFont(font);
             String s = "RoseGarden";
