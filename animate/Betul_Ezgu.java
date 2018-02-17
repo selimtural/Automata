@@ -11,7 +11,7 @@ package animate;
  */
 import java.awt.Color;
 import java.awt.Dimension;
-
+import java.util.Random;
 import java.awt.Graphics;
 
 import java.awt.Container;
@@ -31,7 +31,7 @@ public class Betul_Ezgu implements Animator {
         angle += DELTA;
         pan.repaint();
 
-        return 100;
+        return 500;
 
     }
 
@@ -57,7 +57,11 @@ public class Betul_Ezgu implements Animator {
 
         public void paint(Graphics g) {
             g.clearRect(0,0,2 * MX,2 * MY);
-            g.setColor(new Color(255, 0, 0));
+            Random rand=new Rand();
+            int n1=rand.nextInt(255)+1;
+            int n2=rand.nextInt(225)+1;
+            int n3=rand.nextInt(200)+1;
+            g.setColor(new Color(n1, n2, n3));
             g.drawRect(10, 10, 100, 50);
             g.fillRect(129, 10, 100, 50);
         }
