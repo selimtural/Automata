@@ -6,7 +6,7 @@ import java.awt.*;
 public class Rajab implements Animator{
     // a try to make something like : 
     // https://www.youtube.com/watch?v=3n9QTdj6Jv4
-    public JLabel text = new JLabel("FanBoyNokia-Lol", SwingConstants.CENTER); 
+    public JLabel text = new JLabel("Hello World -_- ", SwingConstants.CENTER); 
 
     public int Y = MY*2; //
     public int pixel=5;  // movement 
@@ -48,25 +48,25 @@ public class Rajab implements Animator{
        
         switch (control) {
             case 0:
-            text.setText("nokia");
+            text.setText("hello ");
             break;
             case 1:
-            text.setText("8" );
+            text.setText("world" );
             break;
             case 2:
-            text.setText("is");
+            text.setText("Merhaba");
             break;
             case 3:
-            text.setText("here" );
+            text.setText("dunya" );
             break;
             case 4:
-            text.setText("try" );
+            text.setText("Naber" );
             break;
             case 5:
-            text.setText("it" );
+            text.setText("iyiyim" );
             break;
             default:
-            text.setText("fanBoy lol" );
+            text.setText("default" );
         }
         /*if(sayac >= 50){
         
@@ -89,7 +89,7 @@ public class Rajab implements Animator{
         return text;
     } //drawing area -- called once
     public String description(){
-        return "Nokia fanBoy application";
+        return "playing with words";
     } //what does it do?
     public String author(){
         return "A.Rajab";
