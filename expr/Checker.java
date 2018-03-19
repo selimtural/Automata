@@ -60,6 +60,12 @@ public class Checker {
          expr();
          match(Token.RIGHT); 
       }
+      else if (tok == Token.IDENT)  {
+         match(Token.IDENT);
+         match(Token.LEFT);
+         expr();
+         match(Token.RIGHT); 
+      }
       else expected("Factor"); 
    }
    
