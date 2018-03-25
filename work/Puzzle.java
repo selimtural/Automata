@@ -1,3 +1,5 @@
+package work;
+
 import java.util.*;
 
 class Puzzle extends Automaton {

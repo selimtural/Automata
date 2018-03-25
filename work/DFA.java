@@ -1,3 +1,5 @@
+package work;
+
 class DFA extends Automaton {
    //deterministic finite automaton for (1+0)*10
    
@@ -13,12 +15,12 @@ class DFA extends Automaton {
    } 
    public boolean accept(String w) {
       State q = State.A;  //initial State
-      System.out.printf("   %s", q);
+      System.out.printf("  %s", q);
       for (int j=0; j<w.length(); j++) {
          char c = w.charAt(j);
          State t = delta(q, c);
          //System.out.println(j+": ("+q+", "+c+") -> "+t);
-         System.out.printf(" --> %s", t);
+         System.out.printf(" -> %s", t);
          if (t == null) return false;
          q = t;
       }

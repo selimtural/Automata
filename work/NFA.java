@@ -1,3 +1,5 @@
+package work;
+
 import java.util.Set;
 import java.util.EnumSet;
 

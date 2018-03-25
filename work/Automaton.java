@@ -1,3 +1,5 @@
+package work;
+
 public abstract class Automaton {
 
    public abstract boolean accept(String w);
@@ -15,7 +17,7 @@ public abstract class Automaton {
    
    static void header(String w) {
       for (int j=0; j<w.length(); j++) 
-          System.out.printf("%6s", w.charAt(j));
+          System.out.printf("%5s", w.charAt(j));
       System.out.println();
    }
 }
