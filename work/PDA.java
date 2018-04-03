@@ -1,9 +1,9 @@
 package work;
 
-abstract class PDA extends Automaton {
+public abstract class PDA extends Automaton {
 
-    abstract String delta(char c, char p);
-    boolean accept(String w, char init) {
+    abstract public String delta(char c, char p);
+    public boolean accept(String w, char init) {
         int m = w.length(); 
         Stack s = new Stack(); 
         s.push(init); int i=0;  

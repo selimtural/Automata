@@ -2,7 +2,7 @@ package work;
 
 import java.util.Arrays;
 
-class Stack {
+public class Stack {
 
     final static int M = 10;
     int n; char[] data; 
