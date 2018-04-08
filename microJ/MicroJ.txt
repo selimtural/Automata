@@ -2,7 +2,7 @@
 //start with a jar File
 class java.io.File
 //start with a jar File
-f = new File("mj1.jar");
+f = new File("mj3.jar");
 //convert f to URL
 i = f.toURI();
 //convert f to URL
@@ -14,7 +14,7 @@ class mae.sss.Chooser
 Chooser.loadClass(u, "mae.mj3.MicroJ3");
 
 //microJ source File
-g = new File("microJ", "test1.mJ");
+g = new File("microJ", "simple1.mJ");
 //open the file
 p = new MicroJ3(g);
 //parse the file
