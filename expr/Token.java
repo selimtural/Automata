@@ -8,7 +8,7 @@ package expr;
  
 public enum Token {
     
-    LEFT("("), RIGHT(")"), EQUAL("="), PERIOD("."), 
+    LEFT("("), RIGHT(")"), EQUAL("="), PERIOD("."), SEMCOL(";"), 
     PLUS("+"), MINUS("-"), STAR("*"), SLASH("/"), COMMA(","),
     IDENT("ident"), NUMBER("number"), EOF("eof"); 
 
