@@ -31,19 +31,30 @@ class Variable implements Expression  {
     public String toString() { return id; }
     public String toTree() { return id; }
 }
-class Runtime {
-    public static Statement[] last;
-    final static String sample = "a=3; b=5; sum=a+b; print sqrt(sum/2);";
-    public static Map<String, Float> getMap() { return Variable.map; }
-    public static Statement[] parse2(String txt) {
+class Program implements Runnable {
+    final Statement[] prog;
+    public Program(Statement[] a) { prog = a; }
+    public void run() { for (Statement s : prog) s.run(); }
+    public String toString() {
+        String t = ""; 
+        for (Statement s : prog) t = t+s+";\n"; 
+        return t; 
+    }
+}
+public class Runtime {
+    public Program last;
+    public Object getMap() { return Variable.map; }
+    public Program getLast() { return last; }
+    public Program parse(String txt) {
         return (last = new Parser2(txt).parse2());
     }
-    public static void parseAndRun(String txt) {
-        System.out.println(txt);
-        for (Statement s : parse2(txt)) s.run(); 
+    public void parseAndRun(String txt) {
+        System.out.println(txt); parse(txt).run(); 
     }
-    public static void main(String... args) { 
-        if (args.length == 0) args = new String[] { sample };
-        for (String txt : args) parseAndRun(txt);
+    public void main() { 
+        parseAndRun("k=0; t=1; s=1;");
+        parseAndRun("k=k+1; t=t/k; s=s+t;");
     }
+    final static String sample = "a=3; sum=a+5; print sqrt(sum/2);";
+    public static void main(String[] args) { new Runtime().main(); }
 }

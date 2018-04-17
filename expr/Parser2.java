@@ -1,17 +1,19 @@
 package expr;
 
+import java.util.List;
 import java.util.ArrayList;
    
 public class Parser2 extends Parser {
 
    public Parser2(String s) { super(s); }
-   public Statement[] parse2() { //cannot override parse()
+   public Program parse2() { //cannot override parse()
       tok = lex.nextToken();
-      ArrayList<Statement> a = new ArrayList<>();
+      List<Statement> L = new ArrayList<>();
       while (tok != Token.EOF)
-         a.add(statement());
-      match(Token.EOF); 
-      return a.toArray(new Statement[0]); 
+         L.add(statement());
+      match(Token.EOF);
+      Statement[] a = L.toArray(new Statement[0]);
+      return new Program(a); 
    }
    Statement statement() {
       String id = lex.sval;

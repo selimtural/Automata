@@ -1,0 +1,16 @@
+//we need Runtime class
+class mae.sss.Chooser
+//select Runtime class
+Chooser.loadClass();
+//new Runtime instance
+rt = new Runtime();
+//Run main()
+rt.main();
+//Variables are in the Map
+map = rt.getMap();
+//get last Program
+last = rt.getLast();
+//get last Program
+//and run it again
+last.run();
+
