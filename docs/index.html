@@ -12,8 +12,9 @@
             background-color: #eee;
             color: black;
             display: block;
-            padding: 12px;
+            padding: 15px;
             text-decoration: none;
+            border-bottom: 1px solid royalblue;
         }
 
         .vertical-menu a:hover {
@@ -23,6 +24,36 @@
         .vertical-menu a.active {
             background-color: royalblue;
             color: white;
+        }
+        
+        .pageContent {
+            
+        }
+        .pageContent table {
+          width: 100%;
+          text-align: center;
+        }
+        .pageContent table tr {
+          height: 80px;
+          background-color:crimson;
+        }
+        .pageContent table tr:nth-child(odd){
+          background-color: royalblue;
+        }
+        .pageContent table tr td {
+          width: 140px;
+            
+        }
+        .pageContent table tr td a {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+          padding: 10px 5px;
+        }
+        .pageContent table tr td:hover {
+          background-color:aliceblue;
+          color: #000000;
+          transition: 100ms linear;
         }
     </style>
   </header>
@@ -36,66 +67,74 @@
     </table>
         </center>
     
+    
     <center>
     <table>
         <tr>
-            <td>
+            <td style="vertical-align: top ; margin-top:auto">
                 <div class="vertical-menu">
                     <a href="index.html" class="active">Home</a>
+                    <a href="fa.html">Finite Automata</a>
+                    <a href="regexp.html">Regular Expression</a>
                     <a href="cfg.html">Context-Free Grammar</a>
                     <a href="pda.html">Push-Down Automata</a>
-                    <a href="regexp.html">Regular Expression</a>
-                    <a href="fa.html">Finite Automata</a>
-                    <a href="mikroj.html">MicroJ</a>
                     <a href="turing.html">Turing</a>
                     <a href="detail.html">Detail</a>
                 </div>
             </td>
             
             <td>
-                <table border = "1" bordercolor = "royalblue" width = "700" height = "370" style="background-color:cornsilk;">
-                    <tr>
-                        <td><a href="cfg/Bilal_RecursiveDescentParser.html">Bilal Ekrem Harmanşa</a></td>
-                        <td><a href="pda/furkan-state_diagrams.html">Furkan Sarıhan</a></td>
-                        <td><a href="pda/YigitMert_pdaYieldsNotation.md">Yiğit Mert Dönmez</a></td>
-                        <td><a href="regexp/EmrahTema_Regexp.html">Emrah Tema</a></td>
-                        <td><a href="cfg/Muhammet_Ali_Gulbahce_CF_Grammar.md">Muhammet Ali Gülbahçe</a></td>
-                    </tr>
-                    
-                    <tr>
-                        <td><a href="fa/selimtural-dfa.html">Selim Tural</a></td>
-                        <td><a href="fa/Merveozdemir_dfa.md">Merve Özdemir</a></td>
-                        <td><a href="regexp/Dila_RegExp_to_DFA.md">Dila Erbakan</a></td>
-                        <td><a href="pda/SedaCaglar_pda.html">Seda Çağlar</a></td>
-                        <td><a href="fa/Selin_NFAtoDFAconverter.md">Selin Daldaban</a></td>
-                    </tr>
-                    
-                    <tr>
-                        <td><a href="fa/ummugulsum_nfa.md">Ümmügülsüm Can</a></td>
-                        <td><a href="fa/ebrarsahin-dfa.html">Ebrar Şahin</a></td>
-                        <td><a href="fa/AyseSena_NFAYieldNotation.md">Ayşe Sena Feyiz</a></td>
-                        <td><a href="pda/BetulEzgu_pdaInput.html">Betül Ezgü</a></td>
-                        <td><a href="microj/IbrahimEnes_SimpleIdeForMicroJ.html">Enes Aydoğdu</a></td>
-                    </tr>
-                    
-                    <tr>
-                        <td><a href="fa/saide_dfa.html">Saide Başpehlivan</a></td>
-                        <td><a href="turing/abdurrahmanRajab_turingMachineSimulator.html">Abdurrahman Rajab</a></td>
-                        <td><a href="cfg/AhmetFirat_CfgImplementation.html">Ahmet Fırat Şüphesiz</a></td>
-                        <td><a href="regexp/BedirhanYildirim_RegexpForm.html">Bedirhan Yıldırım</a></td>
-                        <td><a href="regexp/TolgaTezel_PatternSearch.html">Tolga Tezel</a></td>
-                    </tr>
-                    
-                    <tr>
-                        <td><a href="regexp/BurakUguz_RegexpTester.html">Burak Uğuz</a></td>
-                        <td><a href="fa/EnesKy_NFAtoDFA.md">Enes Kamil Yılmaz</a></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
+                <div class="pageContent">
+            <table>
+                <tr>
+                    <td><a href="cfg/Bilal_RecursiveDescentParser.html">Bilal Ekrem Harmanşa</a></td>
+                    <td><a href="pda/furkan-state_diagrams.html">Furkan Sarıhan</a></td>
+                    <td><a href="pda/YigitMert_pdaYieldsNotation.md">Yiğit Mert Dönmez</a></td>
+                    <td><a href="regexp/EmrahTema_Regexp.html">Emrah Tema</a></td>
+                    <td><a href="cfg/Muhammet_Ali_Gulbahce_CF_Grammar.md">Muhammet Ali Gülbahçe</a></td>
+                </tr>
+
+                <tr>
+                    <td><a href="fa/selimtural-dfa.html">Selim Tural</a></td>
+                    <td><a href="fa/Merveozdemir_dfa.md">Merve Özdemir</a></td>
+                    <td><a href="regexp/Dila_RegExp_to_DFA.md">Dila Erbakan</a></td>
+                    <td><a href="pda/SedaCaglar_pda.html">Seda Çağlar</a></td>
+                    <td><a href="fa/Selin_NFAtoDFAconverter.md">Selin Daldaban</a></td>
+                </tr>
+
+                <tr>
+                    <td><a href="fa/ummugulsum_nfa.md">Ümmügülsüm Can</a></td>
+                    <td><a href="fa/ebrarsahin-dfa.html">Ebrar Şahin</a></td>
+                    <td><a href="fa/AyseSena_NFAYieldNotation.md">Ayşe Sena Feyiz</a></td>
+                    <td><a href="pda/BetulEzgu_pdaInput.html">Betül Ezgü</a></td>
+                    <td><a href="microj/IbrahimEnes_SimpleIdeForMicroJ.html">Enes Aydoğdu</a></td>
+                </tr>
+
+                <tr>
+                    <td><a href="fa/saide_dfa.html">Saide Başpehlivan</a></td>
+                    <td><a href="turing/abdurrahmanRajab_turingMachineSimulator.html">Abdurrahman Rajab</a></td>
+                    <td><a href="cfg/AhmetFirat_CfgImplementation.html">Ahmet Fırat Şüphesiz</a></td>
+                    <td><a href="regexp/BedirhanYildirim_RegexpForm.html">Bedirhan Yıldırım</a></td>
+                    <td><a href="regexp/TolgaTezel_PatternSearch.html">Tolga Tezel</a></td>
+                </tr>
+
+                <tr>
+                    <td><a href="regexp/BurakUguz_RegexpTester.html">Burak Uğuz</a></td>
+                    <td><a href="fa/EnesKy_NFAtoDFA.md">Enes Kamil Yılmaz</a></td>
+                    <td><a href="javadoc/index.html">Salim Şahin</a></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+          </div>
             </td>
             
+        </tr>
+        <tr>
+            <td colspan = "2">
+                <center><p>**This website contains the examples and assays about Automata(BLM320) topics which prepared by students**</p><br>
+                    --2018--</center>
+            </td>
         </tr>
     </table>
     </center>
