@@ -1,67 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <header>
+    <meta charset="utf-8">
     <title>BLM320 - Automata 2018 Term Project</title>
-    <link rel="icon" href="fsm.png">
-    <style>
-        .vertical-menu {
-            width: 200px;
-        }
-
-        .vertical-menu a {
-            background-color: #eee;
-            color: black;
-            display: block;
-            padding: 15px;
-            text-decoration: none;
-            border-bottom: 1px solid royalblue;
-        }
-
-        .vertical-menu a:hover {
-            background-color: #ccc;
-        }
-
-        .vertical-menu a.active {
-            background-color: royalblue;
-            color: white;
-        }
-        
-        .pageContent {
-            
-        }
-        .pageContent table {
-          width: 100%;
-          text-align: center;
-        }
-        .pageContent table tr {
-          height: 80px;
-          background-color:crimson;
-        }
-        .pageContent table tr:nth-child(odd){
-          background-color: royalblue;
-        }
-        .pageContent table tr td {
-          width: 140px;
-            
-        }
-        .pageContent table tr td a {
-          color: black;
-          text-decoration: none;
-          cursor: pointer;
-          padding: 10px 5px;
-        }
-        .pageContent table tr td:hover {
-          background-color:aliceblue;
-          color: #000000;
-          transition: 100ms linear;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"/>
+    
   </header>
-<body style="background-color:powderblue;">
+<body>
     <center>
     <table>
         <tr>
-            <td><img src="fsm.png"></td>
+            <td><a target="_blank" href="http://bm.fsm.edu.tr/"><img src="fsm.png"></a></td>
             <td width="800"><center><h1>BLM 320 - 2018 Term Project</h1></center></td>
         </tr>
     </table>
@@ -69,11 +18,11 @@
     
     
     <center>
-    <table>
+    <table class="bodyTable">
         <tr>
             <td style="vertical-align: top ; margin-top:auto">
                 <div class="vertical-menu">
-                    <a href="index.html" class="active">Home</a>
+                    <a href="index.html" class="active" style="border-top: 1px solid royalblue;">Home</a>
                     <a href="fa.html">Finite Automata</a>
                     <a href="regexp.html">Regular Expression</a>
                     <a href="cfg.html">Context-Free Grammar</a>
@@ -91,7 +40,7 @@
                     <td><a href="pda/furkan-state_diagrams.html">Furkan Sarıhan</a></td>
                     <td><a href="pda/YigitMert_pdaYieldsNotation.md">Yiğit Mert Dönmez</a></td>
                     <td><a href="regexp/EmrahTema_Regexp.html">Emrah Tema</a></td>
-                    <td><a href="cfg/Muhammet_Ali_Gulbahce_CF_Grammar.md">Muhammet Ali Gülbahçe</a></td>
+                    <td><a href="cfg/MAGulbahce_CF_Grammar.html">Muhammet Ali Gülbahçe</a></td>
                 </tr>
 
                 <tr>
@@ -115,7 +64,7 @@
                     <td><a href="turing/abdurrahmanRajab_turingMachineSimulator.html">Abdurrahman Rajab</a></td>
                     <td><a href="cfg/AhmetFirat_CfgImplementation.html">Ahmet Fırat Şüphesiz</a></td>
                     <td><a href="regexp/BedirhanYildirim_RegexpForm.html">Bedirhan Yıldırım</a></td>
-                    <td><a href="regexp/TolgaTezel_PatternSearch.html">Tolga Tezel</a></td>
+                    <td><a href="regexp/TolgaTezel_PatternSearch.md">Tolga Tezel</a></td>
                 </tr>
 
                 <tr>
@@ -132,8 +81,8 @@
         </tr>
         <tr>
             <td colspan = "2">
-                <center><p>**This website contains the examples and assays about Automata(BLM320) topics which prepared by students**</p><br>
-                    --2018--</center>
+                <center><p>This website contains the examples and assays about Automata(BLM320) topics prepared by students.<br>
+                    2018</p></center>
             </td>
         </tr>
     </table>
