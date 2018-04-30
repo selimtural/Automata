@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script>
+        $(document).ready(function(){
+          $("#initialfinalstate_button_id").click(function(){
+            var x = document.getElementById("initialfinalstateinfo");
+            if(x.elements[0].value != "" && x.elements[1].value != ""){
+              initialstate = x.elements[0].value.toLowerCase();
+              finalstate = x.elements[1].value.toLowerCase();
+              $("#initialfinalstateinfo_div").fadeOut("slow");
+              $("#flip2").fadeIn("slow");
+              $("#pleaseenterstateinfo_div").fadeIn("slow");
+            }
+            else{
+              alert("INITIAL OR FINAL STATE CAN NOT BE EMPTY!");
+            }
+
+          });
+
+          $("#flip").click(function(){
+            clickCounter += 1;
+            if(clickCounter % 2 == 1){
+              $("#initialfinalstateinfo_div").slideDown("slow");
+            }
+            else {
+              $("#initialfinalstateinfo_div").slideUp("slow");
+            }
+          });
+
+          $("#flip2").click(function(){
+            clickCounter += 1;
+            if(clickCounter % 2 == 1){
+              $("#pleaseenterstateinfo_div").slideDown("slow");
+            }
+            else {
+              $("#pleaseenterstateinfo_div").slideUp("slow");
+            }
+          });
+
+          $("#flip3").click(function(){
+            clickCounter += 1;
+            if(clickCounter % 2 == 1){
+              $("#givenstring_div").slideDown("slow");
+            }
+            else {
+              $("#givenstring_div").slideUp("slow");
+            }
+          });
+
+          $("#pleaseenterstateinfo_button_id").click(function(){
+            var x = document.getElementById("pleaseenterstateinfoform");
+            if(x.elements[0].value != "" || x.elements[1].value != "" || x.elements[2].value != "" ){
+              stateCount += 1;
+              if(stateCount == "1"){
+                    stateA_name = x.elements[0].value.toLowerCase();
+                    stateA = [x.elements[1].value,x.elements[2].value];
+                    alert("State Info is Saved.");
+                    x.elements[0].value = "";
+                    x.elements[1].value = "";
+                    x.elements[2].value = "";
+              }
+              else if(stateCount == "2"){
+                    stateB_name = x.elements[0].value.toLowerCase();
+                    stateB = [x.elements[1].value,x.elements[2].value];
+                    alert("State Info is Saved.");
+                    x.elements[0].value = "";
+                    x.elements[1].value = "";
+                    x.elements[2].value = "";
+              }
+              else if(stateCount == "3"){
+                    stateC_name = x.elements[0].value.toLowerCase();
+                    stateC = [x.elements[1].value,x.elements[2].value];
+                    alert("State Info is Saved.");
+                    x.elements[0].value = "";
+                    x.elements[1].value = "";
+                    x.elements[2].value = "";
+
+                    $("#pleaseenterstateinfo_div").fadeOut("slow");
+                    $("#showTheStates_div").append("State " + stateA_name + " --> 0 --> "+stateA[0]+ "<br>"+"State "+ stateA_name + " --> 1 --> "+stateA[1]
+                    +"<br>"+"State "+stateB_name +" --> 0 --> "+stateB[0]+ "<br>"+"State "+ stateB_name + " --> 1 --> "+stateB[1]+"<br>"+"State " + stateC_name + " --> 0 --> "+stateC[0]+ "<br>"+"State "+ stateC_name + " --> 1 --> "+stateC[1]);
+                    $("#showTheStates_div").fadeIn("slow");
+                    $("#flip3").fadeIn("slow");
+                    $("#givenstring_div").fadeIn("slow");
+                    $("#pleaseenterstateinfo_div").fadeOut("slow");
+              }
+            }
+            else {
+              alert("CAN NOT BE EMPTY!");
+            }
+          });
+
+          $("#checkifstringisaccepted_button_id").click(function(){
+            var x = document.getElementById("givenstringform");
+            givenuserstring = x.elements[0].value;
+            var current_char;
+            var current_state="a";
+            var i;
+            for (i = 0; i < givenuserstring.length; i++) {
+              current_char = givenuserstring.charAt(i);
+              if(current_state == "a"){
+                current_state = stateA[current_char];
+              }
+              else if(current_state == "b"){
+                current_state = stateB[current_char];
+              }
+              else if(current_state == "c"){
+                current_state = stateC[current_char];
+              }
+            }
+            //checks if current state == final state
+            if(finalstate == current_state){
+              $("#givenstring_div").fadeOut("slow");
+              $("#blink").text("ACCEPT");
+              setInterval(blink, 1000);
+            }
+            else{
+              $("#givenstring_div").fadeOut("slow");
+              $("#blink").text("REJECT");
+              setInterval(blink, 1000);
+            }
+          });
+
+        });
+   </script>
+   <script type="text/javascript">
+         <!--
+         var blinkA_interval;
+         var blinkR_interval;
+         var clickCounter=0;
+         var initialstate;
+         var finalstate;
+         var stateA_name;
+         var stateB_name;
+         var stateC_name;
+         var stateA;
+         var stateB;
+         var stateC;
+         var stateCount = 0;
+         var text = "";
+         var givenuserstring;
+
+         function blink() {
+           $('#blink').fadeIn("slow");$('#blink').fadeOut("slow");
+         }
+
+         //-->
+      </script>
+   <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+          font-family: Inconsolata;
+          font-size: 30px;
+          font-weight: 400;
+      }
+
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: #6a8da2;
+      }
+     #flip, #flip2,#flip3,#blink {
+         padding:10px;
+         width: 1440px;
+         text-align: center;
+         font-family: Inconsolata;
+         font-size: 30px;
+         font-weight: 400;
+         background-color: #CAAA8A;
+         border: solid 1px #CAAA8A;
+         margin:auto;
+     }
+     .navigation {
+       width: 1440px;
+       height: 115px;
+       margin: auto;
+     }
+
+     .title {
+       width: 1440px;
+       height: 392px;
+       margin: auto;
+     }
+
+     .dfa-title {
+       width: 1440px;
+       height: 115px;
+       margin: auto;
+     }
+
+     .dfa-icerik {
+       width: 1440px;
+       height: 600px;
+       color: #000000;
+       font-family: Inconsolata;
+       font-size: 40px;
+       font-weight: 400;
+       margin: auto;
+     }
+
+     .dfa-icerik2 {
+       width: 1440px;
+       height: 550px;
+       color: #000000;
+       font-family: Inconsolata;
+       font-size: 40px;
+       font-weight: 400;
+       margin: auto;
+     }
+
+     .default-style {
+       width: 1440px;
+       color: #000000;
+       font-family: Inconsolata;
+       font-size: 30px;
+       font-weight: 400;
+       margin: auto;
+     }
+
+     .center{
+       display: block;
+      margin-left: auto;
+      margin-right: auto;
+     }
+     .default-style2 {
+       width: 1440px;
+       height: 50px;
+       color: #000000;
+       font-family: Inconsolata;
+       font-size: 30px;
+       font-weight: 400;
+       margin: auto;
+     }
+
+
+     .button{
+       width: 150px;
+       text-align: center;
+       margin:0 auto;
+       text-align: center;
+     }
+     .example-table{
+       width: 1440px;
+       height: 50px;
+       color: #000000;
+       font-family: Inconsolata;
+       font-size: 30px;
+       font-weight: 400;
+       margin: auto;
+     }
+   </style>
+
+ <meta charset="utf-8">
+	<title>Automata Term Project</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<div class="navigation">
+    <a target="_blank" href="https://imageshack.com/i/pmmOFMGUp"><img src="https://imagizer.imageshack.com/v2/xq90/922/mOFMGU.png" border="0"></a>
+	</div>
+
+	<div class="title">
+		<a target="_blank" href="https://imageshack.com/i/pmxnX8Ypp"><img src="https://imagizer.imageshack.com/v2/xq90/922/xnX8Yp.png" border="0"></a>
+	</div>
+
+	<div class="dfa-title">
+		<a target="_blank" href="https://imageshack.com/i/pmo0II2Op"><img src="https://imagizer.imageshack.com/v2/xq90/922/o0II2O.png" border="0"></a>
+	</div>
+
+	<div class="dfa-icerik">
+    <h5>        Definition of a Deterministic Finite Automaton</h5>
+		<p>A deterministic finite automaton consists of:<br>
+    1. A finite set of states, often denoted Q.<br>
+    2. A finite set of input symbols, often denoted &#931; <br>
+    3. A transition function that takes as arguments a state and an input symbol and returns a state, often denoted &#948;<br>
+    4. A start state, one of the states in Q.<br>
+    5. A set of final or accepting states F. The set F is a subset of Q.<br><br>
+    A = (Q,&#931;, &#948;, q0,F)
+    where A is the name of the DFA, Q is its set of states, &#931; its input symbols, &#948; its transition function, q0 its start state, and F its set of accepting states.
+    </p>
+
+	</div>
+
+  <div class="dfa-title">
+    <a target="_blank" href="https://imageshack.com/i/pomDzEsAp"><img src="https://imagizer.imageshack.com/v2/xq90/924/mDzEsA.png" border="0"></a>
+  </div>
+
+  <div class="dfa-icerik2">
+    <p>
+      The "language" of the DFA is the set of all strings that the DFA accepts.<br>
+      Suppose a1,a2, ... a is a sequence of input symbols.<br>
+      1. We start out with the DFA in its start state, q0. <br>
+      2. We consult the transition function &#948;, say &#948;(qO,a1) == q1 to find the state that the DFA A enters after processing the first input symbol a1.<br>
+      3. We process the next input symbol a2, by evaluating &#948;(q1,a2); let us suppose this state is q2.<br>
+      4. We continue in this manner, finding states q3, q4, ..., qn such that &#948;(qi-1,ai)=qi for each i. If qn is a member of F, then the input a1, a2...an is accepted, and if not then it is "rejected."
+    </p>
+  </div>
+
+  <div class="example-table">
+    <a class="center" target="_blank" href="https://imageshack.com/i/pmzgGo5Zp"><img src="https://imagizer.imageshack.com/v2/xq90/922/zgGo5Z.png" border="0"></a><br>
+    <a target="_blank" href="https://imageshack.com/i/pnsTbIUgj"><img src="https://imagizer.imageshack.com/v2/xq90/923/sTbIUg.jpg" border="0"></a>
+    <p>Based on the representation of the DFA:<br>
+      Q = {a, b, c}<br>
+      &#931; = {0, 1}<br>
+      q0 = {a} <br>
+      F = {c} </p>
+      <p>The transition table should like the the following </p>
+    <table>
+  <tr>
+    <th>Present State</th>
+    <th>Next State for Input 0</th>
+    <th>Next State for Input 1</th>
+  </tr>
+  <tr>
+    <td>a</td>
+    <td>a</td>
+    <td>b</td>
+  </tr>
+  <tr>
+    <td>b</td>
+    <td>c</td>
+    <td>a</td>
+  </tr>
+
+  <tr>
+    <td>c</td>
+    <td>b</td>
+    <td>c</td>
+  </tr>
+</table>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br>
+
+  <div id="flip">Informations of Initial & Final States </div>
+    <br>
+    <div id="initialfinalstateinfo_div" class="default-style">
+        <form id="initialfinalstateinfo" action="">
+          Initial State Name: <input type="text" name="initialstate"><br>
+          Final State Name: <input type="text" name="finalstate"><br>
+          <input id="initialfinalstate_button_id" type="button" class="button" value="SUBMIT">
+        </form>
+      </div>
+    <br>
+    <div id="flip2" style="display:none">Informations of States</div>
+    <br>
+    <div id="pleaseenterstateinfo_div" style="display:none" class="default-style">
+      <form id="pleaseenterstateinfoform" action="">
+        State Name: <input type="text" name="statename"><br>
+        When Given String is 0, The State Goes to : <input type="text" name="0goesto"><br>
+        When Given String is 1, The State Goes to : <input type="text" name="1goesto"><br>
+        <input id="pleaseenterstateinfo_button_id" type="button" class="button" value="SUBMIT">
+      </form>
+    </div>
+    <div id="showTheStates_div" style="color:#CAAA8A;display:none" class="default-style"></div><br>
+    <div id="flip3" style="display:none">Given String</div>
+    <div id="givenstring_div" style="display:none" class="default-style">
+      <form id="givenstringform">
+        <br>
+        String: <input type="text" name="givenstring"><br>
+        <input id="checkifstringisaccepted_button_id" type="button" class="button" value="SUBMIT">
+      </form>
+    </div>
+    <br>
+      <br>
+      <p id="blink" style="display:none"></p>
+
+</body>
+</html>
