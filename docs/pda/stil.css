@@ -1,0 +1,83 @@
+"stil.css":
+body {
+   font-family: Segoe UI, Lucida Grande, DejaVu Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+ 
+    font-size: 14px;
+    color: #333;
+    background-color: navajowhite;
+   padding-left: 15px;
+    padding-right: 15px;
+  
+}
+
+
+
+div {
+	width: 90vw;
+	margin-left: 5vw;
+
+}
+
+
+h1 {
+
+	font-size: 8vw;
+	height: 10vw;
+	margin-top: calc(50vh - 20vw);
+
+	text-shadow: 
+	0px 0.9vw 0px hsl(337, 92%, 31%), 
+	0px 0.9vw 0px hsl(343, 100%, 39%),
+	0px 0.9vw 0px hsl(11, 80%, 60%);
+
+	-webkit-transition: 
+		margin 0.6s ease, 
+		height 1s ease, 
+		transform 0.6s ease,
+		text-shadow 0.6s ease;
+
+	transition:
+		margin 0.6s ease, 
+		height 1s ease, 
+		transform 0.6s ease,
+		text-shadow 0.6s ease;
+
+	cursor: pointer;
+}
+
+
+div:hover h1{
+	text-shadow: 
+	0px 16vw 0px hsl(337, 92%, 31%), 
+	0px 32vw 0px hsl(343, 100%, 39%),
+	0px 48vw 0px hsl(11, 80%, 60%);
+
+	height: 50vw;
+	transform: translateY(-17.5vw);
+	z-index: 2;
+}
+
+div p {
+	font-size:2vw;
+	width: 80%;
+ 	 margin-left: 10%;
+	text-decoration: underline;
+	text-decoration-color: hsl(337, 52%, 51%);
+	opacity: 1;
+	color: #444;
+
+	margin-top: -3.5vw;
+
+	-webkit-transition:
+		transform 0.6s ease,
+		opacity 1s ease;
+
+	transition:
+		transform 0.6s ease,
+		opacity 1s ease;
+}
+
+div:hover p {
+	transform: scale(0.25);
+	opacity: 0;
+}
