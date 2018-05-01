@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Turing Machine Simulator</title>
+    <link rel="stylesheet" href="https://rawgit.com/a0m0rajab/4a0872c01fafd8b3d92f45a64252f795/raw/7f1cf65289297e7d512bf4c85843994319568e20/TuringMachineSimulator_style.css">
+    <link rel="author" href="https://www.github.com/a0m0rajab">
+
+
+</head>
+<body>
+        <article>
+                <header>
+                  <h1>Brief history </h1>
+                  <p>Turing machine is a logical machine invented by   <strong>alan Turing</strong> , <br>
+                    at 1936 when he wrote a paper about a machine with a long tape which write , <br>
+                    read and alter symbols to define and solve a specific problem , <br>
+                    for some people he is the father of computers and computing .
+                  </p>
+
+                  <h3>This page </h3>
+                  
+                  <p>
+                    At this page The turing machine used examples from 
+                    <a href='http://infolab.stanford.edu/~ullman/ialc.html'>Automata theory book</a> , 
+                    for further reading you can use this <a href="https://www.techopedia.com/definition/13429/turing-machine">site</a> 
+                    <br> 
+                    <br>
+                    examples 1 : you can find it at the mentioned book at page 322. 
+                    which it used to accept the langauges <math > {0 <sup>n</sup> 1 <sup>n</sup> | n &ge; 1} </math>
+                
+                  </p>
+                </header>
+                <p>for the machine , the transmition  table is fixed you cant change it .
+                <br> but you can input alphabet to try it if it works for the machine or not , 
+                <br> you have two examples (rejected and accepted ) at the examlpe box, when you choose one <br>
+              it will show the transmition table and the input at the tape which it will use with the transmition,  
+            <br> have fun ! </p>
+        </article>
+     
+    <div class="container">
+       
+        <div class="inputs">
+            <select onchange="tm.examplesBox()" id="ExamlpesDropDown">
+                <option >Example 1 - accepted</option>
+                <option >Example 1 - rejected</option>
+               
+            </select><br />
+
+          <div id="init-value">
+            <span class="label">Initial value of tape:</span>
+            <input id="init-value-input" type="text" />
+          </div>
+         
+          <div id="Time-Speed">
+                <span class="label">Speed in millisecond:</span>
+                <input id="time-input" min="1" type="number" />
+            </div>
+        </div>
+        
+        <div id="tape">
+          <div class="cells-container"></div>
+        </div>
+
+        <div class="btns">
+          <button id="load-inputs">load</button>
+          <button id="step">step</button>
+          <button id="run">run</button>
+        </div>
+    </div>
+    <br>
+    <table id="table_example1">
+      <tbody><tr>
+          <td><b>State</b></td>
+          <td><b>0</b></td>
+          <td><b>1</b></td>
+          <td><b>X</b></td>
+          <td><b>Y</b></td>
+          <td><b>B</b></td>
+  
+      </tr>
+      <tr>
+          <td>0</td>
+          <td>(q1 , X, R)</td>
+          <td></td>
+          <td></td>
+          <td>(q3 , Y, R)</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>(q1 , 0, R)</td>
+          <td>(q2 , Y, L)</td>
+          <td></td>
+          <td>(q1 , Y, R)</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>(q2 , 0, L)</td>
+          <td></td>
+          <td>(q0 , X, R)</td>
+          <td>(q2 , Y, L)</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>(q3 , Y, R)</td>
+          <td>(q4 , B, R)</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody></table>
+  <br>
+  <table id="table_example2">
+      <tbody><tr>
+          <td><b>State</b></td>
+          <td><b>0</b></td>
+          <td><b>1</b></td>
+          <td><b>B</b></td>
+  
+      </tr>
+      <tr>
+          <td>0</td>
+          <td>(q1 , B, R)</td>
+          <td>(q5 , B, R)</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>(q1 , 0, R)</td>
+          <td>(q2 , 1, R)</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>(q3 , 1, L)</td>
+          <td>(q2 , 1, R)</td>
+          <td>(q4 , B, L)</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>(q3 , 0, L)</td>
+          <td>(q3 , 1, L)</td>
+          <td>(q0 , B, R)</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>(q4 , 0, L)</td>
+          <td>(q4 , B, L)</td>
+          <td>(q6 , 0, R)</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>(q5 , B, R)</td>
+          <td>(q5 , B, R)</td>
+          <td>(q6 , B, R)</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody></table>
+        <script src="https://rawgit.com/a0m0rajab/4a0872c01fafd8b3d92f45a64252f795/raw/7f1cf65289297e7d512bf4c85843994319568e20/TuringMachineSimulator.js"></script>
+        <a href="../index.html" class="Button">Home</a>
+        <br>
+    <a href="https://github.com/a0m0rajab/" title="About Me">About Me</a>
+    <a href="http://www.fatihsultan.edu.tr" class="button">University web site</a>
+    <a href="http://mimoza.marmara.edu.tr/~maeyler/" class="button">Instructor web page</a>
+    
+
+
+
+</body>
+</html>
