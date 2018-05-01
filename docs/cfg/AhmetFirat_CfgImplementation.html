@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Context-Free Grammer</title>
+</head>
+<body>
+
+<h2 style="text-align: center;">FORMAL LANGUAGES and AUTOMATA THEORY</h2>
+<h3 style="text-align: center;">Context-Free Grammer</h3>
+<p>&nbsp;</p>
+<h4>Definition:</h4>
+<p>Context-Free Grammar (CFG) is a set of production rules that describe all possible strings in a given formal language. For example;</p>
+<p>&nbsp;</p>
+<p style="text-align: center;"><strong>A &rarr; </strong>&nbsp;x</p>
+<p style="text-align: center;"><strong>A</strong> &rarr; y</p>
+<p style="text-align: center;"><strong>B &rarr; </strong>&nbsp;z</p>
+<p style="text-align: center;">&nbsp;</p>
+<p>With these defined rules, we can replace&nbsp;<strong>A</strong> with 'x' or 'y' ;&nbsp;<strong>B&nbsp;</strong>with 'z' for output. Context-Free Grammar G is defined by the 4 value;</p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;"><strong>G</strong>=( V , T , P , S )</h3>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: left;"><strong>V&nbsp;</strong>= In grammer rules, this shows the elements named "<em>variables</em>" where be on the left side of grammer arrows. Variables are not include in our outputs. For our example&nbsp; V={A,B}.&nbsp;</p>
+<p style="text-align: left;"><strong>T&nbsp;</strong>= In grammer rules, this shows the elements named "<em>alphabet</em>" where be on the right side of grammer arrows. We create the output with these elements. For our example T={x,y,z}.&nbsp;</p>
+<p style="text-align: left;"><strong>P&nbsp;</strong>= This&nbsp;symbolize set of Grammer rules.</p>
+<p style="text-align: left;"><strong>S&nbsp;</strong>= This indicate the Start State. Start state shows us to which rule or rules we have to use to apply the grammer rules. For our example S={A}.</p>
+<p style="text-align: left;">Let's use these with example</p>
+<h3 style="text-align: left;"><strong>Example 1:</strong></h3>
+<p style="text-align: center;"><strong>&nbsp;S</strong> &rarr; 0<strong>A</strong>01<strong>&nbsp;</strong><br /><strong>&nbsp;A</strong> &rarr; 1<strong>B</strong>&nbsp;<br />&nbsp;<strong>B&nbsp;&rarr; </strong>010</p>
+<p>Let's start with determination of these gammer G's values;</p>
+<p style="text-align: center;"><strong>V =&nbsp;</strong>{<strong>S&nbsp;</strong>,&nbsp;<strong>A </strong>,<strong> B</strong>}&nbsp; &nbsp; &nbsp; &nbsp;<strong>T</strong> = {<strong>1&nbsp;</strong>, <strong>0</strong>}&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<strong>S&nbsp;</strong>= {<strong>S</strong>}&nbsp; &nbsp;===&gt;&nbsp; <strong>G</strong>=({<strong>S&nbsp;</strong>,&nbsp;<strong>A </strong>,<strong> B</strong>} , {<strong>1&nbsp;</strong>,&nbsp;<strong>0</strong>} ,&nbsp;<strong>P&nbsp;</strong>, {<strong>S</strong>})</p>
+<p>&nbsp;Now we can generate out output. For example we can generate this output with given grammer rules;</p>
+<p style="text-align: center;"><strong>S</strong>&nbsp;<strong>&rarr;&nbsp;</strong>0<strong>A</strong>01&nbsp;<strong>&rarr;</strong>&nbsp;01<strong>B</strong>01&nbsp;<strong>&rarr; </strong><strong>&nbsp;</strong>0101001</p>
+<p style="text-align: left;">For understand better, we can represent example with&nbsp;Derivation Tree.</p>
+<p style="text-align: left;"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://github.com/AhmetFiratS/AutomataImage/blob/master/Example1.png?raw=true" alt="tree" width="348" height="286" /></p>
+<h3 style="text-align: left;"><strong>Practical Example 1:</strong></h3>
+<p style="text-align: left;"><strong>&nbsp;E</strong> &rarr; &nbsp;<strong>E</strong> + <strong>E&nbsp;</strong><br /><strong>&nbsp;E</strong>&nbsp;&rarr; <strong>E</strong><strong>&nbsp;</strong>*<strong> E</strong>&nbsp;<br />&nbsp;<strong>E&nbsp;&rarr; </strong>number</p>
+<p style="text-align: left;">This example's grammer rules make&nbsp;addition and&nbsp;multiplication. Let's assume the <strong>E&nbsp;</strong>= 2*3+4 and when we apply the grammer rules to <strong>E</strong>, it will be accepted.</p>
+<p style="text-align: left;">Let's try to draw this example's derivation tree:</p>
+<p style="text-align: left;"><img src="https://github.com/AhmetFiratS/AutomataImage/blob/master/Example2.png?raw=true" alt="Tree" width="348" height="252" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="https://github.com/AhmetFiratS/AutomataImage/blob/master/Example3.png?raw=true" alt="Tree" width="353" height="249" /></p>
+<p style="text-align: left;">As you can see, with this grammer rules, we can draw more than one derivation trees. This situation called a <strong>Ambigous</strong>. We need to add some variables to solve this problem. When we add some variables to grammer rules, this derivation trees can not be same.</p>
+<p style="text-align: left;"><strong>&nbsp;E</strong> &rarr;&nbsp; <strong>T</strong> | <strong>E</strong>&nbsp;+ <strong>T&nbsp;</strong><br /><strong>&nbsp;E</strong>&nbsp;&rarr;&nbsp;&nbsp;<strong>F&nbsp;</strong>| <strong>T&nbsp;</strong>*<strong> F</strong>&nbsp;<br />&nbsp;<strong>F&nbsp;&rarr; </strong>number</p>
+<p style="text-align: left;">Now we can draw a derivation tree of this rules.</p>
+<p style="text-align: center;"><img src="https://github.com/AhmetFiratS/AutomataImage/blob/master/Example4.png?raw=true" alt="tree" width="355" height="374" />&nbsp;</p>
+<h3><strong>Practical Example 2:</strong></h3>
+<p><strong>&nbsp;E</strong> &rarr;&nbsp; <strong>T</strong> | <strong>E</strong>&nbsp;-&nbsp;<strong>T&nbsp;</strong><br /><strong>&nbsp;E</strong>&nbsp;&rarr;&nbsp;&nbsp;<strong>F&nbsp;</strong>| <strong>T </strong>/<strong>&nbsp;F</strong>&nbsp;<br />&nbsp;<strong>F&nbsp;&rarr; </strong>number | ( <strong>E</strong> )</p>
+<p>In this example, you can try the grammer rules via program. With given Expression, you can&nbsp;examine how grammer rules work.</p>
+<p>&nbsp;</p>
+<h3><strong>Program:&nbsp;</strong><a href="AhmetFirat_CfgImplementation.jar">Context-Free Grammer Exampler</a></h3>
+<h3><strong>References:</strong></h3>
+<p><strong>1)&nbsp;</strong><a href="https://www.wikiwand.com/en/Context-free_grammar">https://www.wikiwand.com/en/Context-free_grammar</a></p>
+<p><strong>2)&nbsp;</strong>Above examples what we work on,&nbsp;derived from examples in Automata Theory lesson's laboratory studies.</p>
+<p>&nbsp;</p>
+<h3><strong>Created by Ahmet Fýrat Þ&Uuml;PHESÝZ</strong></h3>
+
+
+</body>
+</html>

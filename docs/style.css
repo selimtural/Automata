@@ -1,0 +1,91 @@
+    body {
+      margin: 1 auto;
+        background-color: peachpuff;
+    }
+
+.tableList td a{
+    text-decoration: none;
+    color: aliceblue;
+    text-decoration: underline;
+}
+.tableList {
+    background-color: darkblue;
+    color: aliceblue;
+    width : 750px ;
+}
+.tableList td{
+    background-color: darkblue;
+    color: aliceblue;
+}
+.tableList td, .tableList th{
+    border-bottom: 1px solid aliceblue;
+}
+.tableList th{
+    background-color: crimson;
+}
+
+.tableList tr:nth-child(1n+2) :hover {
+  background-color: rgba(255, 0, 0, 0.5);
+  transition: 100ms linear;
+}
+.tableList tr{
+    
+    height: 50px;
+    
+}
+
+
+    .vertical-menu {
+            width: 200px;
+        }
+
+        .vertical-menu a {
+            background-color: #eee;
+            color: black;
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            border-bottom: 1px solid darkblue;
+        }
+
+        .vertical-menu a:hover {
+            background-color: #ccc;
+        }
+
+        .vertical-menu a.active {
+            background-color: darkblue;
+            color: white;
+        }
+
+        .pageContent {
+            width: 750px;
+            text-shadow: 3px 3px #000000;
+        }
+        .pageContent table {
+          width: 100%;
+          text-align: center;
+            
+        }
+        .pageContent table tr {
+          height: 80px;
+          background-color:crimson;
+        }
+        .pageContent table tr:nth-child(odd){
+          background-color: darkblue;
+        }
+        .pageContent table tr td {
+          width: 140px;
+            
+            
+        }
+        .pageContent table tr td a {
+          color:whitesmoke;
+          text-decoration: none;
+          cursor: pointer;
+          padding: 10px 5px;
+        }
+        .pageContent table tr td:hover {
+          background-color:rgba(0, 0, 0, 0.5);
+          color: #000000;
+          transition: 100ms linear;
+        }

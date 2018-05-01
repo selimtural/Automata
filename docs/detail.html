@@ -1,36 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <header>
+    <meta charset="utf-8">
     <title>BLM320 - Automata 2018 Term Project</title>
-    <style>
-        .vertical-menu {
-            width: 200px;
-        }
-
-        .vertical-menu a {
-            background-color: #eee;
-            color: black;
-            display: block;
-            padding: 15px;
-            text-decoration: none;
-            border-bottom: 1px solid royalblue;
-        }
-
-        .vertical-menu a:hover {
-            background-color: #ccc;
-        }
-
-        .vertical-menu a.active {
-            background-color: royalblue;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"/>
   </header>
-<body style="background-color:powderblue;">
+<body>
     <center>
     <table>
         <tr>
-            <td><img src="fsm.png"></td>
+            <td><a target="_blank" href="http://bm.fsm.edu.tr/"><img src="fsm.png"></a></td>
             <td width="800"><center><h1>BLM 320 - 2018 Term Project</h1></center></td>
         </tr>
     </table>
@@ -42,7 +21,7 @@
         <tr>
             <td style="vertical-align: top">
                 <div class="vertical-menu">
-                    <a href="index.html">Home</a>
+                    <a href="index.html" style="border-top: 1px solid royalblue;">Home</a>
                     <a href="fa.html">Finite Automata</a>
                     <a href="regexp.html">Regular Expression</a>
                     <a href="cfg.html">Context-Free Grammar</a>
@@ -53,7 +32,7 @@
             </td>
             
             <td style="vertical-align: top" >
-                <table border = "1" bordercolor = "royalblue" width = "695" style="background-color:cornsilk;">
+                <table class="tableList">
                     <tr height = "30">
                         <th>Name</th>
                         <th>Language</th>
@@ -62,157 +41,164 @@
                     </tr>
                     
                     <tr>
-                        <td><a href="cfg/Bilal_RecursiveDescentParser.html">Bilal Ekrem Harmanşa</a></td>
-                        <td>JavaScript</td>
-                        <td>Recursive Descent Parser</td>
+                        <td width=120px><a target="_blank" href="https://github.com/bilalekremharmansa">Bilal Ekrem Harmanşa</a></td>
+                        <td width=120px>JavaScript</td>
+                        <td width=120px><a href="cfg/Bilal_RecursiveDescentParser.html">Recursive Descent Parser</a></td>
                         <td>A step by step visualization guide for Recursive Descent Parser</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="pda/furkan-state_diagrams.html">Furkan Sarıhan</a></td>
+                        <td><a target="_blank" href="https://github.com/furkansarihan">Furkan Sarıhan</a></td>
                         <td>JavaScript</td>
-                        <td>Push-Down Automata</td>
+                        <td><a href="pda/furkan-state_diagrams.html">Push-Down Automata</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="pda/YigitMert_pdaYieldsNotation.md">Yiğit Mert Dönmez</a></td>
+                        <td><a target="_blank" href="https://github.com/mertdonmez">Yiğit Mert Dönmez</a></td>
                         <td>JavaScript</td>
-                        <td>Push-Down Automata</td>
-                        <td></td>
+                        <td><a href="pda/YigitMert_pdaYieldsNotation.md">Push-Down Automata</a></td>
+                        <td>How yield notation and parse tree work according to given rules.</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="regexp/EmrahTema_Regexp.html">Emrah Tema</a></td>
+                        <td><a target="_blank" href="https://github.com/emrahtema">Emrah Tema</a></td>
                         <td>JavaScript</td>
-                        <td>Regular Expressions</td>
-                        <td></td>
+                        <td><a href="regexp/EmrahTema_Regexp.html">Regular Expressions</a></td>
+                        <td>This project includes general topics with examples about Regular Expressions and its patterns rules, and you can try out what you have learned instantly through with the program in the project.</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="cfg/Muhammet_Ali_Gulbahce_CF_Grammar.md">Muhammet Ali Gülbahçe</a></td>
+                        <td><a target="_blank" href="https://github.com/fsmgulbahce">Muhammet Ali Gülbahçe</a></td>
                         <td>Java</td>
-                        <td>CF Grammar</td>
+                        <td><a href="cfg/MAGulbahce_CF_Grammar.html">CF Grammar</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="fa/selimtural-dfa.html">Selim Tural</a></td>
+                        <td><a target="_blank" href="https://github.com/selimtural">Selim Tural</a></td>
                         <td>Java</td>
-                        <td>Deterministic Finite Automata</td>
+                        <td><a href="fa/selimtural-dfa.html">Deterministic Finite Automata</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="fa/Merveozdemir_dfa.md">Merve Özdemir</a></td>
+                        <td><a target="_blank" href="https://github.com/merveozdemir">Merve Özdemir</a></td>
                         <td>Java</td>
-                        <td>Deterministic Finite Automata</td>
+                        <td><a href="fa/Merveozdemir_dfa.md">Deterministic Finite Automata</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="regexp/Dila_RegExp_to_DFA.md">Dila Erbakan</a></td>
+                        <td><a target="_blank" href="https://github.com/dilaerbakan">Dila Erbakan</a></td>
                         <td>Java</td>
-                        <td>Regular Expression to NFA</td>
+                        <td><a href="regexp/Dila_RegExp_to_DFA.md">Regular Expression to NFA</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="pda/SedaCaglar_pda.html">Seda Çağlar</a></td>
+                        <td><a target="_blank" href="https://github.com/sedacaglarr">Seda Çağlar</a></td>
                         <td>Java</td>
-                        <td>Push-Down Automata</td>
+                        <td><a href="pda/SedaCaglar_pda.html">Push-Down Automata</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="fa/Selin_NFAtoDFAconverter.md">Selin Daldaban</a></td>
+                        <td><a target="_blank" href="https://github.com/SelinDaldaban">Selin Daldaban</a></td>
                         <td>Java</td>
-                        <td>NFA -> DFA Convertion</td>
-                        <td></td>
+                        <td><a href="fa/Selin_NFAtoDFAconverter.md">NFA -> DFA Convertion</a></td>
+                        <td>Drawing and comparing dfa and nfa with Swing and examples.</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="fa/ummugulsum_nfa.md">Ümmügülsüm Can</a></td>
+                        <td><a target="_blank" href="https://github.com/ummugulsumcan">Ümmügülsüm Can</a></td>
                         <td>Java</td>
-                        <td>Nondeterministic FA</td>
+                        <td><a href="fa/ummugulsum_nfa.md">Nondeterministic FA</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="fa/ebrarsahin-dfa.html">Ebrar Şahin</a></td>
+                        <td><a target="_blank" href="https://github.com/sahinebrar">Ebrar Şahin</a></td>
                         <td>JavaScript</td>
-                        <td>Deterministic FA</td>
+                        <td><a href="fa/ebrarsahin-dfa.html">Deterministic FA</a></td>
                         <td>Accept or reject the given string by using transition functions which are defined by users.</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="fa/AyseSena_NFAYieldNotation.md">Ayşe Sena Feyiz</a></td>
+                        <td><a target="_blank" href="https://github.com/AyseSenaFeyiz">Ayşe Sena Feyiz</a></td>
                         <td>Java</td>
-                        <td>Nondeterministic FA</td>
+                        <td><a href="fa/AyseSena_NFAYieldNotation.md">Nondeterministic FA</a></td>
                         <td>Shows step by step yield notation with java swing.</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="pda/BetulEzgu_pdaInput.html">Betül Ezgü</a></td>
+                        <td><a target="_blank" href="https://github.com/betulEZ">Betül Ezgü</a></td>
                         <td>Java</td>
-                        <td>Push-Down Automata</td>
+                        <td><a href="pda/BetulEzgu_pdaInput.html">Push-Down Automata</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="microj/IbrahimEnes_SimpleIdeForMicroJ.html">Enes Aydoğdu</a></td>
+                        <td><a target="_blank" href="https://github.com/ienesaydogdu">Enes Aydoğdu</a></td>
                         <td>Java</td>
-                        <td>MicroJ IDE</td>
+                        <td><a href="microj/IbrahimEnes_SimpleIdeForMicroJ.html">MicroJ IDE</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="fa/saide_dfa.html">Saide Başpehlivan</a></td>
+                        <td><a target="_blank" href="https://github.com/saidebasphlvn">Saide Başpehlivan</a></td>
                         <td>Java</td>
-                        <td>Deterministic FA</td>
+                        <td><a href="fa/saide_dfa.html">Deterministic FA</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="turing/abdurrahmanRajab_turingMachineSimulator.html">Abdurrahman Rajab</a></td>
+                        <td><a target="_blank" href="https://github.com/a0m0rajab">Abdurrahman Rajab</a></td>
                         <td>JavaScript</td>
-                        <td>Turing Machine</td>
+                        <td><a href="turing/abdurrahmanRajab_turingMachineSimulator.html">Turing Machine</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="cfg/AhmetFirat_CfgImplementation.html">Ahmet Fırat Şüphesiz</a></td>
+                        <td><a target="_blank" href="https://github.com/AhmetFiratS">Ahmet Fırat Şüphesiz</a></td>
                         <td>Java</td>
-                        <td>CF Grammar</td>
+                        <td><a href="cfg/AhmetFirat_CfgImplementation.html">CF Grammar</a></td>
                         <td></td>
                     </tr>
                     
                     <tr>
-                        <td><a href="regexp/BedirhanYildirim_RegexpForm.html">Bedirhan Yıldırım</a></td>
+                        <td><a target="_blank" href="https://github.com/bedirhanyildirim">Bedirhan Yıldırım</a></td>
                         <td>JavaScript</td>
-                        <td>Regular Expressions</td>
+                        <td><a href="regexp/BedirhanYildirim_RegexpForm.html">Regular Expressions</a></td>
                         <td>Regular Expression examples on HTML inputs</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="regexp/TolgaTezel_PatternSearch.html">Tolga Tezel</a></td>
+                        <td><a target="_blank" href="https://github.com/TolgaTEZEL">Tolga Tezel</a></td>
                         <td>Java</td>
-                        <td>Pattern Searcher and Questions</td>
+                        <td><a href="regexp/TolgaTezel_PatternSearch.md">Pattern Searcher and Questions</a></td>
                         <td>The patterns given by the user will be searched in the text, and if there is a match, matching parts will be enclosed in quotation marks. And There will be questions about regex and answers of those questions.</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="regexp/BurakUguz_RegexpTester.html">Burak Uğuz</a></td>
+                        <td><a target="_blank" href="https://github.com/burakuguz">Burak Uğuz</a></td>
                         <td>JavaScript</td>
-                        <td>Regular Expressions</td>
+                        <td><a href="regexp/BurakUguz_RegexpTester.html">Regular Expressions</a></td>
                         <td>The text is checked according to the user's regular expression and matchses are showed in green color.</td>
                     </tr>
                     
                     <tr>
-                        <td><a href="fa/EnesKy_NFAtoDFA.md">Enes Kamil Yılmaz</a></td>
+                        <td><a target="_blank" href="https://github.com/EnesKy">Enes Kamil Yılmaz</a></td>
                         <td>Java</td>
-                        <td>NFA -> DFA Convertion</td>
+                        <td><a href="fa/EnesKy_NFAtoDFA.md">NFA -> DFA Convertion</a></td>
                         <td>This project will show how to convert NFA to DFA step by step through the examples given</td>
+                    </tr>
+                    
+                    <tr>
+                        <td><a target="_blank" href="https://github.com/salimsah">Salim Şahin</a></td>
+                        <td>Java</td>
+                        <td><a href="javadoc/index.html">Javadocs of Automata</a></td>
+                        <td>Javadoc websites of MAEyler's examples.</td>
                     </tr>
                     
                     
