@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Regular Expression Examples by JavaScript</title>
+    <meta name="description" content="">
+    <link rel="icon" href="http://bedirhanyildirim.com/wp-content/uploads/2015/06/yildirim.png" type="image/png">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+    /* CSS Code is here! */
+      /* Bedirhan Yıldırım reset.css */
+      body {
+        background-color: #ffffff;
+        font: 15px/19px Arial;
+        margin: 0 auto;
+      }
+      img {
+        border: none;
+      }
+      a {
+        text-decoration: none;
+      }
+      table,tr,td,ul,li,h1,h2,h3,h4,h5,h6,p,from,input,textarea {padding: 0;
+        margin: 0;
+        border: none;
+        list-style-type: none;
+      }
+      :focus {
+        outline: none;
+      }
+
+      #header {
+        background-color: #efda5b;
+        height: 500px;
+        width: 100%;
+      }
+      #navbar {
+        transition: 0.3s;
+        overflow: hidden;
+      }
+      .navbar {
+        background-color:rgba(50, 51, 48, 1);
+        height: 90px;
+        line-height: 90px;
+        vertical-align: middle;
+        text-align: center;
+      }
+      .fixed-top {
+        position: fixed;
+        width: 100%;
+        transition: top 0.3s;
+      }
+      .navbarContent {
+        width: 1000px;
+        margin: 0 auto;
+        color: #ffffff;
+        height: 90px;
+        overflow: hidden;
+      }
+      .navbar .title {
+        text-align: left;
+        margin: 0 auto;
+        float: left;
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #ffffff;
+      }
+      .navbar .title a {
+        color: #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+      .navbar .title a:hover {
+        transition: 100ms linear;
+        border-bottom: 2px solid #efda5b;
+      }
+      .navbar .menu {
+        text-align: right;
+        float: right;
+      }
+      .navbar .menu ul {
+
+      }
+      .navbar .menu ul li {
+        float: left;
+      }
+      .navbar .menu ul li a:hover {
+        transition: 100ms linear;
+        color:rgba(239, 218, 91, 1);
+      }
+      .navbar .menu ul li a {
+        color: #ffffff;
+        padding: 40px 20px;
+      }
+      .headerContent {
+        height: 500px;
+        width: 1000px;
+        margin: 0 auto;
+        overflow: hidden;
+        color: #000000;
+      }
+      .headerTitle {
+        font-weight: bold;
+        text-align: left;
+        float: left;
+        margin-top: 340px;
+        color: #323330;
+      }
+      .headerTitle h3 {
+        font-size: 5em;
+      }
+      .headerTitle p {
+        font-size: 1.2em;
+        margin-top: 25px;
+      }
+      .separatrix {
+        margin: 50px 0;
+        border: 1px dashed #dddddd;
+      }
+      .bigSeparatrix {
+        width: 1000px;
+        margin: 0 auto;
+        border: 3px solid #efda5b;
+      }
+      #regex {
+
+      }
+      .container {
+        width: 1000px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 75px 0;
+      }
+      .containerTitle {
+        font-size: 24px;
+        border-left: 6px solid #efda5b;
+      }
+      .containerTitle h3 {
+        color: #000000;
+        padding: 7px 10px;
+      }
+      .containerLittleTitle {
+        padding: 0;
+        background-color: inherit;
+        color: inherit;
+      }
+      .containerLittleTitle h3{
+        width: auto;
+        height: auto;
+        padding: 5px 10px 5px 40px;
+        background-color: #323330;
+        font-size: 18px;
+        color: #ffffff;
+        font-weight: 400;
+        line-height: 1.25;
+        float: left;
+        clear: both;
+      }
+      .containerContent {
+        margin-top: 25px;
+        margin-left: 10px;
+      }
+      .containerContent p {
+        color: #000000;
+        font-size: 16px;
+      }
+      .codePanel {
+        margin: 25px 0;
+        width: auto;
+        background: #dddddd;
+        padding: 8px 12px;
+        border-left: 4px solid #323330;
+        word-wrap: break-word;
+        font-family: Consolas, "courier new";
+        font-size: 16px;
+        box-sizing: inherit;
+        display: block;
+      }
+      .playGround {
+        margin: 25px 0;
+        width: auto;
+        padding: 8px 12px;
+        display: block;
+      }
+      .playGround label {
+
+      }
+      .playGround input {
+        -webkit-transition: border, 100ms;
+        transition: border, 100ms;
+        font-size: 1em;
+        font-family: 'Open Sans', helvetica, sans-serif;
+        line-height: 1.5em;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        padding: .5em 1em;
+        border: none;
+        background: #e2e2e2;
+        display: block;
+        margin: .5em 0;
+        color: #323330;
+        width: 50%;
+      }
+      .playGround input:focus {
+        border-left: 0.5em solid #efda5b;
+        color: #323330;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        outline: none;
+        background: url('http://www.adobewordpress.com/tasarim/images/bg-stripes.png');
+      }
+      .containerTable {
+        width: 100%;
+      }
+      .containerTable table {
+        margin: 25px 0;
+        width: 100%;
+        text-align: center;
+        display: block;
+        border-collapse: collapse;
+        border-spacing: 0;
+        box-sizing: inherit;
+        line-height: 1.4;
+        width: auto;
+      }
+      .containerTable table tbody {
+        box-sizing: inherit;
+        display: table-row-group;
+        border-color: inherit;
+        width: auto;
+      }
+      .containerTable table thead {
+
+      }
+      .containerTable table tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+      }
+      .containerTable table th {
+        padding: 10px 20px;
+        color: #323330;
+        background-color: #efda5b;
+        border-bottom: 2px solid #323330;
+        font-weight: bold;
+        display: table-cell;
+        text-align: center;
+      }
+      .containerTable table td {
+        font-family: Consolas, "courier new";
+        font-size: 16px;
+        color: #323330;
+        border: 1px solid #dddddd;
+        padding: 8px;
+      }
+      #footer {
+        width: 100%;
+        background-color: #323330;
+        padding: 20px 0;
+      }
+      .footerContent {
+        width: 1000px;
+        margin: 0 auto;
+        text-align: left;
+        color: #ffffff;
+      }
+      .footerContent p {
+        font-size: 13px;
+        transition: 0.3s;
+      }
+      .footerContent a {
+        color: #ffffff;
+      }
+      .footerContent a:hover {
+        color: #efda5b;
+        transition: 0.3s;
+      }
+    </style>
+    <script type="text/javascript" >
+    /* JS Code is here! */
+      $(document).ready(function(){
+        // Add smooth scrolling to all links
+        $("a").on('click', function(event) {
+          // Make sure this.hash has a value before overriding default behavior
+          if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+              scrollTop: $(hash).offset().top
+            }, 800, function(){
+
+              // Add hash (#) to URL when done scrolling (default click behavior)
+              window.location.hash = hash;
+            });
+          } // End if
+        });
+        // When the user scrolls down 20px from the top of the document, slide down the navbar
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                document.getElementById("navbar").style.height = "50px";
+                document.getElementById("navbar").style.lineHeight = "50px";
+            } else {
+              document.getElementById("navbar").style.height = "90px";
+              document.getElementById("navbar").style.lineHeight = "90px";
+            }
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="navbar" class="navbar fixed-top">
+      <div class="navbarContent">
+        <div class="title">
+          <a href="http://bedirhanyildirim.com" target="_blank>"<h3>Bedirhan Yıldırım</h3></a>
+        </div>
+        <div class="menu">
+          <ul>
+            <li>
+              <a href="#header">Home</a>
+            </li>
+            <li>
+              <a href="#regex">What is Regex</a>
+            </li>
+            <li>
+              <a href="#jsRegex">How to Use</a>
+            </li>
+            <li>
+              <a href="#examples">Examples</a>
+            </li>
+            <li>
+              <a href="#playground">Playground</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <section id="header">
+      <div class="headerContent">
+        <div class="headerTitle">
+          <h3>JavaScript</h3>
+          <br style="clear:both">
+          <p>Regular Expression Examples</p>
+        </div>
+      </div>
+    </section>
+    <section id="regex">
+      <div class="container">
+        <div class="containerTitle">
+          <h3>What is Regex</h3>
+        </div>
+        <div class="containerContent">
+          <p>Regex is abbreviation of the Regular Expression. Regular Expression is an expression that can be use in many programming languages and finds sections that match certain rules in numeric and string content.</p>
+        </div>
+        <div class="separatrix"></div>
+        <div class="containerLittleTitle">
+          <h3>Where to Use</h3>
+          <br style="clear: both;">
+        </div>
+        <div class="containerContent">
+          <p>Many programming languages, operating system commands, database queries and search applications uses Regular Expression. We are going to use it on HTML inputs for specifical input type like Social ID, phone number, email, credit card number and validation date etc.</p>
+        </div>
+      </div>
+    </section>
+    <div class="bigSeparatrix"></div>
+    <section id="jsRegex">
+      <div class="container">
+        <div class="containerTitle">
+          <h3>How to Use</h3>
+        </div>
+        <div class="containerContent">
+          <p>Regex is abbreviation of the Regular Expression. Regular Expression is an expression that can be use in many programming languages and finds sections that match certain rules in numeric and string content.</p>
+        </div>
+        <div class="separatrix"></div>
+        <div class="containerLittleTitle">
+          <h3>Code Sample</h3>
+          <br style="clear: both;">
+        </div>
+        <div class="containerContent">
+          <p>You can define a Regular Expression which consists of a pattern enclosed between slashes or just define a Regular Expression as an object.</p>
+          <div class="codePanel">
+            <p>var re = /ab+c/;</p>
+            <p style="color: red;">//or </p>
+            <p>var re = new RegExp('ab+c');</p>
+          </div>
+        </div>
+        <div class="separatrix"></div>
+        <div class="containerLittleTitle">
+          <h3>Rules</h3>
+          <br style="clear: both;">
+        </div>
+        <div class="containerContent">
+          <p>Each language has different rules for describing Regular Expressions. We are going to analyze it for JS.</p>
+          <div class="containerTable">
+            <table>
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Description</th>
+                  <th>Sample</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>*</td>
+                  <td>Repeating 0 or more of previous token.</td>
+                  <td>a* --> ,a,aa,aaa</td>
+                </tr>
+                <tr>
+                  <td>+</td>
+                  <td>Repeating 1 or more of previous token.</td>
+                  <td>a+ --> a,aa,aaa</td>
+                </tr>
+                <tr>
+                  <td>()</td>
+                  <td>Making group.</td>
+                  <td>(aa)+ --> aa,aaaa,aaaaaa</td>
+                </tr>
+                <tr>
+                  <td>[]</td>
+                  <td>One of the characters within the specified range.</td>
+                  <td>[1-4] --> 1,2,3 or 4</td>
+                </tr>
+                <tr>
+                  <td>[^]</td>
+                  <td>Except One of the characters within the specified range.</td>
+                  <td>[^1-4] --> Except 1,2,3 and 4</td>
+                </tr>
+                <tr>
+                  <td>\s</td>
+                  <td>Space character.</td>
+                  <td>\s+ --> ,  ,   </td>
+                </tr>
+                <tr>
+                  <td>\S</td>
+                  <td>Except space character.</td>
+                  <td>\S+ --> abc,123,a1b2c3</td>
+                </tr>
+                <tr>
+                  <td>\d</td>
+                  <td>All numeric characters.</td>
+                  <td>\d+ --> 1,32,512,1024</td>
+                </tr>
+                <tr>
+                  <td>\D</td>
+                  <td>Except all numeric characters.</td>
+                  <td>\D+ --> a,bc,def,qwerty</td>
+                </tr>
+                <tr>
+                  <td>\w</td>
+                  <td>All characters used in words.</td>
+                  <td>\w+ --> Bedirhan</td>
+                </tr>
+                <tr>
+                  <td>{}</td>
+                  <td>Number of previous characters or groups to repeat.</td>
+                  <td>[1-4]{3} --> 111,234,134</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <div class="bigSeparatrix"></div>
+    <section id="examples">
+      <div class="container">
+        <div class="containerTitle">
+          <h3>Examples</h3>
+        </div>
+        <div class="containerContent">
+          <p>There some examples for practice.</p>
+        </div>
+        <div class="separatrix"></div>
+        <div class="containerLittleTitle">
+          <h3>Basic Patterns</h3>
+          <br style="clear: both;">
+        </div>
+        <div class="containerContent">
+          <div class="codePanel">
+            <p style="color: red;">// ^ character for beginning and $ character for end of the string.</p>
+            <p style="color: red;">// All Numbers</p>
+            <p>var re = new RegExp('^\d+$');</p>
+            <p style="color: red;">// 11 Range Phone Number</p>
+            <p>var re = new RegExp('^([0-9]{11})$');</p>
+            <p style="color: red;">// Simple Email Pattern : bedirhan.yildirim@stu.fsm.edu.tr</p>
+            <p>var re = new RegExp('^\S+@\S+\.\S+$');</p>
+            <p style="color: red;">// Detail Email Pattern : bedirhan.yildirim@stu.fsm.edu.tr</p>
+            <p>var re = new RegExp('^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$');</p>
+            <p style="color: red;">// Lower Case min 1, max 10 character</p>
+            <p>var re = new RegExp('^[a-z]{1,10}$');</p>
+            <p style="color: red;">// Upper Case</p>
+            <p>var re = new RegExp('^[A-Z]$');</p>
+            <p style="color: red;">// Date Format (dd/mm/yyyy)</p>
+            <p>var re = new RegExp('^([0-9]){2}(\/|-){1}([0-9]){2}(\/|-){1}([0-9]){4}$');</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="bigSeparatrix"></div>
+    <section id="playground">
+      <div class="container">
+        <div class="containerTitle">
+          <h3>Playground</h3>
+        </div>
+        <div class="containerContent">
+          <p>You can test here own patterns.</p>
+        </div>
+        <div class="separatrix"></div>
+        <div class="containerLittleTitle">
+          <h3>Basic Patterns</h3>
+          <br style="clear: both;">
+        </div>
+        <div class="containerContent">
+          <p>Create you own pattern and test here.</p>
+          <div class="playGround">
+            <label>Pattern:</label>
+            <input type="text" id="pattern1" name="sample1" placeholder="Enter your pattern">
+            <label>Text:</label>
+            <input type="text" id="text1" name="sample1" placeholder="Enter your text">
+          </div>
+          <script type="text/javascript" >
+            $(document).ready(function(){
+              //document.getElementById("sample1").addEventListener('change', function (evt){
+                //console.log(this.value);
+              //});
+              $("#text1").keyup(function(){
+                var word = $("#pattern1").val();
+                var re = new RegExp(word);
+                var txt = $("#text1").val();
+                //var pattern = /^\d+$/;
+                if(re.test(this.value)){
+                  this.style.boxShadow = "0 0 20px green";
+                }else{
+                  this.style.boxShadow = "0 0 20px red";
+                }
+                if(this.value == "" || $("#pattern1").val() == ""){
+                  this.style.boxShadow = "none";
+                }
+              });
+              $("#pattern1").keyup(function(){
+                if(this.value == ""){
+                  $("#text1").style.boxShadow = "0 0 0 red";
+                }
+              });
+            });
+          </script>
+        </div>
+      </div>
+    </section>
+    <section id="footer">
+      <div class="footerContent">
+        <p style="float: left;">All Rights Reserved © 2018 | This website made by <a href="http://bedirhanyildirim.com" target="_blank">Bedirhan Yıldırım</a></p>
+
+        <p style="float: right;"><a href="#header">Go Top</a></p>
+        <br style="clear:both;">
+      </div>
+    </section>
+  </body>
+</html>
