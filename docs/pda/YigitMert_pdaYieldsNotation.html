@@ -1,0 +1,154 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+
+<style>
+
+#sides{
+margin:0;
+}
+#left{
+float:left;
+width:20%;
+overflow:hidden;
+}
+#right{
+height: 200px;
+float:left;
+width:30%;
+overflow:hidden;
+}
+
+#right1{
+  height: 300px;
+  float:left;
+  width:30%;
+  overflow:hidden;
+
+}
+
+
+</style>
+
+</head>
+<body>
+  <div id="sides">
+
+  <div id="left">
+
+
+    <br>
+
+<br>
+<br>
+<br>
+    <p>RULES</p>
+
+    <input type="text" id="order" value="     S -> A1B " size="15"><br>
+    <br>
+    <input type="text" id="order" value="     A -> 0 | 0A " size="15"><br>
+    <br>
+    <input type="text" id="order" value="     B -> € | 0B | 1B " size="15"><br>
+    <br>
+    <p>TERMINALS</p>
+    <input type="text" id="order" value="     0,1 " size="15"><br>
+    <br>
+    <p>STACK SYMBOLS</p>
+    <input type="text" id="order" value="     S,A,B,0,1 " size="15"><br>
+    <br>
+    <p>START SYMBOL</p>
+    <input type="text" id="order" value="     S " size="15">
+  </div>
+  <br>
+    <br>
+  <p>PUSH DOWN AUTOMATA</p>
+<p> A pushdown automaton is a way to implement a context-free grammar in a similar way we design DFA for a regular grammar.</p>
+<p>A DFA can remember a finite amount of information, but a PDA can remember an infinite amount of information. </p>
+<p> (This part has been taken from tutorialsPoint web page.) </p>
+<p>This example shows how PDA's yields notation and parse tree notation are done step-by-step. </p>
+  <form>
+    <br>
+
+    <br>
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 1">FirstStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 2">SecondStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 3">ThirdStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 4">FourthStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 5">FifthStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 6">SixthStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 7">SeventhStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 8">EighthStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 9">NinthStep
+    <input type="radio" name="foto" onclick="myFunction()" value="Step 10">TenthStep
+
+  </form>
+
+  <img id="right">
+
+</img>
+
+  <img id="right1">
+
+</img>
+
+  </div>
+
+</body>
+</html>
+
+<script>
+
+
+
+function myFunction() {
+
+  var foto = document.forms[0];
+      var txt = "";
+      var n;
+      for (n = 0; n < foto.length; n++) {
+          if (foto[n].checked) {
+              txt = txt + foto[n].value + " ";
+              break;
+          }
+      }
+
+
+if(n == 0){
+document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/ilk1.png?raw=true";
+document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree1.png?raw=true";
+
+}else if(n == 1){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/ikinci1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree2.png?raw=true";
+
+}else if(n == 2){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/ucuncu1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree3-4.png?raw=true";
+
+}else if(n == 3){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/dorduncu1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree3-4.png?raw=true";
+}else if(n == 4){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/besinci1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree5-6-7.png?raw=true";
+}else if(n == 5){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/altinci1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree5-6-7.png?raw=true";
+}else if(n == 6){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/yedinci1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree5-6-7.png?raw=true";
+}else if(n == 7){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/sekizinci1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree8-9.png?raw=true";
+}else if(n == 8){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/dokuzuncu1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree8-9.png?raw=true";
+}else if(n == 9){
+  document.getElementById("right").src="https://github.com/mertdonmez/images/blob/master/onuncu1.png?raw=true";
+  document.getElementById("right1").src="https://github.com/mertdonmez/images/blob/master/tree10.png?raw=true";
+}
+
+}
+
+</script>
