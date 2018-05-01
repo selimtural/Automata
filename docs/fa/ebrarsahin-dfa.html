@@ -153,7 +153,7 @@
           border-collapse: collapse;
           width: 100%;
           font-family: Inconsolata;
-          font-size: 30px;
+          font-size: 20px;
           font-weight: 400;
       }
 
@@ -171,7 +171,7 @@
          width: 1440px;
          text-align: center;
          font-family: Inconsolata;
-         font-size: 30px;
+         font-size: 20px;
          font-weight: 400;
          background-color: #CAAA8A;
          border: solid 1px #CAAA8A;
@@ -197,20 +197,20 @@
 
      .dfa-icerik {
        width: 1440px;
-       height: 600px;
+       height: 400px;
        color: #000000;
        font-family: Inconsolata;
-       font-size: 40px;
+       font-size: 25px;
        font-weight: 400;
        margin: auto;
      }
 
      .dfa-icerik2 {
        width: 1440px;
-       height: 550px;
+       height: 200px;
        color: #000000;
        font-family: Inconsolata;
-       font-size: 40px;
+       font-size: 25px;
        font-weight: 400;
        margin: auto;
      }
@@ -219,7 +219,7 @@
        width: 1440px;
        color: #000000;
        font-family: Inconsolata;
-       font-size: 30px;
+       font-size: 20px;
        font-weight: 400;
        margin: auto;
      }
@@ -234,7 +234,7 @@
        height: 50px;
        color: #000000;
        font-family: Inconsolata;
-       font-size: 30px;
+       font-size: 20px;
        font-weight: 400;
        margin: auto;
      }
@@ -248,10 +248,10 @@
      }
      .example-table{
        width: 1440px;
-       height: 50px;
+       height: 40px;
        color: #000000;
        font-family: Inconsolata;
-       font-size: 30px;
+       font-size: 20px;
        font-weight: 400;
        margin: auto;
      }
@@ -277,14 +277,15 @@
 
 	<div class="dfa-icerik">
     <h5>        Definition of a Deterministic Finite Automaton</h5>
-		<p>A deterministic finite automaton consists of:<br>
-    1. A finite set of states, often denoted Q.<br>
-    2. A finite set of input symbols, often denoted &#931; <br>
-    3. A transition function that takes as arguments a state and an input symbol and returns a state, often denoted &#948;<br>
-    4. A start state, one of the states in Q.<br>
-    5. A set of final or accepting states F. The set F is a subset of Q.<br><br>
+    <p>Q : Finite set of states.<br>
+    ∑ : set of Input Symbols.<br>
+    q : Initial state. It is the starting state of a machine<br>
+    F : set of Final States.<br>
+    δ : Transition Function. It is defined as δ : Q X ∑ --> Q.<br>
+    Default  deterministic finite automaton consists of:<br>
     A = (Q,&#931;, &#948;, q0,F)
-    where A is the name of the DFA, Q is its set of states, &#931; its input symbols, &#948; its transition function, q0 its start state, and F its set of accepting states.
+    <br>In a DFA, for an input character, machine goes to one state only. A transition function is defined on every state for every input symbol.
+    <br>In Deterministic model of Finite Automate (DFA): for every possible combination of state (Q) and language symbol (Σ), we always have unique next state.
     </p>
 
 	</div>
@@ -295,12 +296,10 @@
 
   <div class="dfa-icerik2">
     <p>
-      The "language" of the DFA is the set of all strings that the DFA accepts.<br>
-      Suppose a1,a2, ... a is a sequence of input symbols.<br>
-      1. We start out with the DFA in its start state, q0. <br>
-      2. We consult the transition function &#948;, say &#948;(qO,a1) == q1 to find the state that the DFA A enters after processing the first input symbol a1.<br>
-      3. We process the next input symbol a2, by evaluating &#948;(q1,a2); let us suppose this state is q2.<br>
-      4. We continue in this manner, finding states q3, q4, ..., qn such that &#948;(qi-1,ai)=qi for each i. If qn is a member of F, then the input a1, a2...an is accepted, and if not then it is "rejected."
+      1. We start with the initial(start) state of the DFA, q0. <br>
+      2. By using the transition function &#948;, suppose that &#948;(qO,a1) == q1 then the next state will be q1.<br>
+      3. Until we find final state(maybe we won't find the final state), we will continue to use transition functions. Suppose that &#948;(q1,a2) == q2<br>
+      4. If we find the final state in given string then we accept the string.
     </p>
   </div>
 
@@ -338,8 +337,8 @@
 </table>
   </div>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 
   <div id="flip">Informations of Initial & Final States </div>
     <br>
