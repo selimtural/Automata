@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+  <title>PUSH DOWN AUTOMATON</title>
+<link rel="stylesheet" type="text/css" href="stil.css">
+  </head> 
+
+<body >
+<div>
+ <h2>PUSH DOWN AUTOMATON </h2><br><br>
+  <p > "Finite state machine" + "a stack"</p>
+</div>
+
+Pushdown automata are computational models that can do more than a finite state machine, but less than a Turing machine.The feature that distinguishes it from Finite automata is the use of stack in PDA.There is no repetition in the PDA, we put it where we are in his place.
+<h4>Definition of the pushdown automaton</h4>
+Our formal notation for a pushdown automaton involves seven componenents.The specification of a PDA:<br>
+<strong><h4 style="text-align:center;">	P = (Q,∑,Γ,δ,qo,Zo,F ) </h4>	</strong><br>
+We can also write shorter, like this:<br>
+<strong><h4 style="text-align:center;">	P = (∑,Γ,δ,Zo) </h4>	</strong><br>
+The components have the following meanings:<br>
+<ul >
+<li>  <b>∑  :</b>  Input alphabet</li>  
+<li>  <b>Γ  :</b>  Stack symbol</li>  
+<li>  <b>δ  :</b>  Transition function</li>  
+<li>  <b>Zo :</b>  Start symbol</li>  
+</ul >
+δ = ∑ x Γ -> Γ*  : It makes it possible not to write anything in the stack.We will look at the situation, look at the incoming input, pop or push according to it.<br>
+A pushdown automaton has <strong>three components  :</strong>
+        <ul >
+         <li>an input tape</li>
+         <li>a control unit</li>
+         <li>a stack</li>
+        </ul>   
+
+A stack does two operations :
+<ul >
+ <li>Push</li>
+ <li>Pop </li>  
+</ul >&nbsp;
+
+<h3>State Diagram</h3>
+<ul >
+<li>According to the current situation, the incoming input is checked.</li>
+<li>The stack pop () is made and stack push () is made.</li>
+<li>State changes may also occur.</li>
+</ul >
+<img src="https://github.com/sedacaglarr/Automata/blob/master/images/stateMachineDiagram.png?raw=true" align="center"/> <br>
+<h3>PDA Implemantation</h3> 
+
+To explain my application;
+The entered text will be checked to see if the input is accepted by putting a character in the finite control unit. <br><br>
+<img src="https://github.com/sedacaglarr/Automata/blob/master/images/pdaImp.png?raw=true"/> <br><br>
+I made an application that show the steps of PDA. On this <a href="https://sedacaglarr.github.io/Automata/pda/SedaCaglar_pda.jar"> link </a>you can download the jar file on GitHub
+<br><br><br>
+ </div>
+
+<a href="https://brilliant.org/wiki/pushdown-automata/">Reference </a>
+
+</body>
+  </html>
