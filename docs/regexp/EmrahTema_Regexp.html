@@ -107,29 +107,30 @@ body,td,th {
         <a href="#" onclick="showText(12)">&nbsp;&nbsp;<img src="https://orig00.deviantart.net/62ce/f/2014/077/9/f/xillia_loading_20fps_by_revisdumas-d7aranz.gif" 
             width=15 height=15/>Matches One of Words</a><br />
 
-<b style="font-size:18px;"><a href="#" onclick="showText(13)">&nbsp;&nbsp;References</b></a><br />
+<b style="font-size:18px;"><a href="#" onclick="showText(13)">&nbsp;&nbsp;References</a></b><br />
       </td>
       <td width="20">&nbsp;</td>
       <td width="516"><table width="524" border="0">
         <tr>
-          <td width="518"><br />
-			<div id="show" contentEditable=false class="textBox" style="width:450px;">
-            <center><img src="https://i.hizliresim.com/YgX69z.png"></center>
-            </div>
-          <br />
-          <img src="https://www.clipartqueen.com/image-files/black-and-white-flower-border.png" width=450/></td>
-        </tr>
-        <tr>
           <td>
           <label><b>Try a Regular Expression</b></label>
           <label for="pattern">Pattern:<br />
-          <input type="text" id="pattern" onKeyUp="myFunction()"/></label>
+          <input type="text" id="pattern" value="(\w+(\d+)E)" onKeyUp="myFunction()"/></label>
           <label for="string">Text:<br />
-          <input type="text" id="string" onKeyUp="myFunction()"/></label>
+          <input type="text" id="string" value="BLM320E Dersi." onKeyUp="myFunction()"/></label>
            
-          <div id="output" contentEditable=false class="textBox" style="font-size: 18px;width:450px;">Output: </div>
+          <div id="output" contentEditable=false class="textBox" style="font-size: 18px;width:450px;">
+          Output: <font color="#F60">BLM320E</font> Dersi.</div>
             <br /><br />
           </td>
+        </tr>
+        <tr>
+          <td width="518">
+			<div id="show" contentEditable=false class="textBox" style="width:450px;">
+            <i>This page and the program is made by Emrah Tema for the Formal Languages and Automata Theory course. 
+      		You can create RegExp patterns and try them with a sentence.</i>
+            </div>
+          <br /></td>
         </tr>
       </table></td>
     </tr>
@@ -283,10 +284,8 @@ function showText(selected) {
 	}else if(selected == 13){
 		printt = "<b>References</b><br>"+
 		"-regexone.com is the reference of rules here.<br>"+
-		"-orig00.deviantart.net is the reference of the flowers pic. above Try a RegExp.<br>"+
 		"-clipartqueen.com is the reference of mini-flowers of the topics.<br>"+
 		"-wallpapercave.com is the reference of the background image.<br>"+
-		"-the logo is taken from atheistrepublic.com and edited.<br>"+
 		"-stackoverflow.com is used to solve some problems.";
 	}
 	
