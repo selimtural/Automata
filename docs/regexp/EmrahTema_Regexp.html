@@ -108,6 +108,7 @@ body,td,th {
             width=15 height=15/>Matches One of Words</a><br />
 
 <b style="font-size:18px;"><a href="#" onclick="showText(13)">&nbsp;&nbsp;References</a></b><br />
+<font style="font-size:14px;">&nbsp;&nbsp;Emrah Tema</font>
       </td>
       <td width="20">&nbsp;</td>
       <td width="516"><table width="524" border="0">
@@ -141,6 +142,9 @@ body,td,th {
 <script>
 function showText(selected) {
 	var printt = "";
+	var out = "Output: <font color=\"#F60\">BLM320E</font> Dersi.";
+	var pat = "(\w+(\d+)E)";
+	var txt = "BLM320E Dersi.";
 	
 	if(selected == 0){
 		printt = "<b>What are Regular Expressions?</b><br>"+
@@ -194,6 +198,9 @@ function showText(selected) {
 		"a different form with one slash \\. Slash is used as the escape character in Regular Expressions.<br><br>"+
 		"Example pattern: <b>...\\.</b> (match three characters which have one dot after them)<br>"+
 		"Matches: <i>Roma\'da ikinci adam olacağıma, bir köyde birinci adam olurum daha <font color=\"#F60\">iyi.</font></i><br>";
+		txt = "Birinci sınıfta ilk olarak abc\'yi öğreniriz, abcçdefgh... diye gider.";
+		pat = "abc";
+		out = "Birinci sınıfta ilk olarak <font color=\"#F60\">abc</font>\'yi öğreniriz, <font color=\"#F60\">abc</font>çdefgh... diye gider.";
 	}
 	else if(selected == 4){
 		printt = "<b>Digits</b><br>"+
@@ -204,6 +211,9 @@ function showText(selected) {
 		"Matches: <i>Cumhuriyet <font color=\"#F60\">1923</font>\'te ilan edildi.</i><br><br>"+
 		"Example pattern: <b>\\d\\d</b> (match two digits together)<br>"+
 		"Matches: <i>5 kere 5, <font color=\"#F60\">25</font> eder ama <font color=\"#F60\">12</font>5 etmez</i><br>";
+		txt = "Cumhuriyet 1923\'te ilan edildi.";
+		pat = "1923";
+		out = "Cumhuriyet <font color=\"#F60\">1923</font>\'te ilan edildi.";
 	}
 	else if(selected == 5){
 		printt = "<b>Matching and Excluding</b><br>"+
@@ -217,6 +227,10 @@ function showText(selected) {
 		"Example pattern: <b>[^abc]</b> (the pattern will match any single character except for the letters a, b, or c)<br>"+
 		"Matches: <i><font color=\"#F60\">Bir ins</font>a<font color=\"#F60\">n köprü kur</font>"+
 		"a<font color=\"#F60\">r </font>b<font color=\"#F60\">in ins</font>a<font color=\"#F60\">n geçer</font>.</i><br>";
+		txt = "Boş bir çuvalın dik durması zordur.";
+		pat = "[abc]";
+		out = "Boş <font color=\"#F60\">b</font>ir çuv<font color=\"#F60\">a</font>lın dik durm<font color=\"#F60\">a"+
+		"</font>sı zordur.";
 	}
 	else if(selected == 6){
 		printt = "<b>Things in a Range</b><br>"+
@@ -227,6 +241,9 @@ function showText(selected) {
 		"third character v,w,x,y or z and the fourth character must be a digit)<br>"+
 		"Matches: <i><font color=\"#F60\">Biz</font> yenilirsek kalkar yine deneriz, "+
 		"diktatörler yenilirlerse sonları olur.[F. Castro]</i><br>";
+		pat = "[A-C][h-j][v-z]";
+		txt = "Biz yenilirsek kalkar yine deneriz, diktatörler yenilirlerse sonları olur.[F. Castro]";
+		out = "<font color=\"#F60\">Biz</font> yenilirsek kalkar yine deneriz, diktatörler yenilirlerse sonları olur.[F. Castro]";
 	}
 	else if(selected == 7){
 		printt = "<b>Repetitions</b><br>"+
@@ -237,6 +254,9 @@ function showText(selected) {
 		"one or more times, * multiply operator means that the expression will be repeated zero or more times.<br><br>"+
 		"Example pattern: <b>(lay){2,3}lom</b> (lay must be repeated 2 or 3 times)<br>"+
 		"Matches: <i><font color=\"#F60\">laylaylom</font> galiba sana göre sevmeler.</i><br>";
+		pat = "(lay){2,3}lom";
+		txt = "laylaylom galiba sana göre sevmeler.";
+		out = "<font color=\"#F60\">laylaylom</font> galiba sana göre sevmeler.";
 	}
 	else if(selected == 8){
 		printt = "<b>Optional Character</b><br>"+
@@ -244,6 +264,9 @@ function showText(selected) {
 		"mark) is used as the optional character, so it makes optional any character or expression on the left of it.<br><br>"+
 		"Example pattern: <b>g?G?elecek(tir)?</b><br>"+
 		"Matches: <i><font color=\"#F60\">Gelecek</font> biz istemesek de <font color=\"#F60\">gelecektir</font>.</i><br>";
+		pat = "g?G?elecek(tir)?";
+		txt = "Gelecek biz istemesek de gelecektir.";
+		out = "<font color=\"#F60\">Gelecek</font> biz istemesek de <font color=\"#F60\">gelecektir</font>.";
 	}
 	else if(selected == 9){
 		printt = "<b>Whitespace Characters</b><br>"+
@@ -261,6 +284,9 @@ function showText(selected) {
 		"Example pattern: <b>^Bir yaz gecesi rüyası$</b><br>"+
 		"Matches: <i><font color=\"#F60\">Bir yaz gecesi rüyası</font></i><br>"+
 		"Doesn\'t match: <i>Bir yaz gecesi rüyası kitabı</i><br>";
+		pat = "^Bir yaz gecesi rüyası$";
+		txt = "Bir yaz gecesi rüyası";
+		out = "<font color=\"#F60\">Bir yaz gecesi rüyası</font>";
 	}
 	else if(selected == 11){
 		printt = "<b>Captures and Groups</b><br>"+
@@ -273,6 +299,9 @@ function showText(selected) {
 		"Example pattern: <b>((\\d+) \\w+ (\\d+))</b> (it matches -> \'number with unlimited length\' whitespace "+    		
 		"word with unlimited length\' whitespace \'number with unlimited length\')<br>"+
 		"Matches: <i><font color=\"#F60\">26 Temmuz 2010</font>\'da güzel bir olay gerçekleşti.</i><br>";
+		pat = "^(dosya.+)\.txt$";
+		txt = "dosya Run Teacher.txt"
+		out = "<font color=\"#F60\">dosya Run Teacher.txt</font>";
 	}
 	else if(selected == 12){
 		printt = "<b>Matches One of Words</b><br>"+
@@ -281,14 +310,19 @@ function showText(selected) {
 		"Example pattern: <b>bir (sincap|ördek)( gibi)?</b><br>"+
 		"Matches: <i>Doldurulmuş <font color=\"#F60\">bir sincap gibi</font> susuyorsun öylece.</i><br>"+
 		"Matches: <i>Yüzen <font color=\"#F60\">bir ördek</font> gördüm.</i><br>";
+		pat = "bir (sincap|ördek)( gibi)?";
+		txt = "Doldurulmuş bir sincap gibi susuyorsun öylece.";
+		out = "Doldurulmuş <font color=\"#F60\">bir sincap gibi</font> susuyorsun öylece.";
 	}else if(selected == 13){
 		printt = "<b>References</b><br>"+
-		"-regexone.com is the reference of rules here.<br>"+
-		"-clipartqueen.com is the reference of mini-flowers of the topics.<br>"+
-		"-wallpapercave.com is the reference of the background image.<br>"+
-		"-stackoverflow.com is used to solve some problems.";
+		"-<a href=\"www.regexone.com\" target=\"_blank\">regexone.comz</a> is the reference of rules here.<br>"+
+		"-<a href=\"https://orig00.deviantart.net/62ce/f/2014/077/9/f/xillia_loading_20fps_by_revisdumas-d7aranz.gif\" target=\"_blank\">clipartqueen.com</a> is the reference of mini-flowers of the topics.<br>"+
+		"-<a href=\"http://www.litury.com/fond-d-ecran-hd-vintage.html\" target=\"_blank\">litury.com</a> is the reference of the background image.<br>"+
+		"-<a href=\"www.stackoverflow.com\" target=\"_blank\">stackoverflow.com</a> is used to solve some problems.";
 	}
-	
+	document.getElementById("pattern").value = pat;
+	document.getElementById("string").value = txt;
+	document.getElementById("output").innerHTML = "Output: "+out;
 	document.getElementById("show").innerHTML = printt;
 }
 </script>
