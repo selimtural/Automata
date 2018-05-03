@@ -11,6 +11,22 @@
 <body>
     <div >
        <h2><center>Context Free Grammar </center></h2>      
+       <dd>Definition − A context-free grammar (CFG) consisting of a finite set of grammar rules is a quadruple (N, T, P, S) where
+
+       <li> N is a set of non-terminal symbols.</li>
+    
+      <li>T is a set of terminals where N ∩ T = NULL.</li>
+    
+       <li>P is a set of rules, P: N → (N ∪ T)*, i.e., the left-hand side of the production rule P does have any right context or left context.</li> 
+    
+       <li>S is the start symbol.</li> 
+    
+        <br>Example:
+    
+       <li> The grammar ({A}, {a, b, c}, P, A), P : A → aA, A → abc.</li>
+       <li>The grammar ({S, a, b}, {a, b}, P, S), P: S → aSa, S → bSb, S → ε</li>
+        <li>The grammar ({S, F}, {0, 1}, P, S), P: S → 00S | 11F, F → 00F | ε</li>
+    </dd>
        <h3> <dd> Summary</dd></h3> 
       <dd><img src="https://i.hizliresim.com/8Y4Vpn.jpg"/></dd> 
         <p> <dd>Firstly user selects one of the above rules and if the user writes a text,the accuracy is measured according to the selected rule.
@@ -24,23 +40,38 @@
             <dd><img src="https://i.hizliresim.com/m2YQv8.jpg"/></dd>
                <dd> The user is redirected according to this error.</dd>
                <h4> <dd> <li>Rule 1: </li> </dd></h4> 
-                  <dd> When Rule 1 is selected, it is shown below in the form of accept and reject.</dd>
+               <dd><strong >M ->  A |  M + A | M - A
+                 <br>A ->  E |  A * E | A / E
+                 <br>  E ->  number </strong></dd>
+                <dd><li>Rule 1 only accepts four operations and numbers in mathematics.</li></dd>
+                 <dd><br>Example for accept; 
+                       <li>M = 2*4+7-5/3</li></dd>
+                  <dd><br> When Rule 1 is selected, it is shown below in the form of accept and reject.</dd>
                   <dd><img src="https://i.hizliresim.com/EPaXvz.jpg"/> </dd>
                   <dd><img src="https://i.hizliresim.com/jyk9lL.jpg"/></dd>
-                  <dd>Rule 1 only accepts four operations and numbers in mathematics.</dd>
+                  
                   <h4> <dd> <li>Rule 2: </li> </dd></h4> 
-                   <dd>Similar images are found in Rule 2 below.</dd>
+                  <dd><strong >E ->  M |  =
+                   <br> M ->  A |  ,
+                    <br>A ->  ; | ( E ) </strong></dd>
+                    <dd><li>Rule 2 accepts special characters. It does not accept mathematical expressions.</dd> 
+                    <dd><br>Example for accept; 
+                        <li>E = (=,;)</li></dd>
+                 
+                   <dd><br>Similar images are found in Rule 2 below.</dd>
                    <dd><img src="https://i.hizliresim.com/2JXDG2.jpg"/> </dd>
                   <dd><img src="https://i.hizliresim.com/BLpqlM.jpg"/></dd>
-                   <dd>Rule 2 accepts special characters. It does not accept mathematical expressions.</dd> 
+                   
 
-                  <dd><h3><font color="red">Program Link:</font></h5></dd>  
-        </p>
+                
+                    <h3><dd>REFERENCES:</dd></h3>
+                    <dd><a href="https://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm">https://www.tutorialspoint.com/automata_theory/context_free_grammar_introduction.htm</a></dd>
+                    </p>
    
        
     </div>
-   	
-    <dd><a  target="_blank" href="https://drive.google.com/file/d/1F9O8QZr_nNL5G4oE3q7ahCP7buwG2uSu/view">
+    <dd><h3><font color="red">Program Link:</font></h5></dd>  
+    <dd><a  target="_blank" href="MAGulbahce_CF_Grammar.jar">
         Click Here to Download The Program!</a></dd>
     <address><font size="4" color="green">Muhammet Ali GÜLBAHÇE <br>30.04.2018 </address></font>
 </body>
