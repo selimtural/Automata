@@ -21,6 +21,9 @@
 .tableList td, .tableList th{
     border-bottom: 1px solid aliceblue;
 }
+.tableList tr:nth-child(2) td{
+    border-top: 1px solid aliceblue;
+}
 .tableList th{
     background-color: crimson;
 }
