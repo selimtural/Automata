@@ -3,7 +3,7 @@
 <title>FINITE AUTOMATA</title>
 <body bgcolor="white">
 
-<P><b>Saide Baspehlivan</b></P>
+<P><b>Saide Ba&#351pehlivan</b></P>
 <font color="black"size="5">
 <p align="center">
 <b>FINITE AUTOMATA</b>
@@ -45,11 +45,11 @@ The state in which the deterministic end state machines are to be included (that
 <P>The following figure shows the state diagram of a deterministic finite automaton (DFA),</P>
 <img src="https://imageshack.com/a/img923/5969/osr2rN.png?raw=true"align="center"/>
 <P>The automaton has three states q0, q1, and q2. The state q0 is the start state and q1 is an accept state. The directed edges between states specify the transitions of the automaton when reading an input string.
-This automaton accepts the set of strings that contain 1 and have an even number of 0’s after the last 1.</P>
+This automaton accepts the set of strings that contain 1 and have an even number of 0&#8217s after the last 1.</P>
 
 <P>DFA transition table</P>
 <img src="https://imageshack.com/a/img923/6595/kPdBZ7.png?raw=true"align="center"/>
-<P>The › indicates the start state: here q0
+<P>The -&#62 indicates the start state: here q0
 <br>The * indicates the final state(s) (here only one final state q1)</P>
 <P> For this example:
 <P> Q = {q0,q1,q2}</P>
@@ -69,7 +69,7 @@ This automaton accepts the set of strings that contain 1 and have an even number
 <br>aaa? bab? aaba? aaabbb?
 <br>aaa is not accepted(rejected) and bab,aaba,aaabbb is accepted
 <P>For this example here is the values:
-<br>States: ABCD , terminals: ab, initial state: A, final state: D, transition table: BCCDCBDC, input string: bab -> accept
+<br>States: ABCD , terminals: ab, initial state: A, final state: D, transition table: BCCDCBDC, input string: bab --> accept
 <br>This values input type you can use for this java program or what you want like this:
 <P><a href="https://github.com/saidebasphlvn/Automata/raw/master/docs/fa/saide_dfa.jar">download dfa program</a></P>
 
@@ -77,11 +77,11 @@ This automaton accepts the set of strings that contain 1 and have an even number
 <P>An NDFA can be represented by a 5-tuple (Q, &#8721, &#x3B4, q0, F) where -</P>
 <P>Q is a finite set of states.
 <br>&#8721 is a finite set of symbols called the alphabets.
-<br>&#x3B4 is the transition function where &#x3B4: Q × &#8721 › 2^Q
+<br>&#x3B4 is the transition function where &#x3B4: Q x &#8721 --&#62 2^Q
 <br>(Here the power set of Q (2^Q) has been taken because in case of NDFA, from a state, transition can occur to any combination of Q states)
 <br>q0 is the initial state from where any input is processed (q0 &#x3F5 Q).
 <br>F is a set of final state/states of Q (F &#8838 Q).</P>
-<font color="black"size="3"><P><b>Kaynakça:</b>
+<font color="black"size="3"><P><b>References:</b>
 <br><a href="www.dsteurer.org/toc13/lectures/4/">//www.dsteurer.org/toc13/lectures/4/</a>
 <br><a href="https://www.geeksforgeeks.org/toc-finite-automata-introduction/">https://www.geeksforgeeks.org/toc-finite-automata-introduction/</a>
 <br><a href="www.cse.chalmers.se/~coquand/AUTOMATA/o2.pdf">//www.cse.chalmers.se/~coquand/AUTOMATA/o2.pdf</a>
