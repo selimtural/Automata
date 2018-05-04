@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Burak Uguz Regular Expression Tester</title>
+<title>Burak Uguz Regular Expression</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
-* {
-    box-sizing: border-box;
+*{
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial;
-    margin: 0;
+  font-family: Arial;
+  margin: 0;
 }
 
 #mainDiv{width: 960px; margin: 0 auto;}
+#buttonDiv{margin-left:250px;}
 .subheadings{font-weight: bold;}
 .header {
-    padding: 80px;
-    text-align: center;
-    background: #1abc9c;
-    color: white;
+  padding: 80px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
 }
 .header h1 {
-    font-size: 40px;
+  font-size: 40px;
 }
 .navbar {
-    overflow: hidden;
-    background-color: #333;
+  overflow: hidden;
+  background-color: #333;
 }
-
 .navbar2{
   overflow: hidden;
-background-color: #333;
-color:white;
+  background-color: #333;
+  color:white;
 }
 .button {
     background-color: #686868;;
@@ -176,15 +176,18 @@ input[type=text], select {
       <p onclick="exp8()">(.*)</p>
     </div>
     <br>
+    <p>Press Enter to see the result or Click on Button</p>
     <div id="inputRegexp" class="regexpFunc">
         <input type="text" id="regexp" class="textBox" placeholder="Regular Expression">
   <div id="txt" contentEditable=true class="textBox regexpFunc" data-text="Enter text here"></div>
-    <br><br>
-    <input type="radio" name="notation" id="math" checked="checked">Mathematical Notation&nbsp &nbsp&nbsp &nbsp
-    <input type="radio" name="notation" id="java">Java Notation &nbsp &nbsp
+    <br>
+    <!-- <input type="radio" name="notation" id="math" checked="checked">Mathematical Notation&nbsp &nbsp&nbsp &nbsp
+    <input type="radio" name="notation" id="java">Java Notation &nbsp &nbsp &nbsp -->
+    <div id="buttonDiv">
+    <input type="button" class="button" onclick="myFunction()" value="Test The Text">
+    </div>
   </div></a><br>
     <p id="eps"></p>
-
       <a name="i1">
       <h2>Regex Explained</h2>
       <p>&nbsp&nbsp&nbspA regular expression is a special text string to describe a search pattern.
@@ -294,56 +297,56 @@ $('div[contenteditable=true]').keyup(function(e) {
     sel.addRange(range);
   }*/
 
-  function changeNotation(val) {
+  /*function changeNotation(val) {
     var regexp = val.split('+').join('|');
     return regexp;
-  }
+  }*/
 
   function exp1(){
     document.getElementById("regexp").value = "(0)[1-9]{1}[0-9]{2}-[0-9]{3}-[0-9]{4}";
-    document.getElementById("txt").innerText = "0551-555-5555";
+    document.getElementById("txt").innerText = "0555-555-0110 << correct using <br> 053a132-1212 << wrong using" ;
     myFunction();
   }
 
   function exp2(){
     document.getElementById("regexp").value = "(http|https):\/\/(.*)\.(com|org|gov|me|xyz)";
-    document.getElementById("txt").innerText = "https://docs.oracle.com";
+    document.getElementById("txt").innerText = "https://docs.oracle.com << correct using <br> https:/docsoracle.co << wrong using ";
     myFunction();
   }
 
   function exp3(){
     document.getElementById("regexp").value = "[A-Za-z]{1}[A-Za-z0-9._%+-]{5,15}@[a-z]{1}[a-z0-9.-]+";
-    document.getElementById("txt").innerText = "brkuguz@gmail.com burak+d.com << wrong using";
+    document.getElementById("txt").innerText = "brkuguz@gmail.com << correct using <br> burak+d.com << wrong using";
     myFunction();
   }
 
   function exp4(){
     document.getElementById("regexp").value = "reg.*exp";
-    document.getElementById("txt").innerText = "regAutomataTermProjectexp reegAutomataTermProjectexxp << wrong using";
+    document.getElementById("txt").innerText = "regAutomataTermProjectexp << correct using <br> reegAutomataTermProjectexxp << wrong using";
     myFunction();
   }
 
   function exp5(){
     document.getElementById("regexp").value = "(mer){2,3}haba";
-    document.getElementById("txt").innerText = "mermermerhaba or mermerhaba merhaba << wrong using";
+    document.getElementById("txt").innerText = "mermermerhaba or mermerhaba << correct using <br> merhaba << wrong using";
     myFunction();
   }
 
   function exp6(){
     document.getElementById("regexp").value = "(burak?|uguz)*";
-    document.getElementById("txt").innerText = "expbubuakburakguguzbauguz";
+    document.getElementById("txt").innerText = "burak or burakuguz or uguz or burakuguzuguzuguz << correct using <br> uGuz << wrong using ";
     myFunction();
   }
 
   function exp7(){
     document.getElementById("regexp").value = "(AB?C)";
-    document.getElementById("txt").innerText = "AC or ABC";
+    document.getElementById("txt").innerText = "AC or ABC << correct using <br> AB << wrong using";
     myFunction();
   }
   function exp8(){
     document.getElementById("regexp").value = "(.*)";
     document.getElementById("txt").innerText = "a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z"+
-    "0 1 2 3 4 5 6 7 8 9 !'%'^'!%'!+''";
+    " 0 1 2 3 4 5 6 7 8 9 !'%'^'!%'!+'' << correct using ... <br> all entries for this expression are considered correct ";
     myFunction();
   }
 
@@ -358,12 +361,12 @@ var yeniCumle;
   tempCumle = cumle;
   reg = "" + document.getElementById("regexp").value+"";
 
-  if(document.getElementById("math").checked==true){
+  /*if(document.getElementById("math").checked==true){
     reg =changeNotation(reg);
   }else if(document.getElementById("math").checked==false && document.getElementById("java").checked==false){
     alert("Choose a Notation");
     return "";
-  }
+  }*/
 
   if(cumle !== "" && reg !== "" ){
   var array1;
