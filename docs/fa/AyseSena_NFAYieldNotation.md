@@ -86,4 +86,5 @@ If do you want to try some strings in this automata please
 
 ![enter image description here](https://lh3.googleusercontent.com/zFDBrEizuKSf7f-W65cpna5Sq3c_geDXGfsCIeGfdMu7HVjufVAobIuBtfBOcKb-N4ix8qmWRzPQ)
 
-This website, program, examples and images  prepared by Ayşe Sena Feyiz.
+This Project is written in Java language.
+This website, program, examples and images are prepared by Ayşe Sena Feyiz.
