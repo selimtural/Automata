@@ -1,4 +1,5 @@
 ﻿
+
 # Regex To Dfa 
 
 Regular expressions are used to represent the language of finite automata.
@@ -98,7 +99,8 @@ StateNfa.java - Class in which created Nfa states are kept
    [Converting a regex to dfa]: <https://stackoverflow.com/questions/30056643/converting-a-regular-expression-to-a-dfa>
    [Converting a regex to dfa]: <https://cs.stackexchange.com/questions/13599/convert-regular-expression-to-dfa>
    [Converting a regex to dfa]: <http://ecomputernotes.com/compiler-design/convert-regular-expression-to-dfa>
-  
-  [Reference for NFA steps' pictures ](http://ecomputernotes.com/compiler-design/convert-regular-expression-to-dfa)
+   
+  Reference for NFA steps' pictures
+  [http://ecomputernotes.com/compiler-design/convert-regular-expression-to-dfa](http://ecomputernotes.com/compiler-design/convert-regular-expression-to-dfa)
   
 *This web page and program prepared by Dila Erbakan*
