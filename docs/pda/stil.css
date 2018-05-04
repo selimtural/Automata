@@ -1,28 +1,33 @@
 "stil.css":
+html {
+	overflow: hidden;
+	touch-action: none;
+	content-zooming: none;
+}
+
 body {
+   margin: 1 auto;
    font-family: Segoe UI, Lucida Grande, DejaVu Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
- 
-    font-size: 14px;
-    color: #333;
-    background-color: navajowhite;
-   padding-left: 15px;
-    padding-right: 15px;
+   font-size: 14px;
+   background: white;
+	
   
 }
 
 
-
 div {
-	width: 90vw;
-	margin-left: 5vw;
+
+        margin-left:10vw;
+	width: 100vw;
+
 
 }
 
 
 h1 {
 
-	font-size: 8vw;
-	height: 10vw;
+	font-size:4vw;
+	height:5vw;
 	margin-top: calc(50vh - 20vw);
 
 	text-shadow: 
@@ -56,8 +61,17 @@ div:hover h1{
 	transform: translateY(-17.5vw);
 	z-index: 2;
 }
-
+article {
+    margin-left: 170px;
+    margin-right: 170px;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+     padding: 1em;
+    overflow: hidden;
+background: #ccc;
+}
 div p {
+
 	font-size:2vw;
 	width: 80%;
  	 margin-left: 10%;
@@ -81,3 +95,4 @@ div:hover p {
 	transform: scale(0.25);
 	opacity: 0;
 }
+
