@@ -31,9 +31,9 @@ h1 {
 	margin-top: calc(50vh - 20vw);
 
 	text-shadow: 
-	0px 0.9vw 0px hsl(337, 92%, 31%), 
-	0px 0.9vw 0px hsl(343, 100%, 39%),
-	0px 0.9vw 0px hsl(11, 80%, 60%);
+	0px 0.1vw 0px hsl(337, 92%, 31%), 
+	0px 0.1vw 0px hsl(343, 100%, 39%),
+	0px 0.1vw 0px hsl(11, 80%, 60%);
 
 	-webkit-transition: 
 		margin 0.6s ease, 
