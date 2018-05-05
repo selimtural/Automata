@@ -1,17 +1,19 @@
-"use strict";
-var Constant = (function () {
+var Constant = /** @class */ (function () {
     function Constant(value) {
         this.num = value;
         this.name = 'Constant';
         this.map = {};
         this.map['value'] = '' + this.num;
     }
+    /** Returns float value of this Expression */
     Constant.prototype.fValue = function () {
         return this.num;
     };
+    /** String representation of this Expression */
     Constant.prototype.toString = function () {
         return Constant.numToStr(this.num);
     };
+    /** Converts this Expression to postfix (RPN) */
     Constant.prototype.toPostfix = function () {
         return ' ' + Constant.numToStr(this.num);
     };
@@ -24,7 +26,7 @@ var Constant = (function () {
     };
     return Constant;
 }());
-var Binary = (function () {
+var Binary = /** @class */ (function () {
     function Binary(l, tok, r) {
         this.left = l;
         this.operator = tok;
@@ -35,6 +37,7 @@ var Binary = (function () {
         this.map['operator'] = this.operator.toString();
         this.map['right'] = this.right.toString();
     }
+    /** Returns float value of this Expression */
     Binary.prototype.fValue = function () {
         if (this.operator == Token.PLUS)
             return this.left.fValue() + this.right.fValue();
@@ -46,6 +49,7 @@ var Binary = (function () {
             return this.left.fValue() / this.right.fValue();
         return NaN;
     };
+    /** String representation of this Expression */
     Binary.prototype.toString = function () {
         return this.toString2(this.left, false) + this.operator + this.toString2(this.right, true);
     };
@@ -59,6 +63,7 @@ var Binary = (function () {
             return s;
         return Token.LEFT + s + Token.RIGHT;
     };
+    /** Converts this Expression to postfix (RPN) */
     Binary.prototype.toPostfix = function () {
         return this.left.toPostfix() + this.right.toPostfix() + ' ' + this.operator;
     };
@@ -71,14 +76,16 @@ var Binary = (function () {
     };
     return Binary;
 }());
-var Parser = (function () {
+/** Parser could be RecursiveDescentParser module, this is more clear. */
+var Parser = /** @class */ (function () {
     function Parser(input) {
         this.lex = new Scanner(input);
         this.tok = Token.EMPTY;
     }
     Parser.prototype.match = function (matchToken) {
-        if (this.tok == matchToken)
+        if (this.tok == matchToken) {
             this.tok = this.lex.nextToken();
+        }
         else
             this.expected(matchToken.toString());
     };
@@ -95,19 +102,34 @@ var Parser = (function () {
     };
     Parser.prototype.checkPoint = function (point, status, name, region, props) {
         var shape = new RecursiveFunc(point, name, props);
-        var state = new State(status, this.tok, region, shape);
+        var tokenIndex;
+        switch (this.tok) {
+            case Token.NUMBER:
+                tokenIndex = Math.floor((this.lex.prev + this.lex.next) / 2);
+                break;
+            case Token.EOF:
+                tokenIndex = this.lex.next;
+                break;
+            default:
+                tokenIndex = this.lex.prev;
+                break;
+        }
+        var state = new State(status, this.tok, tokenIndex, region, shape);
         if (this.model != undefined)
             this.model.addState(state);
     };
+    /** lazy referencing */
     Parser.prototype.attachModel = function (model) {
         this.model = model;
     };
     Parser.prototype.parse = function () {
         this.tok = this.lex.nextToken();
+        //#state 
         var region = '';
         var point = this.takePoint();
         this.checkPoint(point, StateStatus.DRAW, 'Expression', region);
         var e = this.expr();
+        //#state 
         if (e != undefined)
             this.checkPoint(point, StateStatus.DRAW, 'Expression', region, e.map);
         this.match(Token.EOF);
@@ -116,13 +138,15 @@ var Parser = (function () {
     Parser.prototype.expr = function () {
         var region = 'expression';
         var point = this.takePoint();
-        this.checkPoint(point, StateStatus.DRAW, 'Expression()', region);
+        this.checkPoint(point, StateStatus.DRAW, 'exp()', region);
         var e = this.term();
+        //#region
         if (e != undefined)
             this.checkPoint(point, StateStatus.DRAW, e.name, region, e.map);
         var t = this.tok;
         while (t == Token.PLUS || t == Token.MINUS) {
             this.match(t);
+            //#region 
             if (e != undefined) {
                 var map = {};
                 map['left'] = '' + e.toString();
@@ -135,10 +159,12 @@ var Parser = (function () {
             if (term == undefined || e == undefined)
                 return;
             e = new Binary(e, t, term);
+            //#region
             if (e != undefined)
                 this.checkPoint(point, StateStatus.DRAW, e.name, region, e.map);
             t = this.tok;
         }
+        //#region 
         region = 'EXPRETURN';
         if (e != undefined)
             this.checkPoint(point, StateStatus.ERASE, e.name, region);
@@ -147,13 +173,16 @@ var Parser = (function () {
     Parser.prototype.term = function () {
         var region = 'TERM';
         var point = this.takePoint();
-        this.checkPoint(point, StateStatus.DRAW, 'Term()', region);
+        this.checkPoint(point, StateStatus.DRAW, 'term()', region);
         var e = this.factor();
+        //#state 
         if (e != undefined)
             this.checkPoint(point, StateStatus.DRAW, e.name, region, e.map);
         var t = this.tok;
         while (t == Token.STAR || t == Token.SLASH) {
             this.match(t);
+            /** 2 lines below is typescript things.. */
+            //#region 
             if (e != undefined) {
                 var map = {};
                 map['left'] = '' + e.toString();
@@ -166,10 +195,12 @@ var Parser = (function () {
             if (factor == undefined || e == undefined)
                 return;
             e = new Binary(e, t, factor);
+            //#region 
             if (e != undefined)
                 this.checkPoint(point, StateStatus.DRAW, e.name, region, e.map);
             t = this.tok;
         }
+        //#region 
         region = 'TERMRETURN';
         if (e != undefined)
             this.checkPoint(point, StateStatus.ERASE, e.name, region);
@@ -178,21 +209,24 @@ var Parser = (function () {
     Parser.prototype.factor = function () {
         var region = 'FACTOR';
         var point = this.takePoint();
-        this.checkPoint(point, StateStatus.DRAW, 'Factor()', region);
+        this.checkPoint(point, StateStatus.DRAW, 'factor()', region);
+        region = 'CONSTANT';
         if (this.tok == Token.NUMBER) {
             var c = new Constant(this.lex.nval);
-            region = 'CONSTANT';
+            //#state 
             this.checkPoint(point, StateStatus.DRAW, c.name, region, c.map);
             region = 'CONSTANTRETURN';
             this.checkPoint(point, StateStatus.ERASE, c.name, region);
             this.match(Token.NUMBER);
             return c;
         }
+        region = 'LEFT';
+        this.checkPoint(point, StateStatus.DRAW, 'factor()', region);
         if (this.tok == Token.LEFT) {
             this.match(Token.LEFT);
             var e = this.expr();
+            //#state 
             if (e != undefined) {
-                region = 'LEFT';
                 this.checkPoint(point, StateStatus.DRAW, e.name, region, e.map);
                 region = 'LEFTRETURN';
                 this.checkPoint(point, StateStatus.ERASE, e.name, region);
@@ -204,7 +238,7 @@ var Parser = (function () {
     };
     return Parser;
 }());
-var Scanner = (function () {
+var Scanner = /** @class */ (function () {
     function Scanner(input) {
         this.source = input;
         this.prev = 0;
@@ -216,7 +250,7 @@ var Scanner = (function () {
     Scanner.prototype.getNumber = function () {
         while (this.next < this.source.length) {
             var c = this.source.charAt(this.next);
-            if (c == '.' || this.isDigit(c))
+            if (c == '.' || Scanner.isDigit(c))
                 this.next++;
             else
                 break;
@@ -225,13 +259,13 @@ var Scanner = (function () {
         var s = this.source.substring(this.prev, this.next);
         this.nval = parseFloat(s);
     };
-    Scanner.prototype.isDigit = function (character) {
+    Scanner.isDigit = function (character) {
         return character.length === 1 && /^\d+$/.test(character);
     };
     Scanner.prototype.getIdent = function () {
         while (this.next < this.source.length) {
             var c = this.source.charAt(this.next);
-            if (this.isLetter(c) || this.isDigit(c))
+            if (Scanner.isLetter(c) || Scanner.isDigit(c))
                 this.next++;
             else
                 break;
@@ -239,9 +273,10 @@ var Scanner = (function () {
         this.sval = this.source.substring(this.prev, this.next);
         this.tok = Token.IDENT;
     };
-    Scanner.prototype.isLetter = function (character) {
+    Scanner.isLetter = function (character) {
         return character.length === 1 && /[a-z]/i.test(character);
     };
+    /** Returns next token after reading a sufficient number of chars */
     Scanner.prototype.nextToken = function () {
         this.nval = 0;
         this.sval = '';
@@ -249,20 +284,21 @@ var Scanner = (function () {
         do {
             if (this.next >= this.source.length)
                 return (this.tok = Token.EOF);
-            c = this.source.charAt(this.next++);
-        } while (this.isWhiteSpace(c));
+            c = this.source.charAt(this.next++); //read next char
+        } while (Scanner.isWhiteSpace(c));
         this.prev = this.next - 1;
-        if (this.isLetter(c))
+        if (Scanner.isLetter(c))
             this.getIdent();
-        else if (this.isDigit(c))
+        else if (Scanner.isDigit(c))
             this.getNumber();
         else
-            this.tok = TokenParser.valueOf(c);
+            this.tok = TokenParser.valueOf(c); //tok = c;
         return this.tok;
     };
-    Scanner.prototype.isWhiteSpace = function (character) {
+    Scanner.isWhiteSpace = function (character) {
         return character.length === 1 && /\s/.test(character);
     };
+    /** String representation of the current token */
     Scanner.prototype.toString = function () {
         var s = this.tok.toString();
         if (this.tok == Token.NUMBER)
@@ -290,7 +326,7 @@ var Token;
     Token["NUMBER"] = "number";
     Token["EOF"] = "eof";
 })(Token || (Token = {}));
-var TokenParser = (function () {
+var TokenParser = /** @class */ (function () {
     function TokenParser() {
     }
     TokenParser.valueOf = function (character) {
@@ -322,14 +358,17 @@ var TokenParser = (function () {
     };
     return TokenParser;
 }());
-var Stack = (function () {
+var Stack = /** @class */ (function () {
     function Stack() {
+        this.length = 0;
         this.arr = [];
     }
     Stack.prototype.push = function (value) {
         this.arr.push(value);
+        this.length = this.arr.length;
     };
     Stack.prototype.pop = function () {
+        this.length = this.arr.length;
         return this.arr.pop();
     };
     Stack.prototype.peek = function () {
@@ -340,19 +379,26 @@ var Stack = (function () {
     };
     return Stack;
 }());
-var Queue = (function () {
+var Queue = /** @class */ (function () {
     function Queue() {
+        this.length = 0;
         this.arr = [];
     }
     Queue.prototype.push = function (value) {
         this.arr.push(value);
+        this.length = this.arr.length;
     };
     Queue.prototype.pushPriority = function (value) {
         this.arr.splice(0, 0, value);
+        this.length = this.arr.length;
     };
+    /** pops and returns first element in array */
     Queue.prototype.pop = function () {
+        if (this.isEmpty())
+            return undefined;
         var element = this.arr[0];
         this.arr.splice(0, 1);
+        this.length = this.arr.length;
         return element;
     };
     Queue.prototype.peek = function () {
@@ -363,17 +409,18 @@ var Queue = (function () {
     };
     return Queue;
 }());
-var Point = (function () {
+var Point = /** @class */ (function () {
     function Point(x, y) {
         this.x = x;
         this.y = y;
     }
     return Point;
 }());
-var RecursiveFunc = (function () {
+var RecursiveFunc = /** @class */ (function () {
     function RecursiveFunc(point, name, props) {
         this.name = name;
         this.props = props;
+        // burası visualizer tarafından belirlencek
         this.x = point.x;
         this.y = point.y;
     }
@@ -382,7 +429,7 @@ var RecursiveFunc = (function () {
     };
     return RecursiveFunc;
 }());
-var Highlighter = (function () {
+var Highlighter = /** @class */ (function () {
     function Highlighter(code) {
         this._code = code;
         this.code = code;
@@ -416,17 +463,19 @@ var Highlighter = (function () {
         return this.code;
     };
     Highlighter.prototype.adjustCode = function () {
+        //let regexp = /#.*#/gi;
+        //this.code = this._code.replace(regexp, '');
         this.code = this._code;
         for (var key in this.regions) {
             var span = "<span id='" + key.toLowerCase() + "'>";
             var spann = "</span>";
-            this.code = this.code.replace('#' + key + '#', span);
-            this.code = this.code.replace('#END' + key + '#', spann);
+            this.code = this.code.replace('#' + key + '#\n', span);
+            this.code = this.code.replace('#END' + key + '#\n', spann);
         }
     };
     return Highlighter;
 }());
-var Region = (function () {
+var Region = /** @class */ (function () {
     function Region(tag, beginning, finale) {
         this.tag = tag;
         this.beginning = beginning;
@@ -434,7 +483,7 @@ var Region = (function () {
     }
     return Region;
 }());
-var RDPController = (function () {
+var RDPController = /** @class */ (function () {
     function RDPController(model, view) {
         this.stateIndexer = -1;
         this.model = model;
@@ -444,6 +493,8 @@ var RDPController = (function () {
     RDPController.prototype.reinit = function (parserInput) {
         this.view.reinit();
         this.model.parse(parserInput);
+        this.view.resize();
+        this.view.updateExpression(parserInput);
         this.stateIndexer = -1;
     };
     RDPController.prototype.takePoint = function () {
@@ -469,19 +520,22 @@ var RDPController = (function () {
                     break;
             }
             this.view.highlight(state.region);
-            this.view.updateToken(state.token);
+            this.view.updateToken(state.token, state.tokenMoved);
         }
     };
     RDPController.prototype.prev = function () {
+        /** TODO */
     };
     return RDPController;
 }());
-var RDPModel = (function () {
+var RDPModel = /** @class */ (function () {
     function RDPModel() {
         this.states = [];
+        this.expression = '';
     }
     RDPModel.prototype.parse = function (input) {
         this.states = [];
+        this.expression = input;
         this.parser = new Parser(input);
         this.parser.attachModel(this);
         this.parser.parse();
@@ -502,20 +556,18 @@ var RDPModel = (function () {
     };
     return RDPModel;
 }());
-var shapeWidth = 300;
+var shapeWidth = 150;
 var shapeHeight = 150;
-var RDPView = (function () {
+var RDPView = /** @class */ (function () {
     function RDPView() {
         this.WIDTH_CANVAS = 0;
         this.HEIGHT_CANVAS = 0;
-        var canvasDiv = document.getElementById('mycanvas');
-        this.WIDTH_CANVAS = window.innerWidth;
-        this.HEIGHT_CANVAS = window.innerHeight;
+        var canvasDiv = document.getElementById('canvas-area');
         this.canvas = document.createElement('canvas');
-        this.canvas.style.width = '100%';
-        this.canvas.style.height = '100%';
-        if (canvasDiv != null)
-            canvasDiv.appendChild(this.canvas);
+        /** takePoint() needs to know canvas div's width to give points when
+         * modal needs it.
+         */
+        this.canvas.width = canvasDiv.clientWidth;
         this.points = new Queue();
         this.lastGivenPoint = new Point(0, 0);
         this.points.push(this.lastGivenPoint);
@@ -523,29 +575,39 @@ var RDPView = (function () {
         this.highlighter.adjustCode();
         this.updateCode(this.highlighter.code);
     }
-    RDPView.prototype.reinit = function () {
-        var canvasDiv = document.getElementById('mycanvas');
+    RDPView.prototype.resize = function () {
+        var canvasDiv = document.getElementById('canvas-area');
+        var points = this.points.arr;
+        var canvasDimensions = new Point(0, 0);
+        for (var index = 0; index < points.length; index++) {
+            var element = points[index];
+            //if(element.x > canvasDimensions.x) canvasDimensions.x = element.x;
+            if (element.y > canvasDimensions.y)
+                canvasDimensions.y = element.y;
+        }
+        this.canvas = document.createElement('canvas');
+        //this.canvas.width=canvasDimensions.x + shapeWidth;
+        this.canvas.width = canvasDiv.clientWidth;
+        this.canvas.height = canvasDimensions.y + shapeHeight;
         while (canvasDiv.hasChildNodes) {
             var child = canvasDiv.lastChild;
             if (child == null)
                 break;
             canvasDiv.removeChild(child);
         }
-        this.WIDTH_CANVAS = window.innerWidth;
-        this.HEIGHT_CANVAS = window.innerHeight;
-        this.canvas = document.createElement('canvas');
-        this.canvas.width = this.WIDTH_CANVAS;
-        this.canvas.height = this.HEIGHT_CANVAS;
         canvasDiv.appendChild(this.canvas);
+    };
+    RDPView.prototype.reinit = function () {
         this.points = new Queue();
         this.lastGivenPoint = new Point(0, 0);
         this.points.push(this.lastGivenPoint);
         this.highlighter = new Highlighter(_code);
         this.highlighter.adjustCode();
         this.updateCode(this.highlighter.code);
-        this.updateToken(Token.EMPTY);
+        this.updateToken(Token.EMPTY, 0);
     };
     RDPView.prototype.highlight = function (area) {
+        //<span style='color:blue'> </span>
         this.unhighlight();
         if (area == '')
             return;
@@ -572,7 +634,7 @@ var RDPView = (function () {
         if (point == undefined) {
             var x = this.lastGivenPoint.x + shapeWidth;
             var y = this.lastGivenPoint.y;
-            if (x > this.canvas.height) {
+            if (x + shapeWidth > this.canvas.width) {
                 x = 0;
                 y = y + shapeHeight;
             }
@@ -599,10 +661,14 @@ var RDPView = (function () {
                 }
                 counter++;
             }
+            /** While using font as 15px Arial, each characters size is almost 7
+             * pixel. Thats why multiplying 7 and text.length
+             */
             largestMeasureKey *= 7;
             largestMeasureValue *= 7;
             var width = largestMeasureValue + 25;
             var height = 90;
+            /** all drawings should be placed below in these lines */
             var rectX = shape.x + largestMeasureKey + 10;
             var rectY = shape.y + 25;
             var rectW = width;
@@ -614,7 +680,7 @@ var RDPView = (function () {
             ctx.textBaseline = 'top';
             ctx.strokeText(shape.name, rectX, shape.y);
             ctx.strokeRect(rectX, rectY, rectW, rectH);
-            var ara = height / counter;
+            var ara = height / counter; // 30
             var row = rectY + ara / 2;
             var seperatorX = rectX;
             var seperatorY = rectY + 1;
@@ -642,24 +708,33 @@ var RDPView = (function () {
     };
     RDPView.prototype.eraseShape = function (shape) {
         var ctx = this.getContext();
-        ctx.clearRect(shape.x - 5, shape.y - 5, shapeWidth + 5, shapeHeight + 5);
+        ctx.clearRect(shape.x - 5, shape.y - 5, this.canvas.width - shape.x + 5, this.canvas.height - shape.y + 5);
     };
-    RDPView.prototype.updateToken = function (tok) {
-        var docParser = document.getElementById('parser');
-        docParser.innerHTML = "TOKEN = " + tok.toString();
+    RDPView.prototype.updateExpression = function (expression) {
+        var expr = document.getElementById('tok-expression');
+        expr.innerHTML = expression;
+    };
+    RDPView.prototype.updateToken = function (tok, tokIndex) {
+        var pointer = document.getElementById('pointer');
+        var blank = '';
+        for (var index = 0; index < tokIndex; index++) {
+            blank += ' ';
+        }
+        blank += "^ TOKEN = " + tok.toString();
+        pointer.innerHTML = blank;
     };
     RDPView.prototype.updateCode = function (code) {
         var codeArea = document.getElementById('code');
-        if (codeArea != null)
-            codeArea.innerHTML = code;
+        codeArea.innerHTML = code;
     };
     return RDPView;
 }());
-var _code = "<h3>Code</h3>\n<pre><code>Expression expr() {\n    #EXPRESSION#\n    Expression e = term();\n    #ENDEXPRESSION#\n    Token t = tok;\n    #PLUSMINUS#\n    while (t == Token.PLUS || t == Token.MINUS)  {\n        match(t);\n        e = new Binary(e, t, term());\n        t = tok;\n    }\n    #ENDPLUSMINUS#\n    #EXPRETURN#\n    return e;\n    #ENDEXPRETURN#\n}\nExpression term() {\n    #TERM#\n    Expression e = factor();\n    #ENDTERM#\n    Token t = tok;\n    #STARSLASH#\n    while (t == Token.STAR || t == Token.SLASH)  {\n        match(t);\n        e = new Binary(e, t, factor());\n        t = tok;\n    }\n    #ENDSTARSLASH#\n    #TERMRETURN#\n    return e;\n    #ENDTERMRETURN#\n}\nExpression factor() {\n    #FACTOR#\n\n    if (tok == Token.NUMBER)  {\n        #CONSTANT#\n        Expression c = new Constant(lex.nval);\n        match(Token.NUMBER);\n        #ENDCONSTANT#\n        #CONSTANTRETURN#\n        return c;\n        #ENDCONSTANTRETURN#\n    }\n    if (tok == Token.LEFT)  {\n        #LEFT#\n        match(Token.LEFT);\n        Expression e = expr();\n        match(Token.RIGHT);\n        #ENDLEFT#\n        #LEFTRETURN#\n        return e;\n        #ENDLEFTRETURN#\n    }\n\n    #ENDFACTOR#\n    expected(\"Factor\");\n    return null;\n}\n</code></pre>";
-var State = (function () {
-    function State(status, tok, region, shape) {
+var _code = "<h3>Code</h3>\n<pre>\nExpression expr() {\n#EXPRESSION#\n&emsp;&emsp;Expression e = term();\n#ENDEXPRESSION#\n&emsp;&emsp;Token t = tok;\n#PLUSMINUS#\n&emsp;&emsp;while (t == Token.PLUS || t == Token.MINUS)  {\n&emsp;&emsp;&emsp;&emsp;match(t);\n&emsp;&emsp;&emsp;&emsp;e = new Binary(e, t, term());\n&emsp;&emsp;&emsp;&emsp;t = tok;\n&emsp;&emsp;}\n#ENDPLUSMINUS#\n#EXPRETURN#\n&emsp;&emsp;return e;\n#ENDEXPRETURN#\n}\nExpression term() {\n#TERM#\n&emsp;&emsp;Expression e = factor();\n#ENDTERM#\n&emsp;&emsp;Token t = tok;\n#STARSLASH#\n&emsp;&emsp;while (t == Token.STAR || t == Token.SLASH)  {\n&emsp;&emsp;&emsp;&emsp;match(t);\n&emsp;&emsp;&emsp;&emsp;e = new Binary(e, t, factor());\n&emsp;&emsp;&emsp;&emsp;t = tok;\n&emsp;&emsp;}\n#ENDSTARSLASH#\n#TERMRETURN#\n&emsp;&emsp;return e;\n#ENDTERMRETURN#\n}\nExpression factor() {\n#FACTOR#\n&emsp;&emsp;if (tok == Token.NUMBER)  {\n#CONSTANT#\n&emsp;&emsp;&emsp;&emsp;Expression c = new Constant(lex.nval);\n&emsp;&emsp;&emsp;&emsp;match(Token.NUMBER);\n#ENDCONSTANT#\n#CONSTANTRETURN#\n&emsp;&emsp;&emsp;&emsp;return c;\n#ENDCONSTANTRETURN#\n&emsp;&emsp;}\n&emsp;&emsp;if (tok == Token.LEFT)  {\n#LEFT#\n&emsp;&emsp;&emsp;&emsp;match(Token.LEFT);\n&emsp;&emsp;&emsp;&emsp;Expression e = expr();\n&emsp;&emsp;&emsp;&emsp;match(Token.RIGHT);\n#ENDLEFT#\n#LEFTRETURN#\n&emsp;&emsp;&emsp;&emsp;return e;\n#ENDLEFTRETURN#\n&emsp;&emsp;}\n#ENDFACTOR#\n&emsp;&emsp;expected(\"Factor\");\n&emsp;&emsp;return null;\n}\n</pre>";
+var State = /** @class */ (function () {
+    function State(status, tok, tokenMoved, region, shape) {
         this.status = status;
         this.token = tok;
+        this.tokenMoved = tokenMoved;
         this.shape = shape;
         this.region = region;
     }
@@ -680,24 +755,42 @@ var StateStatus;
 var view = new RDPView();
 var model = new RDPModel();
 var controller = new RDPController(model, view);
+document.getElementById("input-exp").value = '(4+3)';
+function start() {
+    try {
+        var input = document.getElementById("input-exp");
+        controller.reinit(input.value);
+        document.getElementById('visual').style.visibility = 'visible';
+        document.getElementById('next').style.visibility = 'visible';
+    }
+    catch (e) {
+        document.getElementById('visual').style.visibility = 'hidden';
+        document.getElementById('next').style.visibility = 'hidden';
+        var alertMessage = 'Please, enter a valid expression!';
+        var errorMessage = e.message;
+        if (errorMessage.indexOf('Expected') != -1)
+            alertMessage += '\n' + errorMessage;
+        alert(alertMessage);
+    }
+}
+function next() {
+    controller.next();
+}
 document.addEventListener('keyup', function (e) {
+    //console.log(e.key + '-' + e.keyCode);
     if (e.key == 'ArrowRight') {
-        controller.next();
+        next();
     }
     else if (e.key == 'ArrowLeft') {
+        //visualizer.prev();
+    }
+    else if (e.key == 'Enter') {
+        //start();
     }
 });
-var button = document.getElementById('start');
-if (button != null)
-    button.onclick = function () {
-        try {
-            var input = document.getElementById("inputExpression").value;
-            controller.reinit(input);
-            var visual = document.getElementById('visual').style.visibility = 'visible';
-            window.location.href = '#code';
-        }
-        catch (e) {
-            var visual = document.getElementById('visual').style.visibility = 'hidden';
-        }
-    };
-//# sourceMappingURL=AllInOne.js.map
+document.getElementById('start').onclick = function () {
+    start();
+};
+document.getElementById('next').onclick = function () {
+    next();
+};
