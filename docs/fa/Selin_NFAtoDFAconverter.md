@@ -112,8 +112,7 @@ In my application, it is checked whether the appropriate string is entered in th
 
 
 	
-If we draw the diagrams here we will see that 0 * 1 (1) * 0 will be accepted.
-Backplane, start end addresses, each state is written in place.
+If we draw the diagrams here we can see input will be accepted by this regular expression. Start  and final states is known before starting to processing  for each input.
 
 ## Java Project : [here](https://github.com/SelinDaldaban/Automata/tree/master/docs/fa/Selin_NFAtoDFAconverter.jar)
 
