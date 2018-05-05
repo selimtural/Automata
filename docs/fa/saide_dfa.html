@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>FINITE AUTOMATA</title>
+<body bgcolor="white">
+
+<P><b>Saide Ba&#351pehlivan</b></P>
+<font color="black"size="5">
+<p align="center">
+<b>FINITE AUTOMATA</b>
+
+<P>A finite automaton (FA) is a device that recognizes
+a language (set of strings). It has finite
+memory and an input tape; each input symbol
+that is read causes the machine to update its
+state based on its current state and the symbol
+read. The machine accepts the input if it is in
+an accept state at the end of the string; otherwise,
+the input is rejected.
+
+<br>The finite automata's  special type  shall include the following 3 states:
+<br>In all cases (State) the condition to be taken is not a single state. In other words, in one case, you can go to one state only with one word.
+<br>For any input, accepting a single final state (multiple end states not being considered the same).
+<br>Epsilon term does not take place between states.</P>
+<P>A Finite Automata consists of the following :
+<br>Q : Finite set of states.
+<br>&#8721 : set of Input Symbols.
+<br>q : Initial state.
+<br>F : set of Final States.
+<br>&#x3B4: Transition Function.</P>
+
+<P>Formal specification of machine is
+<br>{ Q, &#8721, q, F, &#x3B4 }.</P>
+
+<P>FA is characterized into two types:</P>
+<b>1) Deterministic Finite Automata (DFA)</b>
+<P>
+The state in which the deterministic end state machines are to be included (that is, passed) for each input symbol is determined.
+<br>DFA consists of 5 tuples {Q, &#8721, q, F, &#x3B4}. According to this definition;</P> 
+<P>Q : set of all states.
+<br>&#8721 : set of input symbols. ( Symbols which machine takes as input )
+<br>q : Initial state. ( Starting state of a machine )
+<br>F : set of final state.
+<br>&#x3B4 : Transition Function, defined as &#x3B4 : Q X &#8721 --> Q.</P>
+
+<P>The following figure shows the state diagram of a deterministic finite automaton (DFA),</P>
+<img src="https://imageshack.com/a/img923/5969/osr2rN.png?raw=true"align="center"/>
+<P>The automaton has three states q0, q1, and q2. The state q0 is the start state and q1 is an accept state. The directed edges between states specify the transitions of the automaton when reading an input string.
+This automaton accepts the set of strings that contain 1 and have an even number of 0&#8217s after the last 1.</P>
+
+<P>DFA transition table</P>
+<img src="https://imageshack.com/a/img923/6595/kPdBZ7.png?raw=true"align="center"/>
+<P>The -&#62 indicates the start state: here q0
+<br>The * indicates the final state(s) (here only one final state q1)</P>
+<P> For this example:
+<P> Q = {q0,q1,q2}</P>
+<P> &#8721 = {0,1}</P>
+<P> q = {q0}</P>
+<P>F = {q1}</P>
+<P>&#x3B4 = Q X &#8721 --> Q</P>
+<P>&#x3B4(q0,1)=q0
+<br>&#x3B4(q0,0)=q1</P>
+<P><b>Accepting or Rejecting According to DFA </b><P>
+<P>Transition diagram:
+<br><img src="https://imageshack.com/a/img922/9575/boG2Cd.jpg?raw=true"align="center"/>
+<br>Transition table:</b>
+<P><img src="https://imageshack.com/a/img924/8960/cZAj9x.png?raw=true"align="center"/></P>
+
+<P>Q={A,B,C,D},&#8721={a,b},start state A, final state {D}</P>
+<br>aaa? bab? aaba? aaabbb?
+<br>aaa is not accepted(rejected) and bab,aaba,aaabbb is accepted
+<P>For this example here is the values:
+<br>States: ABCD , terminals: ab, initial state: A, final state: D, transition table: BCCDCBDC, input string: bab --> accept
+<br>This values input type you can use for this java program or what you want like this:
+<P><a href="https://github.com/saidebasphlvn/Automata/raw/master/docs/fa/saide_dfa.jar">download dfa program</a></P>
+
+<P><b>2) Non-deterministic Finite Automata (NFA)</b><P>
+<P>An NDFA can be represented by a 5-tuple (Q, &#8721, &#x3B4, q0, F) where -</P>
+<P>Q is a finite set of states.
+<br>&#8721 is a finite set of symbols called the alphabets.
+<br>&#x3B4 is the transition function where &#x3B4: Q x &#8721 --&#62 2^Q
+<br>(Here the power set of Q (2^Q) has been taken because in case of NDFA, from a state, transition can occur to any combination of Q states)
+<br>q0 is the initial state from where any input is processed (q0 &#x3F5 Q).
+<br>F is a set of final state/states of Q (F &#8838 Q).</P>
+<font color="black"size="3"><P><b>References:</b>
+<br><a href="www.dsteurer.org/toc13/lectures/4/">//www.dsteurer.org/toc13/lectures/4/</a>
+<br><a href="https://www.geeksforgeeks.org/toc-finite-automata-introduction/">https://www.geeksforgeeks.org/toc-finite-automata-introduction/</a>
+<br><a href="www.cse.chalmers.se/~coquand/AUTOMATA/o2.pdf">//www.cse.chalmers.se/~coquand/AUTOMATA/o2.pdf</a>
+<br><a href="https://www.tutorialspoint.com/automata_theory/non_deterministic_finite_automaton.htm">https://www.tutorialspoint.com/automata_theory/non_deterministic_finite_automaton.htm</a>
+</P>
+</body bgcolor="white">
+</head>
+</html>
