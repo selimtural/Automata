@@ -80,6 +80,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     box-shadow: 0 0.5px 5px 0 rgba(1, 0, 0, 0.12), 0 0.5px 5px 0 rgba(1, 0, 0, 0.12);
   }
   
+
+
+
 </style>
 <body>
 
@@ -204,9 +207,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
           
                 <h1>Fun Area </h1>
                 <h5 class="w3-padding-32">
-                    note that it only work with big screens    .
+                    for better results use at least 900 width of DP .
                   </h5>
-                  <div class="w3-hide-medium	w3-hide-small	">
+                  <div class="w3-hide-small	">
 
         <div class="container">
        
@@ -214,11 +217,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
          
                  
                   <div id="Time-Speed" class="w3-third">
-                        <span class="label">Speed in millisecond:</span>
-                        <input id="time-input" min="1" type="number" />
+                        <span class="label">faster &#160; &#160;&#160; </span>
+                        <input id="time-input" class="slider" min="500" max="5000" type="range" />
+                        <span class="label">  &#160;&#160;&#160; slower </span>
+
                     </div>
                     <div id="init-value" class="w3-third">
-                            <span class="label">Initial value of tape:</span>
+                            <span class="label">inputs:</span>
                             <input id="init-value-input" type="text" />
                           </div>
                     <select onchange="tm.examplesBox()" id="ExamlpesDropDown" class="w3-third">
@@ -227,7 +232,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                            
                         </select><br />
                 </div>
-                
+                <br />
                 <div id="tape"  style="overflow-x:auto;">
                   
                   <div class="cells-container"></div>
