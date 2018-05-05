@@ -1,6 +1,18 @@
-    body {
+.head{
+    font-size: 28px;
+    font-weight: bold;
+}
+.headTable {
+    height: 80px;
+    overflow: hidden;
+}
+
+
+
+
+body {
       background: linear-gradient(90deg,peachpuff,royalblue);
-    }
+}
 
 .tableList td a{
     text-decoration: none;
@@ -123,7 +135,7 @@
             
         }
         .pageContent table tr {
-          height: 80px;
+          height: 76px;
           background-color:crimson;
         }
         .pageContent table tr:nth-child(odd){
