@@ -79,7 +79,39 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     height: 10px;
     box-shadow: 0 0.5px 5px 0 rgba(1, 0, 0, 0.12), 0 0.5px 5px 0 rgba(1, 0, 0, 0.12);
   }
-  
+
+/* Fixed size for all Devices which its smaller than 900px */
+@media only screen and (max-width: 900px) {
+  .cells-container .cell {
+    width: 25px;
+    min-width: 25px;
+    height: 25px;
+    border-radius: 2px;
+    transition: box-shadow 600ms, background-color 600ms;
+    margin: .3em;
+    box-shadow: 0 0.5px 5px 0 rgba(0, 0, 0, 0.12), 0 0.5px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  .cells-container .cell .value {
+    font-size: 1em;
+  }
+  .cells-container .cell.selected {
+    box-shadow: 0 6px 22px 0 rgba(0, 255, 0, 0.18), 0 4px 15px 0 rgba(0, 255, 0, 0.15);
+  }
+  .cells-container .cell.selected::before {
+    border-radius: 0px 0px 2px 2px;
+    height: 5px;
+    top: 21px;
+    box-shadow: 0 0.5px 5px 0 rgba(1, 0, 0, 0.12), 0 0.5px 5px 0 rgba(1, 0, 0, 0.12);
+  }
+  .cells-container .cell.selected::after {
+
+border-radius: 1px 1px 0px 0px;
+
+height: 5px;
+box-shadow: 0 0.5px 5px 0 rgba(1, 0, 0, 0.12), 0 0.5px 5px 0 rgba(1, 0, 0, 0.12);
+}
+} 
+
 
 
 
@@ -209,7 +241,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
                 <h5 class="w3-padding-32">
                     for better results use at least 900 width of DP .
                   </h5>
-                  <div class="w3-hide-small	">
+                  <div >
 
         <div class="container">
        
