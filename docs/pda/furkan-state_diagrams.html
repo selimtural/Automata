@@ -1,0 +1,294 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.8.17/go.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <div class="topbar-base topbar-v1">
+    <button class="topbar-button" onclick="reload()">Reload Diagram</button>
+  </div>
+</head>
+
+<body onload="reload()">
+    <div id="table" style="text-align: center; height: 400px;" class="col-sm-5">
+      <div>
+        <h2 style="text-align: center;">Transition Table</h2>
+      </div>
+
+      <table id="myTable" class="table">
+        <tr id="row">
+          <td contenteditable="false"></td>
+          <td contenteditable="true">0</td>
+          <td contenteditable="true">1</td>
+          <td>
+            <button class="table-button" onclick="addColumn()">Add Symbol</button>
+            <button class="table-button" onclick="removeColumn()">Remove Symbol</button>
+          </td>
+        </tr>
+        <tr id="row1">
+          <td contenteditable="true">-q1</td>
+          <td contenteditable="true">q1</td>
+          <td contenteditable="true">q2</td>
+        </tr>
+        <tr id="row2">
+          <td contenteditable="true">q2</td>
+          <td contenteditable="true">q3</td>
+          <td contenteditable="true">q3</td>
+        </tr>
+        <tr id="row3">
+          <td contenteditable="true">*q3</td>
+          <td contenteditable="true">q1</td>
+          <td contenteditable="true">q2</td>
+        </tr>
+        <tr id="row-btn">
+          <td contenteditable="false">
+            <button class="table-button" onclick="addState()">Add State</button>
+            <button class="table-button" onclick="removeState()">Remove State</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div style="margin-left: 150px;"class="col-sm-5">
+      <div>
+        <h2 style="text-align: center;">Transition Diagram</h2>
+      </div>
+      <div id="myDiagramDiv" style="width:800; height:300px; background-color: rgb(255, 255, 255);"></div>
+    </div>
+    <br style="clear: both;">
+    <div style="text-align: center; margin: 0 auto;">
+      <h1 style="font-size: 44px;">About</h1>
+      <p style="text-align: center; font-size: 20;">
+        This page generates transition diagram for DFA with given transition table. <br>
+        Diagram can be refreshed with "Reload Diagram" button which is located on top of page. <br>
+        Transition table also editable. <br>
+        That's all!
+      </p>
+      <div class="col-sm-6">
+        <h1 style="font-size: 33px;">Reference</h1>
+        <a style="font-size: 22px;" href="https://gojs.net/latest/index.html" target="_blank">GoJS</a>
+      </div>
+      <div class="col-sm-6">
+        <h1 style="font-size: 33px;">Author</h1>
+        <a style="font-size: 22px;" href="https://github.com/furkansarihan" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <style>
+      .table {
+        color: rgb(19, 61, 88);
+        text-align: center;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+
+      .table-button {
+        color: rgb(240, 240, 240);
+        font-size: 18px;
+        background-color: #294E80;
+        border: 1px;
+      }
+
+      .topbar-base {
+        text-align: center;
+        background-color: #294E80;
+        margin-top: -8px;
+        border: 0px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+      }
+
+      .topbar-v1 {
+        padding-left: 0px;
+        min-height: 50px;
+        margin-bottom: 25px;
+      }
+
+      .topbar-button {
+        padding: 9px 3px;
+        margin: 0 auto;
+        font-size: 32px;
+        color: rgb(240, 240, 240);
+        transition: 0.5s;
+        background-color: #294E80;
+        border: 0px;
+        opacity: 1;
+      }
+
+      .topbar-button:hover {
+        background-color: rgb(70, 120, 189);
+      }
+    </style>
+</body>
+<script>
+  function removeState() {
+    var table = document.getElementById("myTable");
+    if ( table.rows.length > 3 ) table.deleteRow(table.rows.length-2);
+  }
+  function removeColumn() {
+    var table = document.getElementById("myTable");
+    if (table.rows[0].cells.length > 3){
+    table.rows[0].deleteCell(table.rows[0].cells.length-2);
+    for (let i = 1; i < table.rows.length-1; i++) {
+       table.rows[i].deleteCell(table.rows[i].cells.length-1);
+    }
+    }
+  }
+  function addState() {
+    var table = document.getElementById("myTable");
+    var rowSize = table.rows.length;
+    var row = table.insertRow(rowSize - 1);
+    var rrr = "row" + (rowSize - 1);
+    row.setAttribute("id", rrr);
+    var colSize = table.rows[1].cells.length;
+    for (let i = 0; i < colSize; i++) {
+      var cell1 = row.insertCell(i);
+      cell1.innerHTML = "_";
+      cell1.contentEditable = true;
+    }
+  }
+  function addColumn() {
+    var table = document.getElementById("myTable");
+    var rowSize = table.rows.length;
+    var row = document.getElementById("row");
+    var columnSize = table.rows[0].cells.length;
+    var cell = row.insertCell(columnSize - 1);
+      cell.innerHTML = "_";
+      cell.contentEditable = true;
+
+    for (let i = 1; i < rowSize + 1; i++) {
+      row = document.getElementById("row" + i);
+      var columnSize1 = table.rows[i].cells.length;
+      var cell1 = row.insertCell(columnSize1);
+      cell1.innerHTML = "_";
+      cell1.contentEditable = true;
+    }
+  }
+  var $ = go.GraphObject.make;
+    var diagram =
+      $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
+        {
+          // start everything in the middle of the viewport
+          initialContentAlignment: go.Spot.Center,
+          // have mouse wheel events zoom in and out instead of scroll up and down
+          "toolManager.mouseWheelBehavior": go.ToolManager.WheelZoom,
+          // support double-click in background creating a new node
+          "clickCreatingTool.archetypeNodeData": { text: "new node" },
+          // enable undo & redo
+          "undoManager.isEnabled": true
+        });
+    var model = $(go.Model);
+    diagram.nodeTemplate = $(go.Node, "Auto",
+      new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
+      // define the node's outer shape, which will surround the TextBlock
+      $(go.Shape, "Circle",
+        {
+          parameter1: 50,  // the corner has a large radius
+          fill: $(go.Brush, "Linear", { 0: "rgb(255, 255, 255)", 1: "rgb(255, 255, 255)" }),
+          stroke: "black",
+          strokeWidth: 2,
+          portId: "",  // this Shape is the Node's port, not the whole Node
+          fromLinkable: true, fromLinkableSelfNode: true, fromLinkableDuplicates: true,
+          toLinkable: true, toLinkableSelfNode: true, toLinkableDuplicates: true,
+          cursor: "pointer",
+        }),
+      $(go.TextBlock,
+        {
+          font: "bold 20pt helvetica, bold arial, sans-serif",
+          editable: false  // editing the text automatically updates the model data
+        },
+        new go.Binding("text").makeTwoWay())
+    );
+    diagram.linkTemplate =
+      $(go.Link,  // the whole link panel
+        {
+          curve: go.Link.Bezier, adjusting: go.Link.Stretch,
+          reshapable: true, relinkableFrom: true, relinkableTo: true,
+          toShortLength: 3
+        },
+        new go.Binding("points").makeTwoWay(),
+        new go.Binding("curviness"),
+        $(go.Shape,  // the link shape
+          { strokeWidth: 1.5 }),
+        $(go.Shape,  // the arrowhead
+          { toArrow: "standard", stroke: null }),
+        $(go.Panel, "Auto",
+          $(go.Shape,  // the label background, which becomes transparent around the edges
+            {
+              fill: $(go.Brush, "Radial",
+                { 0: "rgb(240, 240, 240)", 0.3: "rgb(240, 240, 240)", 1: "rgba(240, 240, 240, 0.6)" }),
+              stroke: null
+            }),
+          $(go.TextBlock, "transition",  // the label text
+            {
+              textAlign: "center",
+              font: "14pt helvetica, arial, sans-serif",
+              margin: 0,
+              editable: false  // enable in-place editing
+            },
+            // editing the text automatically updates the model data
+            new go.Binding("text").makeTwoWay())
+        )
+      );
+  function reload() {
+    // Reading first row of the table
+    var table = document.getElementById("myTable");
+    var firstRow = document.getElementById("row");
+    var rowSize = table.rows.length;
+    var columnSizeFirstRow = table.rows[0].cells.length;
+
+    var languageArr = [];
+    // Defining Language
+    for (let i = 1; i < columnSizeFirstRow-1; i++) {
+      languageArr.push(table.rows[0].cells[i].innerHTML);
+    }
+    var states = [];
+    var keyCount = 1;
+    for (let i = 1; i < rowSize-1; i++) {
+    var columnSize = table.rows[i].cells.length;
+      var State = {
+        name: "A",
+        key: -1,
+        lang: [],
+        statesTo: [],
+        isFirst: "false",
+        isLast: "false"
+      };
+      var firstCol = table.rows[i].cells[0].innerHTML;
+      if (firstCol.charAt(0) == "-") { State.key = 0; State.isFirst = "true"; State.name = firstCol.slice(1, firstCol.length); }
+      else if (firstCol.charAt(0) == "*") { State.key = rowSize-3; State.isLast = "true"; State.name = firstCol.slice(1, firstCol.length); }
+      else { State.key = keyCount; keyCount++; State.name = firstCol; }
+
+      State.lang = languageArr;
+      for (let j = 1; j < columnSize; j++) {
+        State.statesTo.push(table.rows[i].cells[j].innerHTML);
+      }
+      states.push(State);
+    }
+    var nodeArray = [];
+
+    for (let i = 0; i < states.length; i++) {
+      var loc = (states.length*50*-1) + states[i].key*125;
+      var item = { key: states[i].key, loc: loc+" 30", text: states[i].name };
+      nodeArray.push(item);
+    }
+    //{ from: 0, to: 1, text: "1", curviness: 15 },
+    var linkArray = [];
+    var dir = 1;
+    for (let i = 0; i < rowSize-2; i++) {
+      var st = states[i];
+      var keyS = st.key;
+      for (let j = 0; j < st.statesTo.length; j++) {
+        var sourceName = st.statesTo[j];
+        var keyD = "";
+        for (let p = 0; p < states.length; p++) {
+          if (states[p].name == sourceName) keyD = states[p].key;
+        }
+        var curv = "";
+        var item = { from: keyS, to: keyD, text: st.lang[j], curviness: dir * ((keyS-keyD)*90+15) };
+        linkArray.push(item);
+      }
+      dir = dir * -1;
+    }
+    diagram.model = new go.GraphLinksModel(nodeArray, linkArray);
+  }
+</script>
+
+</html>
