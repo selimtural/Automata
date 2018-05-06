@@ -1,4 +1,4 @@
-﻿# Nondeterministic Finite Automaton(NFA)
+﻿# Nondeterministic Finite Automata(NFA)
 
    
  **NFA** may not go to any state from the current state on reading an input symbol
@@ -6,7 +6,7 @@ So this automata is called non deterministic automata.There are language rules f
 That rules accept or reject case check for string.
 
 
-# **Definition of nondeterministic finite automaton**
+# **Definition of Nondeterministic Finite Automata**
 
    **A**= (Q, δ, Σ , s, F)
    
@@ -20,33 +20,39 @@ That rules accept or reject case check for string.
 
 ## Example:
 
- The Regular Expression  M=(101+10)*
 
+ The Regular Expression    M=(0+1)*01
+ 
+ 
 **Define** NFA for M ;
 State(s,p,q)
-start state s,final state s.
+start state s,final state q.
+ **{q0,q1,q2}  changed {s,p,q}**
+ **Language {a,b}  changed {0,1}**
 
-
+ **Java Application:** [enter link description here](https://ummugulsumcan.github.io/Automata/fa/ummugulsum_nfa.jar)
 
 ## Transition  Matrix:
 
 |                |0                         |1                        |
 |----------------|-------------------------------|-----------------------------|
-|s|Ø          |p           |
-|p          |{s,q}          |Ø           |
-|q          |Ø  |s|
+|s|s,p         |s           |
+|p          |Ø         |q           |
+|q          |Ø  |Ø|
 
 
 
+( s,101)->(s,01)->({p,s},1)->(q)  Accept
 
 
-My application:
-https://ummugulsumcan.github.io/Automata/fa/ummugulsum_nfa.jar
 ## Transition  Diagram:
 
 
-![enter image description here](https://scontent-otp1-1.xx.fbcdn.net/v/t1.0-9/31531418_2035738919975931_554771270537838592_n.jpg?_nc_cat=0&oh=6b0412042085ccfdbd23bf4ed8cd9ce1&oe=5B53C382)
-```
-( s,1010)->(p,010)->({s,q},10)->({s,p},0)->({s,q})  Accept
-(s,111)->(p,11)->()  Reject
+![https://www.geeksforgeeks.org/wp-content/uploads/nfatofdfa_Figure1.png](https://www.geeksforgeeks.org/wp-content/uploads/nfatofdfa_Figure1.png)
 
+
+
+# Reference  :
+[https://www.geeksforgeeks.org/theory-of-computation-conversion-from-nfa-to-dfa/](https://www.geeksforgeeks.org/theory-of-computation-conversion-from-nfa-to-dfa/)
+
+## This page was made by *Ümmügülsüm Can*
