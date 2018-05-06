@@ -49,6 +49,16 @@
             }
           });
 
+          $("#flip4").click(function(){
+            clickCounter += 1;
+            if(clickCounter % 2 == 1){
+              $("#info-about-myprog").slideDown("slow");
+            }
+            else {
+              $("#info-about-myprog").slideUp("slow");
+            }
+          });
+
           $("#pleaseenterstateinfo_button_id").click(function(){
             var x = document.getElementById("pleaseenterstateinfoform");
             if(x.elements[0].value != "" || x.elements[1].value != "" || x.elements[2].value != "" ){
@@ -166,7 +176,7 @@
       tr:nth-child(even) {
           background-color: #6a8da2;
       }
-     #flip, #flip2,#flip3,#blink {
+     #flip, #flip2,#flip3,#blink,#flip4 {
          padding:10px;
          width: 1440px;
          text-align: center;
@@ -264,15 +274,15 @@
 <body>
 
 	<div class="navigation">
-    <a target="_blank" href="https://imageshack.com/i/pmmOFMGUp"><img src="https://imagizer.imageshack.com/v2/xq90/922/mOFMGU.png" border="0"></a>
+    <img src="https://imagizer.imageshack.com/v2/xq90/922/mOFMGU.png" border="0">
 	</div>
 
 	<div class="title">
-		<a target="_blank" href="https://imageshack.com/i/pmxnX8Ypp"><img src="https://imagizer.imageshack.com/v2/xq90/922/xnX8Yp.png" border="0"></a>
+		<img src="https://imagizer.imageshack.com/v2/xq90/922/xnX8Yp.png" border="0">
 	</div>
 
 	<div class="dfa-title">
-		<a target="_blank" href="https://imageshack.com/i/pmo0II2Op"><img src="https://imagizer.imageshack.com/v2/xq90/922/o0II2O.png" border="0"></a>
+		<img src="https://imagizer.imageshack.com/v2/xq90/922/o0II2O.png" border="0">
 	</div>
 
 	<div class="dfa-icerik">
@@ -291,7 +301,7 @@
 	</div>
 
   <div class="dfa-title">
-    <a target="_blank" href="https://imageshack.com/i/pomDzEsAp"><img src="https://imagizer.imageshack.com/v2/xq90/924/mDzEsA.png" border="0"></a>
+    <img src="https://imagizer.imageshack.com/v2/xq90/924/mDzEsA.png" border="0">
   </div>
 
   <div class="dfa-icerik2">
@@ -339,7 +349,28 @@
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-
+  <div id="flip4">How Does My Program Work?</div>
+  <div id="info-about-myprog">
+    <p class="default-style">
+      <br>
+      This website is designed by Ebrar SAHIN.<br><br>
+      Technologies:<br>
+      1. JavaScript --> JQuery: used for actions and algorithms<br>
+      2. HTML: used for website <br>
+      3. Sketch: used for UI design<br><br>
+      References:<br>
+      1. https://stackoverflow.com/questions/15617429/ambiguity-in-transition-how-to-process-string-in-nfa<br>
+      2. https://www.tutorialspoint.com/compiler_design/acceptability_of_a_string_by_dfa.asp<br><br>
+      As I mentioned above, We need some information about DFA. As a result,<br>
+      1. We need to give information about initial and final state for the first step of my program.<br>
+      2. For the accepting and rejecting string, we need to give information about transition function.<br>
+      3. For the final stage of my program, we need to give a string to check if our string is accepted or rejected
+      by using our transition function.
+      <br>
+      Note that my program has 3 states.
+    </p>
+  </div>
+  <br>
   <div id="flip">Informations of Initial & Final States </div>
     <br>
     <div id="initialfinalstateinfo_div" class="default-style">
