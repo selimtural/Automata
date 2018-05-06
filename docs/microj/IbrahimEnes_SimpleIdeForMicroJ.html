@@ -2,32 +2,34 @@
 <meta charset="utf-8">
 <head></head>
 <body bgcolor="#e5e5e5">
-<font face="tahoma"><h1><div align="center">SimpleIdeForMicroJ</h1></font>
-<div align="center"> <img src="https://i.hizliresim.com/bBzEMb.jpg"></div>
+<font face="tahoma"><h1><div align="center">Simple Ide For MicroJ</h1></font>
+<div align="center"> <img src="https://i.hizliresim.com/bBzEMb.jpg"width="600" height="300"></div>
 <p><font face="tahoma" size="3" >
-<b>A string assigned to micro J is first converted to tokens by controlling the character character in the scanner class. The types of tokens are determined by the four conditions in 
-the <font color="red"> nextToken()</font> method of the Scanner class.</b></font></p>
+A string assigned to microJ is first converted to tokens by controlling the character character in the scanner class. The types of tokens are determined by the four conditions in 
+the <font color="red"> nextToken()</font> method of the Scanner class.</font></p>
 <div align="center"> <img src="https://i.hizliresim.com/G9842Z.jpg" width="600" height="300" ></div>
 <p><font face="tahoma" size="3" >
-<b>In the first condition, it is checked whether the incoming character is a space, a tab space or a line blanking. In the second condition, it is checked whether the character is 
+In the first condition, it is checked whether the incoming character is a space, a tab space or a line blanking. In the second condition, it is checked whether the character is 
 a letter. In the third condition it is checked whether the character is a number. If the character does not provide these three conditions, the characters defined in the Token class 
 are looked at. If the selected character is not in the Token class, the result is EOF.
 The Scanner resolves characters such as numbers, identifiers, plus and minuses in the given string 
-and converts them to Token. String, after turning to tokens, there are two sections. These are Checker and Parser.</b></font></p>
+and converts them to Token. String, after turning to tokens, there are two sections. These are Checker and Parser.</font></p>
 <div align="center"> <img src="https://i.hizliresim.com/D7N56v.jpg"width="300" height="400" ></div>
 <p><font face="tahoma" size="3" >
-<b>Checker's task is to check whether a String is written correctly for microJ. That is, it checks whether the String matches the grammar of microJ. In Checker, the values of Tokens are
+Checker's task is to check whether a String is written correctly for microJ. That is, it checks whether the String matches the grammar of microJ. In Checker, the values of Tokens are
  not seen, new objects  are not created, calculations are not done. The task of the Parser is to check whether the string is written according to the microJ grammar and to return the 
-result by making calculations according to the given values.</b></font></p>
+result by making calculations according to the given values.</font></p>
 <div align="center"> <img src="https://i.hizliresim.com/EPaA6Z.jpg"width="500" height="300" ></div>
 <p><font face="tahoma" size="3" >
-<b> In the parser class, the first control in the <font color="red">statement()</font> method is done on "print". The value of the Token is compared and compared. If the value equals "print", a new PrintStat 
+ In the parser class, the first control in the <font color="red">statement()</font> method is done on "print". The value of the Token is compared and compared. If the value equals "print", a new PrintStat 
 object is created. PrintStat takes an Expression as a parameter. So we can print a constant value, or we can calculate and print a mathematical function. If the Token's value is not 
 "print" then the microJ accepts the incoming token as a variable, and a new Assignment object is created. This assignment object takes a String variable name as a parameter and an 
 Expression function or a constant value. Let's not forget that just before the Assignment object has been created, the '=' character between the variable and the value is checked
  by the <font color="blue">check()</font> method. If it is not equal, the exception is thrown and the process is interrupted. In the <font color="blue">expr()</font> function, the given mathematical operations are computed and the 
-results are returned.</b></font></p>
-
-<a href="https://drive.google.com/open?id=13rtnUJsgo0irBwslz3Y0pGCYW3haps6C"><div align="center">Download to Project</a>
+results are returned.</font></p>
+<p><font face="tahoma" size="2" ><div align="center"><b>This website is created by Ibrahim Enes Aydogdu. </b></font></p>
+<p><font face="tahoma" size="2" ><div align="center"><b>This IDE is created by Ibrahim Enes Aydogdu.</b> </font></p>
+<p><font face="tahoma" size="2" ><div align="center"><b>This IDE is only works for MicroJ0.</b> </font></p>
+<a href="https://github.com/ienesaydogdu/Automata/tree/master/docs/microj/IbrahimEnes_SimpleIdeForMicroJ.jar"><div align="center">Download to Project</a>
 </body>
 </html>
