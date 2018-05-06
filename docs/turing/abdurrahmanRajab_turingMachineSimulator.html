@@ -1,188 +1,754 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Turing Machine Simulator</title>
-    <link rel="stylesheet" href="https://rawgit.com/a0m0rajab/4a0872c01fafd8b3d92f45a64252f795/raw/7f1cf65289297e7d512bf4c85843994319568e20/TuringMachineSimulator_style.css">
-    <link rel="author" href="https://www.github.com/a0m0rajab">
+<html>
+<title>Turing Machine Simulator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+
+#tape {
+    display: flex;
+    margin: 1em auto;
+  }
+  
+  .cells-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    overflow-x: auto;
+  }
+  .cells-container .cell {
+    display: flex;
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    border-radius: 2px;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: box-shadow 600ms, background-color 600ms;
+    margin: .3em;
+    cursor: default;
+    box-shadow: 0 0.5px 5px 0 rgba(0, 0, 0, 0.12), 0 0.5px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+  .cells-container .cell .value {
+    margin: auto;
+    font-size: 2em;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+  .cells-container .cell.selected {
+    position: relative;
+    color: #fff;
+    background-color: #43A047;
+    box-shadow: 0 6px 22px 0 rgba(0, 255, 0, 0.18), 0 4px 15px 0 rgba(0, 255, 0, 0.15);
+  }
+  .cells-container .cell.selected::before {
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    display: block;
+    content: '';
+    border-radius: 0px 0px 2px 2px;
+  
+    height: 10px;
+    top: 42px;
+    box-shadow: 0 0.5px 5px 0 rgba(1, 0, 0, 0.12), 0 0.5px 5px 0 rgba(1, 0, 0, 0.12);
+  }
+  .cells-container .cell.selected::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-radius: 2px 2px 0px 0px;
+    display: block;
+    content: '';
+    height: 10px;
+    box-shadow: 0 0.5px 5px 0 rgba(1, 0, 0, 0.12), 0 0.5px 5px 0 rgba(1, 0, 0, 0.12);
+  }
+
+/* Fixed size for all Devices which its smaller than 900px */
+@media only screen and (max-width: 900px) {
+  .cells-container .cell {
+    width: 25px;
+    min-width: 25px;
+    height: 25px;
+    border-radius: 2px;
+    
+  }
+  .cells-container .cell .value {
+    font-size: 1em;
+  }
+
+  .cells-container .cell.selected::before {
+    border-radius: 0px 0px 2px 2px;
+    height: 5px;
+    top: 21px;
+  }
+  .cells-container .cell.selected::after {
+
+border-radius: 1px 1px 0px 0px;
+
+height: 5px;
+}
+} 
+/* Fixed size for all Devices which its smaller than 600px */
+@media only screen and (max-width: 600px) {
+  .cells-container .cell {
+    width: 15px;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 2px;
+  }
+  .cells-container .cell .value {
+    font-size: 0.5em;
+  }
+
+  .cells-container .cell.selected::before {
+    border-radius: 0px 0px 2px 2px;
+    height: 2.5px;
+    top: 10px;
+  }
+  .cells-container .cell.selected::after {
+border-radius: 0.5px 0.5px 0px 0px;
+height: 2.5px;
+}
+}
 
 
-</head>
+
+</style>
 <body>
-        <article>
-                <header>
-                  <h1>Brief history </h1>
-                  <p>Turing machine is a logical machine invented by   <strong>alan Turing</strong> , <br>
-                    at 1936 when he wrote a paper about a machine with a long tape which write , <br>
-                    read and alter symbols to define and solve a specific problem , <br>
-                    for some people he is the father of computers and computing .
-                  </p>
 
-                  <h3>This page </h3>
-                  
-                  <p>
-                    At this page The turing machine used examples from 
-                    <a href='http://infolab.stanford.edu/~ullman/ialc.html'>Automata theory book</a> , 
-                    for further reading you can use this <a href="https://www.techopedia.com/definition/13429/turing-machine">site</a> 
-                    <br> 
-                    <br>
-                    examples 1 : you can find it at the mentioned book at page 322. 
-                    which it used to accept the langauges <math > {0 <sup>n</sup> 1 <sup>n</sup> | n &ge; 1} </math>
-                
-                  </p>
-                </header>
-                <p>for the machine , the transmition  table is fixed you cant change it .
-                <br> but you can input alphabet to try it if it works for the machine or not , 
-                <br> you have two examples (rejected and accepted ) at the examlpe box, when you choose one <br>
-              it will show the transmition table and the input at the tape which it will use with the transmition,  
-            <br> have fun ! </p>
-        </article>
-     
-    <div class="container">
-       
-        <div class="inputs">
-            <select onchange="tm.examplesBox()" id="ExamlpesDropDown">
-                <option >Example 1 - accepted</option>
-                <option >Example 1 - rejected</option>
-               
-            </select><br />
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-blue w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-blue" href="javascript:void(0);"
+    onclick="myFunction()" 
+    title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="../index.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a href="#history" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Breif history</a>
+    <a href="#hWorks" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">How it Works</a>
+    <a href="#funExplained" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">How to have fun</a>
+    <a href="#funArea" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Fun area</a>
+    <a href="#notes" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Notes</a>
 
-          <div id="init-value">
-            <span class="label">Initial value of tape:</span>
-            <input id="init-value-input" type="text" />
-          </div>
-         
-          <div id="Time-Speed">
-                <span class="label">Speed in millisecond:</span>
-                <input id="time-input" min="1" type="number" />
-            </div>
-        </div>
-        
-        <div id="tape">
-          <div class="cells-container"></div>
-        </div>
 
-        <div class="btns">
-          <button id="load-inputs">load</button>
-          <button id="step">step</button>
-          <button id="run">run</button>
-        </div>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="#history" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()" >Breif history</a>
+        <a href="#hWorks" class="w3-bar-item w3-button  w3-padding-large" onclick="myFunction()" >How it Works</a>
+        <a href="#funExplained" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()" >How to have fun</a>
+        <a href="#funArea" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()" >Fun area</a>
+        <a href="#notes" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()" >Notes</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-blue w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">Turing Machine Simulator</h1>
+  <p class="w3-xlarge">By abdurrahman Rajab</p>
+  
+</header>
+
+<!-- First Grid -->
+<div id="history" class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Brief history</h1>
+      <h5 class="w3-padding-32">
+            Turing machine is a logical machine invented by   <strong>Alan Turing</strong> , 
+            at 1936 when he wrote a paper about a machine with a long tape which write ,
+            read and alter symbols to define and solve a specific problem , 
+            for some people he is the father of computers and computing .       
+         </h5>
+      <p class="w3-text-grey">
+            It all started at 1930 before there were computers , 
+            Alan Turing machine is based on Finite Automata were studeid by a number of 
+            researchers in the 1940's and 1950's .These automata origanlly proposed to model brain function , it happened to be usefull for 
+            alot of applications .
+    </p>
     </div>
     <br>
-    <table id="table_example1">
-      <tbody><tr>
-          <td><b>State</b></td>
-          <td><b>0</b></td>
-          <td><b>1</b></td>
-          <td><b>X</b></td>
-          <td><b>Y</b></td>
-          <td><b>B</b></td>
-  
-      </tr>
-      <tr>
-          <td>0</td>
-          <td>(q1 , X, R)</td>
-          <td></td>
-          <td></td>
-          <td>(q3 , Y, R)</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>1</td>
-          <td>(q1 , 0, R)</td>
-          <td>(q2 , Y, L)</td>
-          <td></td>
-          <td>(q1 , Y, R)</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>(q2 , 0, L)</td>
-          <td></td>
-          <td>(q0 , X, R)</td>
-          <td>(q2 , Y, L)</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>(q3 , Y, R)</td>
-          <td>(q4 , B, R)</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-  </tbody></table>
-  <br>
-  <table id="table_example2">
-      <tbody><tr>
-          <td><b>State</b></td>
-          <td><b>0</b></td>
-          <td><b>1</b></td>
-          <td><b>B</b></td>
-  
-      </tr>
-      <tr>
-          <td>0</td>
-          <td>(q1 , B, R)</td>
-          <td>(q5 , B, R)</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>1</td>
-          <td>(q1 , 0, R)</td>
-          <td>(q2 , 1, R)</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>(q3 , 1, L)</td>
-          <td>(q2 , 1, R)</td>
-          <td>(q4 , B, L)</td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>(q3 , 0, L)</td>
-          <td>(q3 , 1, L)</td>
-          <td>(q0 , B, R)</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>(q4 , 0, L)</td>
-          <td>(q4 , B, L)</td>
-          <td>(q6 , 0, R)</td>
-      </tr>
-      <tr>
-          <td>5</td>
-          <td>(q5 , B, R)</td>
-          <td>(q5 , B, R)</td>
-          <td>(q6 , B, R)</td>
-      </tr>
-      <tr>
-          <td>6</td>
-          <td></td>
-          <td></td>
-          <td></td>
-      </tr>
-  </tbody></table>
-        <script src="https://rawgit.com/a0m0rajab/4a0872c01fafd8b3d92f45a64252f795/raw/7f1cf65289297e7d512bf4c85843994319568e20/TuringMachineSimulator.js"></script>
-        <a href="../index.html" class="Button">Home</a>
-        <br>
-    <a href="https://github.com/a0m0rajab/" title="About Me">About Me</a>
-    <a href="http://www.fatihsultan.edu.tr" class="button">University web site</a>
-    <a href="http://mimoza.marmara.edu.tr/~maeyler/" class="button">Instructor web page</a>
+    <div class="w3-third">
+            <img class="w3-round" src="https://sciencenonfictiondotorg.files.wordpress.com/2016/05/turing-machine.jpg" alt="Turing Machine Picture" style="width:100%">
+              <div class="w3-container">
+            </div>
+          </div>
+
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div id="hWorks" class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+  <div class="w3-content">
+        <div class="w3-third w3-center">
+                <i class="w3-padding-64 w3-text-blue w3-margin-right"></i>
+              </div>
+
+    <div class="w3-twothird">
+      <h1>How it works </h1>
+      <h5 class="w3-padding-32">
+        The Turing Machine uses a set of rules to decide what to do and how to behave , 
+        which we can show it with this Notation <br>
+        Turing machine = ( Q , &Sigma; , &Gamma; , &delta; ,  q<SUB>0</SUB> , B , F ) 
+
+        </h5>
+
+      <p class="w3-text-grey">
+         Components meaning :
+        <br>Q 	&#160;: Finite set of states of the finite control
+        <br> &Sigma; 	&#160;: The finite state of input symbols
+        <br> &Gamma;  	&#160;: The complte set of tape Symbols , &Sigma; is always a subset of &Gamma;
+        <br> &delta;     	&#160; : The transition function 
+        <br> q<SUB>0</SUB> : The start state , a member of Q , in which the finite control is found initially.
+        <br> B  	&#160;: The blank Symbol
+        <br> F  	&#160;: The set of final or accepting states , subset of Q 
+         
+    </p>
+    </div>
+  </div>
+</div>
+
+<div id="funExplained" class="w3-row-padding w3-padding-64 w3-container">
+        <div class="w3-content">
+          <div class="w3-twothird">
+            <h1>How to have fun</h1>
+            <h5 class="w3-padding-32">
+                   <!-- TEXT ONE BLACK  -->
+                   At this page you will find an example taken from <a href='http://infolab.stanford.edu/~ullman/ialc.html'>Automata theory book</a>  at page 322. 
+                   which it used to accept the langauges <math > {0 <sup>n</sup> 1 <sup>n</sup> | n &ge; 1} </math>
+               </h5>
+            <p class="w3-text-grey">
+            <!-- text 2 Gey -->
+                for the machine all the Components is fixed you cant change it ,
+                <br> Except (&sigma;) :  you can input alphabet to try it if it works for the machine or not , 
+                <br> you have two examples (rejected and accepted ) at the examlpe box, when you choose one <br>
+                it will show the transmition table and the input at the tape which it will use with the transmition,  
+            <br> have fun !
+          </p>
+          </div>
+          <br>
+      
+        </div>
+      </div>
+
+      <div id="funArea" class="w3-row-padding w3-light-grey w3-padding-64 w3-container ">
+            <div class="w3-content">
+            
+          
+                <h1>Fun Area </h1>
+            
+                  <div >
+
+        <div class="container">
+       
+                <div class="inputs" >             
+         
+                 
+                  <div id="Time-Speed" class="w3-third">
+                        <span class="label">faster &#160; &#160;&#160; </span>
+                        <input id="time-input" class="slider" min="500" max="5000" type="range" />
+                        <span class="label">  &#160;&#160;&#160; slower </span>
+
+                    </div>
+                    <div id="init-value" class="w3-third">
+                            <span class="label">inputs:</span>
+                            <input id="init-value-input" type="text" />
+                          </div>
+                    <select onchange="tm.examplesBox()" id="ExamlpesDropDown" class="w3-third">
+                            <option >accepted example</option>
+                            <option >rejected example</option>
+                           
+                        </select><br />
+                </div>
+                <br />
+                <div class="w3-container">
+                    <div id="tape"  style="overflow-x:auto;">
+                  
+                        <div class="cells-container"></div>
+                      </div>                  </div>
+           
+
+                <div class="btns">
+                  <button id="load-inputs" class="w3-third w3-button w3-white w3-round-xlarge w3-border w3-border-blue" >load</button>
+                  <button id="step" class="w3-third w3-button w3-white w3-round-xlarge w3-border w3-border-blue">step</button>
+                
+                  <button id="run" class="w3-third w3-button w3-white w3-round-xlarge w3-border w3-border-blue">run</button>
+                </div>
+                <div>
+                  <br> &#160;
+
+                </div>
+                <div class="w3-content">
+                    <table id="table_example1" class="w3-table-all w3-card-4">
+                            <tbody><tr class="w3-blue">
+                                <td><b>State</b></td>
+                                <td><b>0</b></td>
+                                <td><b>1</b></td>
+                                <td><b>X</b></td>
+                                <td><b>Y</b></td>
+                                <td><b>B</b></td>
+                        
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>(q<SUB>1</SUB> , X, R)</td>
+                                <td></td>
+                                <td></td>
+                                <td>(q<SUB>3</SUB> , Y, R)</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>(q<SUB>1</SUB> , 0, R)</td>
+                                <td>(q<SUB>2</SUB> , Y, L)</td>
+                                <td></td>
+                                <td>(q<SUB>1</SUB> , Y, R)</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>(q<SUB>2</SUB> , 0, L)</td>
+                                <td></td>
+                                <td>(q<SUB>0</SUB> , X, R)</td>
+                                <td>(q<SUB>2</SUB> , Y, L)</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>(q<SUB>3</SUB> , Y, R)</td>
+                                <td>(q<SUB>4</SUB> , B, R)</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody></table>
+                        <div class="w3-container">
+                      </div>
+                    </div>
+
+            </div>
+
+</div>
+                <p class="w3-text-grey">
+           
+              </p>
+            </div>
+          </div>
+
+<div id="notes" class="w3-container w3-black w3-opacity w3-padding-64">
+        <div class="w3-content">
+     
+        
+            <div class="w3-twothird">
+              <h1>Notes </h1>
+              <p class="w3-left-align">
+                    <!-- Use IT FOR NOTES AND FURTHER STUFF add Area for Fun -->
+                    This web page built as term project for BLM320E at
+                    <a href="http://www.fatihsultan.edu.tr" class="button">fatih sultan mehmet university turkey</a> <br>
+                    ,which given by <a href="http://mimoza.marmara.edu.tr/~maeyler/" class="button">professor Mehmet akif eyler</a>,<br>
+
+                    by abdurrahman RAJAB  <br>
+                    Used Automata theroy book as reference <br>
+                    The turinch machine picutes which it used at Breif history section is taken from <a href="http://sciencenonfiction.org ">Science non fiction site</a> 
+                    <br> Uses W3 -Start Page Template
+                
+                </p>
+                <div class="w3-third w3-center">
+                        <i class="w3-padding-64 w3-text-blue w3-margin-right"></i>
+                      </div>
+
+            </div>
+          </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+        <a href="https://github.com/a0m0rajab/">
+                    <i class="fa fa-github w3-hover-opacity"></i>
+            </a>
+
+ </div>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+
+
+<script>
+
+
+/* Tape motions: */
+const TO_LEFT = '<';
+const TO_RIGHT = '>';
+const STOP = '0';
+/* Examples init values*/
+const FirstAccepted = '0011';
+const  FirstRejected = '0010';
+const SecondAccepted = '001000';
+const SecondRejected = '011';
+
+class TuringMachine {
+  constructor() {
+    this.isRunning = false;
+    this.lastTimer = null;
+    this.countOfCells = 15;
+    this.indexOfCurrentCell = null;
+    this.currentState = 1;
+    // you can hide it by using this .. .
+    //.style.display = 'none';
+    // accepted
+    this.FirstExample_accepted();
     
+  }
+  FirstExample_rejected(){
+this.initValue=FirstRejected;
+this.FirstExample();
+
+  }
+  FirstExample_accepted(){
+    this.initValue = FirstAccepted;
+    this.FirstExample();
+
+  }
+  FirstExample(value){
+    this.alphabet = '01xy';
+   // this.initValue = value;
+    this.speed = 1000;
+    this.countOfStates = 5;
+    this.states = [
+      ['x>2',''   ,''   ,'y>4',''   ],
+      ['0>2','y<3',''   ,'y>2',''   ],
+      ['0<3',''   ,'x>1','y<3',''   ],
+      [''   ,''   ,''   ,'y>4','_>0'],
+      [''   ,''   ,''   ,''   ,''   ],
+     ];
+     document.getElementById('init-value-input').value = this.initValue;  
+     document.getElementById('time-input').value = this.speed;
+     this.createTape();
+  }
+
+  secondExample_rejected(){
+    this.initValue=SecondRejected;
+    this.secondExample();
+    
+      }
+      secondExample_accepted(){
+        this.initValue = SecondAccepted;
+        this.secondExample();
+    
+      }
+      secondExample(value){
+        this.hideTable1();
+        this.alphabet = '01';
+       // this.initValue = value;
+        this.speed = 1000;
+        this.countOfStates = 7;
+        this.states = [
+          ['_>2','_>6' ,''    ],
+          ['0>2','1>3' ,''    ],
+          ['1<4','1>3' ,'_<5' ],
+          ['0<4','1<4' ,'_>1' ],
+          ['0<5','_<5' ,'0>7' ],
+          ['_>6','_>6' ,'_>7' ],
+          [''   ,''    ,''    ],
+         ];
+         document.getElementById('init-value-input').value = this.initValue;  
+         document.getElementById('time-input').value = this.speed;
+         this.createTape();
+      }
+  
+  
+
+  get currentValue() {
+    const cell = this.tape[this.indexOfCurrentCell];
+    const value = cell.getElementsByClassName('value');
+    
+    return value.length > 0 ? value[0] : null;
+  }
+  
+  get tape() {
+    return document.getElementsByClassName('cells-container')[0].childNodes;
+  }
+  
+  createTape () {
+    console.log('Create tape');
+    if (this.initValue.length <= this.indexOfCurrentCell + 1) {
+      this.clearTape();
+      
+      const tape = this.tape;
+      let length = this.initValue.length;
+      this.selectCellOfTape(length-1);
+      for (let l = this.initValue.length, i = this.indexOfCurrentCell ;l-- ; i--) {
+        tape[i].innerHTML = `<div class="value" id="${tape[i].id}">${this.initValue[l]}</div>`;
+      }
+     // this.selectCellOfTape() this.indexOfCurrentCell + this.initValue.length-1;
+      this.selectCellOfTape(this.indexOfCurrentCell-this.initValue.length+1   );
+      this.selectCellOfTape(0);
+
+    }
+  }
+
+  clearTape() {
+    const tape = this.tape;
+    for (let i = tape.length; i--; )
+      tape[i].innerHTML = '';
+  }
+  
+ 
+
+  read() {
+    const value = this.currentValue;
+    
+    return value ? value.innerText : null;
+  }
+  
+  write(v) {    
+    const cell = this.tape[this.indexOfCurrentCell];
+    const value = cell.getElementsByClassName('value');
+    
+    if (value.length > 0) {
+      value[0].innerText = v;
+    } else {
+      cell.innerHTML = `<div class="value" id="${cell.id}">${v}</div>`;
+    }
+  }
+  
+  selectCellOfTape(index) {    
+    if (index < 0 || index > this.countOfCells - 1) return;
+    const tape = this.tape;
+    const cell = tape[this.indexOfCurrentCell];
+    cell.className = 'cell';
+    this.indexOfCurrentCell = index;
+    const activeCell = tape[this.indexOfCurrentCell];
+    activeCell.classList.add('selected');
+  }
+  
+  goLeft() {
+    this.selectCellOfTape(this.indexOfCurrentCell - 1)
+  }
+  
+  goRight() {
+    this.selectCellOfTape(this.indexOfCurrentCell + 1)
+  }
+  
+  init() {
+    this.drawCells(this.countOfCells);
+    this.indexOfCurrentCell = 0;
+    const tape = this.tape;
+    const activeCell = tape[this.indexOfCurrentCell];
+    activeCell.classList.add('selected');
+  }
+  drawCells(countOfCells){
+    const tapeContainer = document.getElementsByClassName('cells-container')[0];
+    for (let i = 0; i < countOfCells; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.id = `${i}-cell`;
+      cell.onclick = ({ target: { id } }) => this.selectCellOfTape(parseInt(id));
+      tapeContainer.appendChild(cell);
+    }
+
+  }
+  load(initValue = '0011',speed = 1000) {
+   
+    this.selectCellOfTape(10);
+    this.currentState=1;
+    this.initValue = initValue;
+    this.speed = speed;
+    console.log(`initValue: ${this.initValue} speed:${this.speed}`)
+    this.createTape();
+  }
+  examplesBox(){
+    switch(getExampleID()){
+      case 0:
+      
+      this.FirstExample_accepted();
+      this.loadInput();
+      
+      break;
+      case 1:
+      this.FirstExample_rejected();
+      this.loadInput();
+      
+      break;
+      case 2:
+      this.secondExample_accepted();
+      this.loadInput();
+      
+      break;
+      case 3:
+      this.secondExample_rejected();
+      this.loadInput(); 
+     
+      break;
+    }
+
+  }
+
+
+  
+  step() {
+    let currentValue = this.read();
+   
+    let tapeLetter = currentValue ? this.alphabet.indexOf(currentValue) : this.alphabet.length;
+    try {
+      
+  
+    const currentStatement = this.states[this.currentState - 1][tapeLetter];
+    
+    //const currentStatement = this.states[this.currentState - 1][tapeLetter];
+    if (this.isRunning) {
+      const letter = currentStatement[0];
+      this.write(letter === '_' ? '' : letter);
+      const command = currentStatement[1];
+      switch(command) {
+        case '<': {
+          this.goLeft();
+          break;
+        }
+        case '>': {
+          this.goRight();
+          break;
+        }
+      }
+      const state = currentStatement.slice(2);
+      if (state === '0') {
+        this.finish();
+
+        alert("Accepted.");
+      } else {
+        this.currentState = state;
+      }
+    } else {
+      this.isRunning = true;
+    } 
+  } catch (error) {
+  
+
+    alert('Rejected..Try an other value');
+    this.finish();
+  }
+
+  }
+  finish(){
+    this.isRunning = false;
+    this.currentState = null;
+    document.getElementById('run').innerText = 'run';
+    document.getElementById('load-inputs').style.display = 'block';
+
+    this.loadInput();
+  }
+  loadInput(){
+    tm.load(document.getElementById('init-value-input').value , 
+    document.getElementById('time-input').value);
+
+  }
+  run() {
+    this.step();
+    this.lastTimer = setTimeout(() => {
+      if (this.isRunning) {
+        this.run();
+      }
+    }, this.speed);
+  }
+  
+  stop() {
+    
+    clearTimeout(this.lastTimer)
+  }
+}
+
+  function getExampleID() {
+  var dropdown1 = document.getElementById('ExamlpesDropDown');
+  return dropdown1.selectedIndex;
+  };
+
+const initHandlers = (TuringMachine) => {
+  const loadBtn = document.getElementById('load-inputs');
+  
+  loadBtn.onclick = ev => {
+    tm.loadInput();
+    console.log(getExampleID());
+                          }
+  
+  const runBtn = document.getElementById('run');
+  
+  runBtn.onclick = ({ target }) => {
+    switch(target.innerText) {
+      case 'run': {
+        tm.run();
+        document.getElementById('load-inputs').style.display = 'none';
+        target.innerText = 'stop';
+        break;
+      }
+      case 'stop': {
+        tm.stop();
+        // added - try to check it later ... 
+        document.getElementById('load-inputs').style.display = 'flex';
+
+        target.innerText = 'run';
+        break;
+      }
+    }
+  }
+  
+  const stepBtn = document.getElementById('step');
+  
+  stepBtn.onclick = ev => {
+    
+    tm.step();
+  }
+  
+
+}
+
+const tm = new TuringMachine();
+
+initHandlers(tm);
+tm.init();
+tm.load();
 
 
 
+</script>
+<script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+  
+  function myFunction() {
+      var x = document.getElementById("navDemo");
+      console.log("entered");
+      if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+      } else { 
+          x.className = x.className.replace(" w3-show", "");
+      }
+  }
+  </script>
 </body>
+
 </html>

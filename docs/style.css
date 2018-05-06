@@ -1,17 +1,30 @@
-    body {
-      margin: 1 auto;
-        background-color: peachpuff;
-    }
+.head{
+    font-size: 28px;
+    font-weight: bold;
+}
+.headTable {
+    height: 80px;
+    overflow: hidden;
+}
+
+
+
+
+body {
+      background: linear-gradient(90deg,peachpuff,royalblue);
+}
 
 .tableList td a{
     text-decoration: none;
     color: aliceblue;
     text-decoration: underline;
+    padding: 20px 0px;
 }
 .tableList {
     background-color: darkblue;
     color: aliceblue;
     width : 750px ;
+    font-size:18px;
 }
 .tableList td{
     background-color: darkblue;
@@ -20,11 +33,14 @@
 .tableList td, .tableList th{
     border-bottom: 1px solid aliceblue;
 }
+.tableList tr:nth-child(2) td{
+    border-top: 1px solid aliceblue;
+}
 .tableList th{
     background-color: crimson;
 }
 
-.tableList tr:nth-child(1n+2) :hover {
+.tableList tr:hover td{
   background-color: rgba(255, 0, 0, 0.5);
   transition: 100ms linear;
 }
@@ -33,6 +49,57 @@
     height: 50px;
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.tableListDetail td a{
+    text-decoration: none;
+    color: black;
+    text-decoration: underline;
+    padding: 20px 0px;
+}
+.tableListDetail {
+    background-color: ghostwhite;
+    color: aliceblue;
+    width : 750px ;
+    font-size: 17px;
+}
+.tableListDetail td{
+    background-color: silver;
+    color: black;
+}
+.tableListDetail td, .tableList th{
+    border-bottom: 4px solid darkblue;
+}
+.tableListDetail th{
+    background-color: crimson;
+}
+
+.tableListDetail tr:hover td{
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 100ms linear;
+}
+.tableListDetail tr{
+    
+    height: 50px;
+    
+}
+
+
+
+
+
+
+
 
 
     .vertical-menu {
@@ -59,7 +126,8 @@
 
         .pageContent {
             width: 750px;
-            text-shadow: 3px 3px #000000;
+            text-shadow: 0px 2px #000000;
+            font-size: 18px;
         }
         .pageContent table {
           width: 100%;
@@ -67,11 +135,11 @@
             
         }
         .pageContent table tr {
-          height: 80px;
+          height: 76px;
           background-color:crimson;
         }
         .pageContent table tr:nth-child(odd){
-          background-color: darkblue;
+          background-color: mediumblue;
         }
         .pageContent table tr td {
           width: 140px;
@@ -82,7 +150,7 @@
           color:whitesmoke;
           text-decoration: none;
           cursor: pointer;
-          padding: 10px 5px;
+          padding: 20px 0px;
         }
         .pageContent table tr td:hover {
           background-color:rgba(0, 0, 0, 0.5);
